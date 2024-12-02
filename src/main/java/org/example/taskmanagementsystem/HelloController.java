@@ -1,4 +1,4 @@
-package org.example.taskmanagementsystem;
+package main.java.org.example.taskmanagementsystem;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
