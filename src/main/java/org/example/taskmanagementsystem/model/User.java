@@ -1,14 +1,19 @@
 package main.java.org.example.taskmanagementsystem.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private int id;
     private String name;
     private String email;
+    private List<Task> tasks;
 
-    private User(int id, String name, String email){
+    public User(int id, String name, String email){
         this.id = id;
         this.name = name;
         this.email = email;
+        this.tasks = new ArrayList<Task>();
     }
 
     public int getId() {
@@ -33,5 +38,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
