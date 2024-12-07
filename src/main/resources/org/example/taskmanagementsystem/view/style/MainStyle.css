@@ -1,0 +1,75 @@
+/* Общий фон для всего приложения */
+.root {
+    -fx-background-color: #F9E6F2; /* Мягкий розовый цвет */
+}
+
+/* Стиль для кнопок */
+.button {
+    -fx-background-color: #FAD02E; /* Теплый желтый цвет для кнопок */
+    -fx-text-fill: #ffffff; /* Белый текст */
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: innershadow(gaussian, #F9C74F, 10, 0.8, 0, 0);
+}
+
+/* Стиль для списка */
+.list-cell {
+    -fx-background-color: #F1D1DC; /* Мягкий розовый для списка */
+    -fx-text-fill: #3A3A3A; /* Темный текст для контраста */
+}
+
+/* Стиль для таблицы */
+.table-view {
+    -fx-background-color: #F3A7C0; /* Теплый розовый для таблицы */
+    -fx-border-color: #F09A7A; /* Легкий контур таблицы */
+}
+
+/* Стиль для колонок таблицы */
+.table-column {
+    -fx-font-size: 14px;
+    -fx-text-fill: #3A3A3A; /* Темный текст для колонок */
+}
+
+/* Стиль для заголовков */
+.label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D76F88; /* Теплый розовый для заголовков */
+}
+
+/* Стиль для панелей */
+.border-pane {
+    -fx-background-color: #F9C8D1; /* Нежно-розовый для панелей */
+    -fx-padding: 10px;
+}
+
+/* Стиль для кнопок в верхней панели */
+.top {
+    -fx-background-color: #F8D7B1; /* Нежный желтый для верхней панели */
+    -fx-padding: 10px;
+}
+
+/* Стиль для левой панели */
+.left {
+    -fx-background-color: #FAD3C1; /* Мягкий персиковый цвет для левой панели */
+    -fx-padding: 10px;
+}
+
+/* Стиль для центральной панели */
+.center {
+    -fx-background-color: #F3A7C0; /* Розовый для центральной панели */
+    -fx-padding: 10px;
+}
+
+/* Стиль для правой панели */
+.right {
+    -fx-background-color: #FAD3C1; /* Мягкий персиковый для правой панели */
+    -fx-padding: 10px;
+}
+
+/* Стиль для кнопок в нижней панели */
+.button:pressed {
+    -fx-background-color: #F9C74F; /* Цвет кнопки при нажатии */
+}

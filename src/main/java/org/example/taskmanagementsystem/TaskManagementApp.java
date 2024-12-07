@@ -1,4 +1,4 @@
-package main.java.org.example.taskmanagementsystem;
+package org.example.taskmanagementsystem;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
