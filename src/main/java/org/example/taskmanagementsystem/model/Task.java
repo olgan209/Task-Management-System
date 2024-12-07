@@ -1,20 +1,23 @@
 package main.java.org.example.taskmanagementsystem.model;
 
+import java.time.LocalDateTime;
+
 public class Task {
     private int id;
     private String name;
+    private String description;
+    private String status;
+    private int id_project;
+    public LocalDateTime taskDeadline;
 
-    public Task(int id, String name, String description, String status, int id_project) {
+    public Task(int id, String name, String description, String status, int id_project, LocalDateTime taskDeadline) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
         this.id_project = id_project;
+        this.taskDeadline = taskDeadline;
     }
-
-    private String description;
-    private String status;
-    private int id_project;
 
     public int getId() {
         return id;
@@ -54,5 +57,13 @@ public class Task {
 
     public void setId_project(int id_project) {
         this.id_project = id_project;
+    }
+
+    public LocalDateTime getTaskDeadline() {
+        return taskDeadline;
+    }
+
+    public void setTaskDeadline(LocalDateTime taskDeadline) {
+        this.taskDeadline = taskDeadline;
     }
 }
