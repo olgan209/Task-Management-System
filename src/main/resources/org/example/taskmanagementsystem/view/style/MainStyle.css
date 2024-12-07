@@ -1,75 +1,59 @@
-/* Общий фон для всего приложения */
+/* MainStyle.css */
+
+/* Основной фон с пастельными тонами */
 .root {
-    -fx-background-color: #F9E6F2; /* Мягкий розовый цвет */
+    -fx-background-color: #F5F5F5; /* Светло-серый фон */
 }
 
-/* Стиль для кнопок */
 .button {
-    -fx-background-color: #FAD02E; /* Теплый желтый цвет для кнопок */
-    -fx-text-fill: #ffffff; /* Белый текст */
+    -fx-background-color: #A3D9B1; /* Пастельный зеленый */
+    -fx-text-fill: #3C4C3F; /* Темный зеленый текст */
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #8EC08B; /* Немного более насыщенный зеленый */
+}
+
+.label {
     -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6D8B7D; /* Мягкий зеленовато-серый цвет */
+}
+
+.list-view, .table-view {
+    -fx-pref-width: 250px;
+    -fx-font-size: 14px;
+    -fx-background-color: #D1E0D6; /* Пастельный зеленый */
+    -fx-border-color: #B3C4A6; /* Мягкий зеленый */
+    -fx-border-width: 1px;
     -fx-padding: 10px;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-effect: innershadow(gaussian, #F9C74F, 10, 0.8, 0, 0);
 }
 
-/* Стиль для списка */
-.list-cell {
-    -fx-background-color: #F1D1DC; /* Мягкий розовый для списка */
-    -fx-text-fill: #3A3A3A; /* Темный текст для контраста */
-}
-
-/* Стиль для таблицы */
 .table-view {
-    -fx-background-color: #F3A7C0; /* Теплый розовый для таблицы */
-    -fx-border-color: #F09A7A; /* Легкий контур таблицы */
+    -fx-background-color: #E1F1E3; /* Светлый пастельный зеленый */
 }
 
-/* Стиль для колонок таблицы */
 .table-column {
     -fx-font-size: 14px;
-    -fx-text-fill: #3A3A3A; /* Темный текст для колонок */
+    -fx-text-fill: #5B6A4E; /* Мягкий оливковый цвет */
 }
 
-/* Стиль для заголовков */
-.label {
-    -fx-font-size: 18px;
+.hbox {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+.vbox {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+.vbox > .label {
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #D76F88; /* Теплый розовый для заголовков */
-}
-
-/* Стиль для панелей */
-.border-pane {
-    -fx-background-color: #F9C8D1; /* Нежно-розовый для панелей */
-    -fx-padding: 10px;
-}
-
-/* Стиль для кнопок в верхней панели */
-.top {
-    -fx-background-color: #F8D7B1; /* Нежный желтый для верхней панели */
-    -fx-padding: 10px;
-}
-
-/* Стиль для левой панели */
-.left {
-    -fx-background-color: #FAD3C1; /* Мягкий персиковый цвет для левой панели */
-    -fx-padding: 10px;
-}
-
-/* Стиль для центральной панели */
-.center {
-    -fx-background-color: #F3A7C0; /* Розовый для центральной панели */
-    -fx-padding: 10px;
-}
-
-/* Стиль для правой панели */
-.right {
-    -fx-background-color: #FAD3C1; /* Мягкий персиковый для правой панели */
-    -fx-padding: 10px;
-}
-
-/* Стиль для кнопок в нижней панели */
-.button:pressed {
-    -fx-background-color: #F9C74F; /* Цвет кнопки при нажатии */
+    -fx-text-fill: #4C6357; /* Пастельный оливковый */
 }

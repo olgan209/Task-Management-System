@@ -13,7 +13,7 @@ public class MainController extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/MainView.fxml"));
 
         // Устанавливаем сцену и показываем окно
-        primaryStage.setTitle("Task Management System - Main View");
+        primaryStage.setTitle("Task Management System - Task View");
         primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна
         primaryStage.show();
     }
