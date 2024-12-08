@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56b5b0c-931a-49aa-b69c-f36babc3a270" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/TaskStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/ProjectDetailsStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/UserManagementStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/MainStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/MainStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/UserView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/UserView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +38,9 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2pWGe0YxNL4Ugl7KcUg8C9U10kN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -50,7 +52,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Task-Management-System",
+    "last_opened_file_path": "D:/Surface-Area-and-Volume-of-3d-Shapes-main/Surface-Area-and-Volume-of-3d-Shapes-main",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -107,6 +109,8 @@
       <workItem from="1732874512842" duration="2000" />
       <workItem from="1733585147412" duration="2931000" />
       <workItem from="1733588112745" duration="4182000" />
+      <workItem from="1733670697852" duration="127000" />
+      <workItem from="1733670851298" duration="2932000" />
     </task>
     <servers />
   </component>
