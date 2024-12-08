@@ -118,7 +118,7 @@ public class TaskService {
                         rs.getString("name"),
                         rs.getString("description"),
                         TaskStatus.valueOf(rs.getString("status")),
-                        rs.getInt("project_id"),
+                        rs.getInt("projectId"),
                         rs.getTimestamp("deadline").toLocalDateTime()
                 );
             }
