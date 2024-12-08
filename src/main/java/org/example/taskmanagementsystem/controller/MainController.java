@@ -1,4 +1,4 @@
-package main.java.org.example.taskmanagementsystem.controller;
+package org.example.taskmanagementsystem.controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -9,10 +9,10 @@ public class MainController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Загружаем FXML файл
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/LoginView.fxml"));
 
         // Устанавливаем сцену и показываем окно
-        primaryStage.setTitle("Task Management System - Main View");
+        primaryStage.setTitle("Task Management System - User View");
         primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна
         primaryStage.show();
     }

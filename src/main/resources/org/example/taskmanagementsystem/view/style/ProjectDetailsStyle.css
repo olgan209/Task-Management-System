@@ -1,0 +1,48 @@
+/* ProjectDetailsStyle.css */
+
+/* Общий стиль для формы */
+.vbox {
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-background-color: #F7F9F4; /* Очень светлый пастельный фон */
+    -fx-border-radius: 8px;
+    -fx-border-color: #C8D7C4; /* Пастельный зеленовато-серый */
+    -fx-border-width: 1px;
+}
+
+.text-field, .text-area {
+    -fx-pref-width: 300px;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-background-color: #D1E0D6; /* Пастельный зеленый */
+    -fx-border-color: #A3B8A2; /* Мягкий зеленовато-серый */
+    -fx-border-width: 1px;
+}
+
+.text-area {
+    -fx-pref-height: 100px;
+}
+
+.button {
+    -fx-background-color: #A3D9B1; /* Пастельный зеленый */
+    -fx-text-fill: #3C4C3F; /* Темный зеленый текст */
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #8EC08B; /* Немного более насыщенный зеленый */
+}
+
+.hbox {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6D8B7D; /* Мягкий зеленовато-серый цвет */
+}
