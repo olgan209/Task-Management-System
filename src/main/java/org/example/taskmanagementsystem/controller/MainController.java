@@ -1,5 +1,4 @@
-package org.example.taskmanagementsystem.controller;
-
+package main.java.org.example.taskmanagementsystem.controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
