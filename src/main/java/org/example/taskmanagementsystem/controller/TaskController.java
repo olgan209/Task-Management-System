@@ -80,7 +80,7 @@ public class TaskController {
         priorityComboBox.setValue(null);
         dueDatePicker.setValue(null);
 
-        ((javafx.stage.Stage) cancelButton.getScene().getWindow()).close();
+//        ((javafx.stage.Stage) cancelButton.getScene().getWindow()).close();
     }
 
     private void closeCurrentWindow() {
