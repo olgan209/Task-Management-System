@@ -1,4 +1,4 @@
-package main.java.org.example.taskmanagementsystem.services;
+package org.example.taskmanagementsystem.services;
 
 public class DatabaseUtils {
 

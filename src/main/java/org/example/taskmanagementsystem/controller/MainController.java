@@ -9,7 +9,7 @@ public class MainController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Загружаем FXML файл
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/LoginView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/TaskView.fxml"));
 
         // Устанавливаем сцену и показываем окно
         primaryStage.setTitle("Task Management System - User View");

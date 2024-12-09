@@ -1,7 +1,7 @@
-package main.java.org.example.taskmanagementsystem.services;
+package org.example.taskmanagementsystem.services;
 
-import main.java.org.example.taskmanagementsystem.model.Task;
-import main.java.org.example.taskmanagementsystem.model.TaskStatus;
+import org.example.taskmanagementsystem.model.Task;
+import org.example.taskmanagementsystem.model.TaskStatus;
 
 import java.sql.*;
 import java.time.LocalDateTime;

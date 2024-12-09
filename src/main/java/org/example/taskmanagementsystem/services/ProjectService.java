@@ -1,7 +1,7 @@
-package main.java.org.example.taskmanagementsystem.services;
+package org.example.taskmanagementsystem.services;
 
-import main.java.org.example.taskmanagementsystem.model.Project;
-import main.java.org.example.taskmanagementsystem.model.User;
+import org.example.taskmanagementsystem.model.Project;
+import org.example.taskmanagementsystem.model.User;
 
 import java.util.ArrayList;
 
