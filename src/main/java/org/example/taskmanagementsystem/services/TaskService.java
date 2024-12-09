@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TaskService {
-    private static final String url = "jdbc:postgresql://localhost:5432/Tsm";
+    private static final String url = "jdbc:postgresql://localhost:5432/Tms";
     private static final String username = "postgres";
     private static final String password = "1234";
 
