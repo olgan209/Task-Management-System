@@ -7,13 +7,13 @@ public class User {
     private int id;
     private String name;
     private String email;
-    private List<Task> tasks;
+    private List<Task> userTasks;
 
     public User(int id, String name, String email){
         this.id = id;
         this.name = name;
         this.email = email;
-        this.tasks = new ArrayList<Task>();
+        this.userTasks = new ArrayList<Task>();
     }
 
     public int getId() {
@@ -41,10 +41,10 @@ public class User {
     }
 
     public List<Task> getTasks() {
-        return tasks;
+        return userTasks;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setTasks(List<Task> userTasks) {
+        this.userTasks = userTasks;
     }
 }
