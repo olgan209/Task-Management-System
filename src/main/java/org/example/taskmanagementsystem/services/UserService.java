@@ -1,6 +1,7 @@
 package main.java.org.example.taskmanagementsystem.services;
 
 import main.java.org.example.taskmanagementsystem.model.Task;
+import main.java.org.example.taskmanagementsystem.model.TaskStatus;
 import main.java.org.example.taskmanagementsystem.model.User;
 
 import java.sql.*;
@@ -90,7 +91,7 @@ public class UserService {
                         rs.getInt("id"),  // Assuming the task has an 'id' column
                         rs.getString("name"),
                         rs.getString("description"),
-                        rs.getString("status"),
+                        TaskStatus.valueOf(rs.getString("status")),
                         rs.getInt("id_project"),
                         rs.getTimestamp("taskDeadline").toLocalDateTime() // Convert Timestamp to LocalDateTime
                 );

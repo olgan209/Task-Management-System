@@ -6,17 +6,17 @@ public class Task {
     private int id;
     private String name;
     private String description;
-    private String status;
-    private int id_project;
-    public LocalDateTime taskDeadline;
+    private TaskStatus status;
+    private int projectId;
+    private LocalDateTime deadline;
 
-    public Task(int id, String name, String description, String status, int id_project, LocalDateTime taskDeadline) {
+    public Task(int id, String name, String description, TaskStatus status, int projectId, LocalDateTime deadline) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.status = status;
-        this.id_project = id_project;
-        this.taskDeadline = taskDeadline;
+        this.projectId = projectId;
+        this.deadline = deadline;
     }
 
     public int getId() {
@@ -43,27 +43,28 @@ public class Task {
         this.description = description;
     }
 
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
-    public int getId_project() {
-        return id_project;
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setId_project(int id_project) {
-        this.id_project = id_project;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
-    public LocalDateTime getTaskDeadline() {
-        return taskDeadline;
+    public LocalDateTime getDeadline() {
+        return deadline;
     }
 
-    public void setTaskDeadline(LocalDateTime taskDeadline) {
-        this.taskDeadline = taskDeadline;
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
     }
 }
+
