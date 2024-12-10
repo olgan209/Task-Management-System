@@ -11,6 +11,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+<?import org.example.taskmanagementsystem.model.TaskStatus?>
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" spacing="15" alignment="CENTER"
       style="-fx-padding: 20;" stylesheets="@style/TaskStyle.css"
       fx:controller="org.example.taskmanagementsystem.controller.TaskController">
@@ -37,16 +38,17 @@
     </ComboBox>
 
     <!-- Приоритет -->
-    <Label text="Приоритет:" />
-    <ComboBox fx:id="priorityComboBox" promptText="Выберите приоритет">
+    <Label text="Статус задачи:" />
+    <ComboBox fx:id="priorityComboBox" promptText="Выберите статус">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Высокий"/>
-                <String fx:value="Средний"/>
-                <String fx:value="Низкий"/>
+                <TaskStatus fx:value="TODO" />
+                <TaskStatus fx:value="IN_PROGRESS" />
+                <TaskStatus fx:value="COMPLETED" />
             </FXCollections>
         </items>
     </ComboBox>
+
 
     <!-- Срок выполнения -->
     <Label text="Срок выполнения:" />

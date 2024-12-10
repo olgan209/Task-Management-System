@@ -9,12 +9,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" stylesheets="@style/MainStyle.css">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" stylesheets="@style/MainStyle.css"
+            fx:controller="org.example.taskmanagementsystem.controller.MainController">
     <!-- Верхняя панель -->
     <top>
         <HBox spacing="10" alignment="CENTER">
             <Button text="Добавить проект" />
-            <Button text="Добавить задачу" />
+            <Button text="Добавить задачу" fx:id="openTaskForm" onAction="#openTaskForm"/>
             <Button text="Добавить пользователя" />
         </HBox>
     </top>

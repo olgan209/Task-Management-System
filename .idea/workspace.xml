@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a56b5b0c-931a-49aa-b69c-f36babc3a270" name="Changes" comment="" />
+    <list default="true" id="a56b5b0c-931a-49aa-b69c-f36babc3a270" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/services/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/services/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/services/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/services/TaskService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,8 +48,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
       </set>
     </attachedChunks>
   </component>
@@ -67,7 +63,7 @@
       <updated>1732874511707</updated>
       <workItem from="1732874512842" duration="2000" />
       <workItem from="1733127555429" duration="29984000" />
-      <workItem from="1733673692052" duration="7014000" />
+      <workItem from="1733728005658" duration="2026000" />
     </task>
     <servers />
   </component>

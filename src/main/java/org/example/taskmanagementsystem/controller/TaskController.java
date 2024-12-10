@@ -1,5 +1,6 @@
 package org.example.taskmanagementsystem.controller;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -11,6 +12,8 @@ import org.example.taskmanagementsystem.model.TaskStatus;
 import org.example.taskmanagementsystem.services.TaskService;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class TaskController {
 
@@ -39,7 +42,13 @@ public class TaskController {
     public void initialize() {
         // Настройка ComboBox с данными (можно изменить на реальные данные пользователей)
         userComboBox.getItems().addAll("Пользователь 1", "Пользователь 2", "Пользователь 3");
-        priorityComboBox.getItems().addAll("Высокий", "Средний", "Низкий");
+        priorityComboBox.setItems(FXCollections.observableArrayList(
+                Arrays.stream(TaskStatus.values())
+                        .map(Enum::name)  // Извлекаем имена элементов перечисления
+                        .collect(Collectors.toList())
+        ));
+
+
 
         // Обработчики событий
         saveButton.setOnAction(event -> saveTask());
@@ -59,6 +68,8 @@ public class TaskController {
 
         // Сохранение задачи через сервис
         taskService.createTask(task);
+
+        closeCurrentWindow();
     }
 
     private void cancelTask() {
@@ -68,5 +79,12 @@ public class TaskController {
         userComboBox.setValue(null);
         priorityComboBox.setValue(null);
         dueDatePicker.setValue(null);
+
+        ((javafx.stage.Stage) cancelButton.getScene().getWindow()).close();
+    }
+
+    private void closeCurrentWindow() {
+        // Закрытие текущего окна
+        ((javafx.stage.Stage) saveButton.getScene().getWindow()).close();
     }
 }
