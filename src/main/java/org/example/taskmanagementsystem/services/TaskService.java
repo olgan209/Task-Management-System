@@ -84,7 +84,7 @@ public class TaskService {
     }
 
     public Task getTaskByUser(int userId) {
-        String sql = "SELECT * FROM tasks WHERE user_id = ?";
+        String sql = "SELECT * FROM tasks WHERE userId = ?";
         try(Connection conn = this.connect();
         PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, userId);
