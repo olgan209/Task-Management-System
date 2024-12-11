@@ -40,6 +40,44 @@ public class MainController extends Application {
         }
     }
 
+    @FXML
+    public void openProjectForm() {
+        try {
+            // Загружаем FXML для страницы добавления задачи
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/ProjectView.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Создаем новое окно
+            Stage taskStage = new Stage();
+            taskStage.setTitle("Добавить проект");
+            taskStage.setScene(scene);
+
+            // Показываем новое окно
+            taskStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void openUserForm() {
+        try {
+            // Загружаем FXML для страницы добавления задачи
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/UserView.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            // Создаем новое окно
+            Stage taskStage = new Stage();
+            taskStage.setTitle("Добавить задачу");
+            taskStage.setScene(scene);
+
+            // Показываем новое окно
+            taskStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args); // Запуск JavaFX приложения
     }
