@@ -64,7 +64,7 @@ public class TaskController {
         LocalDateTime deadline = dueDatePicker.getValue() != null ? dueDatePicker.getValue().atStartOfDay() : null;
 
         // Создание объекта Task
-        Task task = new Task(0, name, description, TaskStatus.valueOf(priority.toUpperCase()), 1, deadline);
+        Task task = new Task(name, description, TaskStatus.valueOf(priority.toUpperCase()), 1, deadline);
 
         // Сохранение задачи через сервис
         taskService.createTask(task);
@@ -80,7 +80,7 @@ public class TaskController {
         priorityComboBox.setValue(null);
         dueDatePicker.setValue(null);
 
-        ((javafx.stage.Stage) cancelButton.getScene().getWindow()).close();
+//        ((javafx.stage.Stage) cancelButton.getScene().getWindow()).close();
     }
 
     private void closeCurrentWindow() {

@@ -3,14 +3,19 @@ package org.example.taskmanagementsystem.model;
 import java.time.LocalDateTime;
 
 public class Task {
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private TaskStatus status;
     private int projectId;
     private LocalDateTime deadline;
 
-    public Task(int id, String name, String description, TaskStatus status, int projectId, LocalDateTime deadline) {
+
+    public Task(String name, String description, TaskStatus status, int projectId, LocalDateTime deadline) {
+        this(null, name, description, status, projectId, deadline);
+    }
+
+    public Task(Integer id, String name, String description, TaskStatus status, int projectId, LocalDateTime deadline) {
         this.id = id;
         this.name = name;
         this.description = description;

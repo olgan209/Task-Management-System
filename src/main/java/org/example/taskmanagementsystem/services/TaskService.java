@@ -24,15 +24,14 @@ public class TaskService {
     }
 
     public void createTask(Task task) {
-        String sql = "INSERT INTO tasks(id, name, description, status, project_id, deadline) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO tasks(name, description, status, project_id, deadline) VALUES(?,?,?,?,?)";
         try (Connection conn = this.connect();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, task.getId());
-            ps.setString(2, task.getName());
-            ps.setString(3, task.getDescription());
-            ps.setString(4, task.getStatus().name());
-            ps.setInt(5, task.getProjectId());
-            ps.setTimestamp(6, Timestamp.valueOf(task.getDeadline()));
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, task.getName());
+            ps.setString(2, task.getDescription());
+            ps.setString(3, task.getStatus().name());
+            ps.setInt(4, task.getProjectId());
+            ps.setTimestamp(5, Timestamp.valueOf(task.getDeadline()));
             ps.executeUpdate();
             System.out.println("Task created");
         } catch (SQLException e) {
