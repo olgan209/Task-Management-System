@@ -7,9 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ProjectService {
-    private static final String url = "";
-    private static final String username = "";
-    private static final String password = " ";
+    private static final String url = "jdbc:postgresql://localhost:5432/Tms";
+    private static final String username = "postgres";
+    private static final String password = "1234";
 
     Connection conn;
     public Connection connect() throws SQLException {
@@ -26,13 +26,12 @@ public class ProjectService {
     }
 
     public void createProject(Project project){
-        String sql = "INSERT INTO projects(id, name, description) VALUES(?,?,?)";
+        String sql = "INSERT INTO projects(name, description) VALUES(?,?)";
         try{
             Connection conn = this.connect();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, project.getId());
-            ps.setString(2, project.getName());
-            ps.setString(3, project.getDescription());
+            ps.setString(1, project.getName());
+            ps.setString(2, project.getDescription());
             ps.executeUpdate();
             System.out.println("Project created");
             conn.close();

@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.example.taskmanagementsystem.model.Project;
+import org.example.taskmanagementsystem.services.ProjectService;
 
 public class ProjectController {
 
@@ -22,10 +23,13 @@ public class ProjectController {
     // Переменная для хранения текущего проекта
     private Project currentProject;
 
+    private ProjectService projectService;
+
     // Инициализация контроллера
     @FXML
     public void initialize() {
         // Инициализация компонентов, если необходимо
+        this.projectService = new ProjectService();
     }
 
     // Метод для сохранения проекта
@@ -39,13 +43,15 @@ public class ProjectController {
 
         // Создание нового проекта
         if (currentProject == null) {
-            currentProject = new Project(0, projectNameField.getText(), projectDescriptionField.getText());
+            currentProject = new Project(projectNameField.getText(), projectDescriptionField.getText());
         } else {
             currentProject.setName(projectNameField.getText());
             currentProject.setDescription(projectDescriptionField.getText());
         }
 
         // В данном случае можно сохранить проект в базе данных или другом хранилище
+
+        projectService.createProject(currentProject);
 
         showAlert("Успех", "Проект сохранен.");
 
