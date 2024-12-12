@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" stylesheets="@style/MainStyle.css"
-            fx:controller="org.example.taskmanagementsystem.controller.MainController">
-    <!-- Верхняя панель -->
-    <top>
-        <HBox spacing="10" alignment="CENTER">
-            <Button text="Добавить проект" fx:id="openProjectForm" onAction="#openProjectForm"/>
-        </HBox>
-    </top>
-
-    <!-- Левая панель -->
-    <left>
-        <VBox spacing="10">
-            <Label text="Проекты" />
-            <ListView fx:id="projectListView" />
-        </VBox>
-    </left>
+<BorderPane stylesheets="@style/MainStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.MainController">
+   <left>
+      <VBox prefHeight="363.0" prefWidth="263.0" spacing="10" BorderPane.alignment="CENTER" id="left-vbox">
+         <Label text="Проекты" id="projects-label"/>
+         <ListView fx:id="projectListView" id="project-listview"/>
+         <HBox alignment="CENTER" spacing="10" id="button-container">
+            <Button fx:id="openProjectForm" onAction="#openProjectForm" text="Добавить проект" />
+         </HBox>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="363.0" prefWidth="369.0" BorderPane.alignment="CENTER" id="center-vbox">
+         <children>
+            <Label text="Пользователь" id="user-label"/>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+            <Label text="Дедлайны" id="deadlines-label">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ListView id="deadlineListView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+   </center>
 </BorderPane>

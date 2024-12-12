@@ -1,47 +1,80 @@
-/* MainStyle.css */
-
 /* Основной фон с пастельными тонами */
 .root {
     -fx-background-color: #F5F5F5; /* Светло-серый фон */
 }
 
-.button {
-    -fx-background-color: #A3D9B1; /* Пастельный зеленый */
-    -fx-text-fill: #3C4C3F; /* Темный зеленый текст */
+/* Стиль для левой части (VBox) */
+#left-vbox {
+    -fx-padding: 15;
+    -fx-background-color: #333333;
+    -fx-border-color: #444444;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* Стиль для метки "Проекты" */
+#projects-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0 0 10 0;
+}
+
+/* Стиль для списка проектов (ListView) */
+#project-listview {
+    -fx-background-color: #444444;
+    -fx-border-color: #555555;
+    -fx-border-radius: 3;
+    -fx-text-fill: #ffffff;
+}
+
+/* Стиль для кнопки */
+#button-container .button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
     -fx-font-size: 14px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-cursor: hand;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color: #3E8E41;
+    -fx-border-width: 2;
 }
 
-.button:hover {
-    -fx-background-color: #8EC08B; /* Немного более насыщенный зеленый */
+/* Цвет при наведении на кнопку */
+#button-container .button:hover {
+    -fx-background-color: #8EC08B;
 }
 
-.label {
+/* Стиль для центральной части (VBox) */
+#center-vbox {
+    -fx-alignment: center;
+}
+
+/* Стиль для метки "Пользователь" */
+#user-label {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: #6D8B7D; /* Мягкий зеленовато-серый цвет */
 }
 
-.list-view, .table-view {
-    -fx-pref-width: 250px;
-    -fx-font-size: 14px;
+/* Стиль для метки "Дедлайны" */
+#deadlines-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6D8B7D;
+}
+
+/* Стиль для списка дедлайнов (ListView) */
+#deadlineListView {
+    -fx-pref-width: 200px;
     -fx-background-color: #D1E0D6; /* Пастельный зеленый */
     -fx-border-color: #B3C4A6; /* Мягкий зеленый */
     -fx-border-width: 1px;
     -fx-padding: 10px;
 }
 
-.table-view {
-    -fx-background-color: #E1F1E3; /* Светлый пастельный зеленый */
-}
-
-.table-column {
-    -fx-font-size: 14px;
-    -fx-text-fill: #5B6A4E; /* Мягкий оливковый цвет */
-}
-
+/* Общие стили для HBox */
 .hbox {
     -fx-spacing: 10px;
     -fx-alignment: center;
@@ -50,10 +83,4 @@
 .vbox {
     -fx-spacing: 10px;
     -fx-alignment: center;
-}
-
-.vbox > .label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #4C6357; /* Пастельный оливковый */
 }
