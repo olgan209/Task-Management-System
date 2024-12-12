@@ -7,7 +7,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" spacing="15" alignment="CENTER" styleClass="vbox" stylesheets="@style/ProjectDetailsStyle.css">
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" spacing="15"
+      alignment="CENTER" styleClass="vbox" stylesheets="@style/ProjectDetailsStyle.css"
+      fx:controller="org.example.taskmanagementsystem.controller.ProjectController">
     <!-- Заголовок -->
     <Label text="Детали проекта" styleClass="label" />
 
@@ -21,7 +23,7 @@
 
     <!-- Кнопки действий -->
     <HBox spacing="10" alignment="CENTER" styleClass="hbox">
-        <Button text="Сохранить" fx:id="saveButton" styleClass="button" />
-        <Button text="Удалить" fx:id="deleteButton" styleClass="button" />
+        <Button text="Сохранить" fx:id="saveButton" styleClass="button" onAction="#saveProject"/>
+        <Button text="Удалить" fx:id="deleteButton" styleClass="button" onAction="#deleteProject"/>
     </HBox>
 </VBox>

@@ -14,9 +14,9 @@
     <!-- Верхняя панель -->
     <top>
         <HBox spacing="10" alignment="CENTER">
-            <Button text="Добавить проект" />
+            <Button text="Добавить проект" fx:id="openProjectForm" onAction="#openProjectForm"/>
             <Button text="Добавить задачу" fx:id="openTaskForm" onAction="#openTaskForm"/>
-            <Button text="Добавить пользователя" />
+            <Button text="Добавить пользователя" fx:id="openUserForm" onAction="#openUserForm"/>
         </HBox>
     </top>
 

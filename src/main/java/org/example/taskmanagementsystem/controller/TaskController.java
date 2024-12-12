@@ -2,14 +2,11 @@ package org.example.taskmanagementsystem.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import org.example.taskmanagementsystem.model.Task;
 import org.example.taskmanagementsystem.model.TaskStatus;
 import org.example.taskmanagementsystem.services.TaskService;
+import org.example.taskmanagementsystem.services.ValidationUtils;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -63,6 +60,12 @@ public class TaskController {
         String priority = priorityComboBox.getValue();
         LocalDateTime deadline = dueDatePicker.getValue() != null ? dueDatePicker.getValue().atStartOfDay() : null;
 
+        if (!ValidationUtils.validateTask(name, description, String.valueOf(deadline))) {
+            // Если валидация не пройдена, завершить метод
+            showAlert("Ошибка", "Некорректные данные. Проверьте введенные значения.");
+            return;
+        }
+
         // Создание объекта Task
         Task task = new Task(name, description, TaskStatus.valueOf(priority.toUpperCase()), 1, deadline);
 
@@ -80,7 +83,15 @@ public class TaskController {
         priorityComboBox.setValue(null);
         dueDatePicker.setValue(null);
 
-//        ((javafx.stage.Stage) cancelButton.getScene().getWindow()).close();
+        ((javafx.stage.Stage) cancelButton.getScene().getWindow()).close();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void closeCurrentWindow() {
