@@ -15,8 +15,6 @@
     <top>
         <HBox spacing="10" alignment="CENTER">
             <Button text="Добавить проект" fx:id="openProjectForm" onAction="#openProjectForm"/>
-            <Button text="Добавить задачу" fx:id="openTaskForm" onAction="#openTaskForm"/>
-            <Button text="Добавить пользователя" fx:id="openUserForm" onAction="#openUserForm"/>
         </HBox>
     </top>
 
@@ -27,26 +25,4 @@
             <ListView fx:id="projectListView" />
         </VBox>
     </left>
-
-    <!-- Центральная панель -->
-    <center>
-        <VBox spacing="10">
-            <Label text="Задачи" />
-            <TableView fx:id="taskTableView">
-                <columns>
-                    <TableColumn text="Название" />
-                    <TableColumn text="Статус" />
-                    <TableColumn text="Ответственный" />
-                </columns>
-            </TableView>
-        </VBox>
-    </center>
-
-    <!-- Правая панель -->
-    <right>
-        <VBox spacing="10">
-            <Label text="Пользователи" />
-            <ListView fx:id="userListView" />
-        </VBox>
-    </right>
 </BorderPane>

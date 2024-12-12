@@ -20,26 +20,6 @@ public class MainController extends Application {
         primaryStage.show();
     }
 
-    // Метод для открытия формы добавления задачи
-    @FXML
-    public void openTaskForm() {
-        try {
-            // Загружаем FXML для страницы добавления задачи
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/TaskView.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            // Создаем новое окно
-            Stage taskStage = new Stage();
-            taskStage.setTitle("Добавить задачу");
-            taskStage.setScene(scene);
-
-            // Показываем новое окно
-            taskStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @FXML
     public void openProjectForm() {
         try {
@@ -50,25 +30,6 @@ public class MainController extends Application {
             // Создаем новое окно
             Stage taskStage = new Stage();
             taskStage.setTitle("Добавить проект");
-            taskStage.setScene(scene);
-
-            // Показываем новое окно
-            taskStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void openUserForm() {
-        try {
-            // Загружаем FXML для страницы добавления задачи
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/UserView.fxml"));
-            Scene scene = new Scene(loader.load());
-
-            // Создаем новое окно
-            Stage taskStage = new Stage();
-            taskStage.setTitle("Добавить задачу");
             taskStage.setScene(scene);
 
             // Показываем новое окно
