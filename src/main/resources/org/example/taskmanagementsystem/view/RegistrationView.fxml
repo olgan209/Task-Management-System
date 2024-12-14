@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" spacing="20" alignment="CENTER" stylesheets="@style/RegistrationStyle.css" styleClass="hbox"
+      fx:controller="org.example.taskmanagementsystem.controller.RegistrationController">
+
+    <!-- Левая часть с гифкой -->
+    <ImageView fx:id="gifView" fitWidth="200" fitHeight="200" preserveRatio="true" />
+
+    <!-- Правая часть с регистрационной формой -->
+    <VBox spacing="15" alignment="CENTER" styleClass="vbox">
+
+        <!-- Заголовок -->
+        <Label text="Регистрация" styleClass="label" />
+
+        <!-- Имя пользователя -->
+        <Label text="Имя пользователя:" styleClass="label" />
+        <TextField fx:id="usernameField" promptText="Введите имя" styleClass="text-field" />
+
+        <!-- Электронная почта -->
+        <Label text="Электронная почта:" styleClass="label" />
+        <TextField fx:id="emailField" promptText="Введите почту" styleClass="text-field" />
+
+        <!-- Пароль -->
+        <Label text="Пароль:" styleClass="label" />
+        <PasswordField fx:id="passwordField" promptText="Введите пароль" styleClass="password-field" />
+
+        <!-- Кнопка для регистрации -->
+        <Button text="Зарегистрироваться" fx:id="registerButton" styleClass="button"/>
+
+        <!-- Ссылка на страницу входа -->
+        <HBox spacing="10" alignment="CENTER">
+            <Label text="Уже есть аккаунт?" styleClass="label" />
+            <Button text="Войти" styleClass="button"/>
+        </HBox>
+    </VBox>
+</HBox>

@@ -8,19 +8,14 @@
     -fx-border-width: 1px;
 }
 
-/* Стиль для полей ввода текста (TextField и TextArea) */
-.text-field, .text-area {
+/* Стиль для полей ввода текста (TextField и PasswordField) */
+.text-field, .password-field {
     -fx-pref-width: 300px;
     -fx-font-size: 14px;
     -fx-padding: 10px;
     -fx-background-color: #D1E0D6; /* Пастельный зеленый */
     -fx-border-color: #A3B8A2; /* Мягкий зеленовато-серый */
     -fx-border-width: 1px;
-}
-
-/* Стиль для TextArea */
-.text-area {
-    -fx-pref-height: 100px;
 }
 
 /* Стиль для кнопок */
