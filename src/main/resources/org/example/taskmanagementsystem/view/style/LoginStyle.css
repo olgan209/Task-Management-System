@@ -1,44 +1,59 @@
-/* LoginStyle.css */
+/* Общий стиль для корневого контейнера */
+.hbox {
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+    -fx-background-color: #002B5B;
+}
+
+/* Стиль для изображения */
+.image-view {
+    -fx-fit-height: infinity;
+    -fx-fit-width: 300px;
+    -fx-preserve-ratio: true;
+}
 
 /* Общий стиль для формы */
 .vbox {
-    -fx-padding: 20px;
-    -fx-spacing: 15px;
-    -fx-background-color: #F7F9F4; /* Очень светлый пастельный фон */
-    -fx-border-radius: 8px;
-    -fx-border-color: #C8D7C4; /* Пастельный зеленовато-серый */
-    -fx-border-width: 1px;
+    -fx-padding: 40px; /* Увеличиваем внутренние отступы */
+    -fx-spacing: 20px; /* Увеличиваем расстояние между элементами */
+    -fx-background-color: #A60321; /* Красный фон */
+    -fx-border-radius: 10px 0 0 10px; /* Закругления только с левой стороны */
+    -fx-background-radius: 10px 0 0 10px; /* Закругления только с левой стороны */
+    -fx-alignment: center; /* Центрируем содержимое */
+    -fx-pref-width: 300px; /* Уменьшаем ширину панели */
+    -fx-pref-height: 500px; /* Высота остается прежней */
 }
 
-.text-field, .password-field {
-    -fx-pref-width: 300px;
-    -fx-font-size: 14px;
-    -fx-padding: 10px;
-    -fx-background-color: #D1E0D6; /* Пастельный зеленый */
-    -fx-border-color: #A3B8A2; /* Мягкий зеленовато-серый */
-    -fx-border-width: 1px;
-}
-
-.button {
-    -fx-background-color: #A3D9B1; /* Пастельный зеленый */
-    -fx-text-fill: #3C4C3F; /* Темный зеленый текст */
-    -fx-font-size: 14px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-cursor: hand;
-}
-
-.button:hover {
-    -fx-background-color: #8EC08B; /* Немного более насыщенный зеленый */
-}
-
-.hbox {
-    -fx-spacing: 10px;
-    -fx-alignment: center;
-}
-
-.label {
-    -fx-font-size: 16px;
+/* Стиль для заголовка */
+.label.header {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #6D8B7D; /* Мягкий зеленовато-серый цвет */
+}
+
+/* Стиль для обычных меток */
+.label {
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Стиль для текстового поля */
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+}
+
+/* Стиль для поля пароля */
+.password-field {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+}
+
+/* Стиль для кнопки авторизации */
+.button {
+    -fx-background-color: #008000;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-padding: 5 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }
