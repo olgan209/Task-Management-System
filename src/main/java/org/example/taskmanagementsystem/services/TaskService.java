@@ -24,7 +24,7 @@ public class TaskService {
     }
 
     public void createTask(Task task) {
-        String sql = "INSERT INTO tasks(name, description, status, project_id, deadline) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)";
         try (Connection conn = this.connect();
             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, task.getName());
@@ -40,7 +40,7 @@ public class TaskService {
     }
 
     public Task getTaskById(int taskId) {
-        String sql = "SELECT * FROM tasks WHERE id = ?";
+        String sql = "SELECT * FROM tasks WHERE taskId = ?";
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, taskId);

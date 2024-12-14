@@ -24,9 +24,28 @@ public class ProjectService {
         }
         return null;
     }
+//
+//    public List<Project> getAllProjects() {
+//        List<Project> projects = new ArrayList<>();
+//        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+//             Statement statement = connection.createStatement();
+//             ResultSet resultSet = statement.executeQuery("SELECT * FROM projects")) {
+//
+//            while (resultSet.next()) {
+//                int id = resultSet.getInt("id");
+//                String name = resultSet.getString("name");
+//                String description = resultSet.getString("description");
+//
+//                projects.add(new Project(id, name, description));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return projects;
+//    }
 
     public void createProject(Project project){
-        String sql = "INSERT INTO projects(name, description) VALUES(?,?)";
+        String sql = "INSERT INTO project(name, description) VALUES(?,?)";
         try{
             Connection conn = this.connect();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -70,25 +89,31 @@ public class ProjectService {
         }
         return null;
     }
-    public ArrayList<Project> getAllProjects(){
-        String sql = "SELECT * FROM projects";
+    public ArrayList<Project> getAllProjects() {
+        String sql = "SELECT * FROM project";
         ArrayList<Project> projects = new ArrayList<>();
-        try(Connection conn = this.connect();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql)){
-                while(rs.next()){
-                    projects.add(new Project(rs.getInt("id"),
-                            rs.getString("name"),
-                            rs.getString("description")));
-                }
-        }catch (SQLException e){
-            System.out.println(e.toString());
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            // Обход результатов запроса и добавление в список
+            while (rs.next()) {
+                projects.add(new Project(
+                        rs.getInt("projectId"),
+                        rs.getString("name"),
+                        rs.getString("description")
+                ));
+            }
+        } catch (SQLException e) {
+            // Логируем ошибку, если возникла
+            System.out.println("Error while fetching projects: " + e.getMessage());
         }
-        return null;
+        // Возвращаем список проектов (может быть пустым, но не null)
+        return projects;
     }
+
     public ArrayList<Project> getProjectsByUser(int userId) {
         ArrayList<Project> projects = new ArrayList<>();
-        String sql = "SELECT p.id, p.name, p.description FROM projects p " +
+        String sql = "SELECT p.id, p.name, p.description FROM project p " +
                 "JOIN project_users pu ON p.id = pu.project_id " +
                 "WHERE pu.user_id = ?";
         try (Connection conn = this.connect();
@@ -132,7 +157,7 @@ public class ProjectService {
     }
 
     public void updateProject(int id, Project updatedProject){
-        String sql = "UPDATE projects SET name = ?, description = ? WHERE id = ?";
+        String sql = "UPDATE project SET name = ?, description = ? WHERE id = ?";
         try(Connection conn = this.connect();
             PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setString(1, updatedProject.getName());
