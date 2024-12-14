@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" spacing="15" alignment="CENTER" styleClass="vbox" stylesheets="@style/LoginStyle.css">
-    <!-- Заголовок -->
-    <Label text="Авторизация" styleClass="label" />
+<HBox alignment="CENTER" spacing="20" stylesheets="@style/LoginStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Левая часть с картинкой -->
+    <ImageView fx:id="imageView" fitHeight="200" fitWidth="200" preserveRatio="true" HBox.hgrow="ALWAYS">
+        <image>
+         <Image url="@../../../../../../../../Users/user/OneDrive/Изображения/tree.png" />
+        </image>
+    </ImageView>
 
-    <!-- Поле для логина -->
-    <Label text="Логин:" styleClass="label" />
-    <TextField fx:id="usernameField" promptText="Введите ваш логин" styleClass="text-field" />
+    <!-- Правая часть с формой -->
+    <VBox alignment="CENTER" spacing="15" styleClass="vbox">
+        <!-- Заголовок -->
+        <Label styleClass="label" text="Авторизация" />
 
-    <!-- Поле для пароля -->
-    <Label text="Пароль:" styleClass="label" />
-    <PasswordField fx:id="passwordField" promptText="Введите ваш пароль" styleClass="text-field" />
+        <!-- Поле для логина -->
+        <Label styleClass="label" text="Логин:" />
+        <TextField fx:id="usernameField" promptText="Введите ваш логин" styleClass="text-field" />
 
-    <!-- Кнопка авторизации -->
-    <HBox spacing="10" alignment="CENTER" styleClass="hbox">
-        <Button text="Войти" fx:id="loginButton" styleClass="button" />
-    </HBox>
-</VBox>
+        <!-- Поле для пароля -->
+        <Label styleClass="label" text="Пароль:" />
+        <PasswordField fx:id="passwordField" promptText="Введите ваш пароль" styleClass="text-field" />
+
+        <!-- Кнопка авторизации -->
+        <HBox alignment="CENTER" spacing="10" styleClass="hbox">
+            <Button fx:id="loginButton" styleClass="button" text="Войти" />
+        </HBox>
+    </VBox>
+</HBox>
