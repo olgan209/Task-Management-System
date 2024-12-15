@@ -13,7 +13,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 
-<BorderPane stylesheets="@style/ProjectReviewStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.MainController">
+<BorderPane stylesheets="@style/ProjectReviewStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.ProjectReviewController">
     <left>
         <VBox prefHeight="363.0" prefWidth="263.0" spacing="10" BorderPane.alignment="CENTER" id="left-vbox">
             <Label text="Задачи" id="tasks-label"/>
@@ -32,11 +32,20 @@
     <center>
         <VBox prefHeight="363.0" prefWidth="369.0" BorderPane.alignment="CENTER" id="center-vbox">
             <children>
-                <!-- Убраны блоки с пользователем и дедлайнами -->
+                <Label text="ID проекта:">
+                    <Label fx:id="idLabel" />
+                </Label>
+                <Label text="Название проекта:">
+                    <Label fx:id="nameLabel" />
+                </Label>
+                <Label text="Описание проекта:">
+                    <Label fx:id="descriptionLabel" />
+                </Label>
             </children>
             <padding>
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
             </padding>
         </VBox>
     </center>
+
 </BorderPane>
