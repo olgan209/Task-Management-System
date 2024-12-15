@@ -9,8 +9,6 @@
     -fx-background-color: #333333;
     -fx-border-color: #444444;
     -fx-border-width: 1;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
 }
 
 /* Стиль для метки "Проекты" */
@@ -49,6 +47,7 @@
 /* Стиль для центральной части (VBox) */
 #center-vbox {
     -fx-alignment: center;
+    -fx-background-color: #333333;
 }
 
 /* Стиль для метки "Пользователь" */
