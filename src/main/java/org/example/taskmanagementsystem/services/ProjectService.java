@@ -5,6 +5,7 @@ import org.example.taskmanagementsystem.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectService {
     private static final String url = "jdbc:postgresql://localhost:5432/Tms";
@@ -24,10 +25,10 @@ public class ProjectService {
         }
         return null;
     }
-//
+
 //    public List<Project> getAllProjects() {
 //        List<Project> projects = new ArrayList<>();
-//        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+//        try (Connection connection = DriverManager.getConnection(url, username, password);
 //             Statement statement = connection.createStatement();
 //             ResultSet resultSet = statement.executeQuery("SELECT * FROM projects")) {
 //

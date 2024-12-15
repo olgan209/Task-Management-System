@@ -16,7 +16,7 @@
    <left>
       <VBox prefHeight="363.0" prefWidth="263.0" spacing="10" BorderPane.alignment="CENTER" id="left-vbox">
          <Label text="Проекты" id="projects-label"/>
-         <TableView fx:id="projectTableView" VBox.vgrow="ALWAYS">
+         <TableView fx:id="projectTableView" VBox.vgrow="ALWAYS" onMouseClicked="#handleRowClick">
             <columns>
                <TableColumn fx:id="idColumn" text="ID" />
                <TableColumn fx:id="nameColumn" text="Название" />
@@ -28,6 +28,7 @@
          </HBox>
       </VBox>
    </left>
+
    <center>
       <VBox prefHeight="363.0" prefWidth="369.0" BorderPane.alignment="CENTER" id="center-vbox">
          <children>
