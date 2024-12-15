@@ -43,7 +43,7 @@ public class UserService {
         }
     }
     public User getUser(int id){
-        String sql = "SELECT * FROM users WHERE id = ?";
+        String sql = "SELECT * FROM User_table WHERE id = ?";
         try{
             Connection conn = this.connect();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -53,8 +53,7 @@ public class UserService {
                 return new User(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("email"),
-                        rs.getString("password")
+                        rs.getString("email")
                 );
             }
         } catch(SQLException e){
@@ -81,7 +80,7 @@ public class UserService {
     }
 
     public ArrayList<User> getAllUser(){
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM User_table";
         ArrayList<User> users = new ArrayList<>();
         try(Connection conn = this.connect();
             Statement stmt = conn.createStatement();
