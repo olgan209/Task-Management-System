@@ -11,7 +11,7 @@
 <HBox alignment="CENTER" spacing="20" stylesheets="@style/LoginStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" styleClass="hbox"
       fx:controller="org.example.taskmanagementsystem.controller.LoginController">
     <!-- Левая часть с картинкой -->
-    <ImageView fx:id="imageView" fitWidth="20" fitHeight="20" styleClass="image-view" />
+    <ImageView fx:id="imageView" fitWidth="500" fitHeight="500" styleClass="image-view" />
 
     <!-- Пустой Region для создания отступа с левой стороны -->
     <Region HBox.hgrow="ALWAYS" />
