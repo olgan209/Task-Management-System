@@ -7,12 +7,27 @@ public class User {
     private int id;
     private String name;
     private String email;
+    private String password;
     private List<Task> userTasks;
 
-    public User(int id, String name, String email){
+    public User(String name, String email, String password){
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.userTasks = new ArrayList<Task>();
+    }
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+        this.userTasks = new ArrayList<>();
+    }
+
+    public User(int id, String name, String email, String password){
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.userTasks = new ArrayList<Task>();
     }
 
@@ -46,5 +61,13 @@ public class User {
 
     public void setTasks(List<Task> userTasks) {
         this.userTasks = userTasks;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

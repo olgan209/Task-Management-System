@@ -1,14 +1,20 @@
 package org.example.taskmanagementsystem.controller;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.example.taskmanagementsystem.services.DatabaseConnection;
+import org.example.taskmanagementsystem.services.UserService;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,6 +43,7 @@ public class LoginController {
     }
 
     // Метод для обработки логина
+    @FXML
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -44,29 +51,12 @@ public class LoginController {
         if (username.isEmpty() || password.isEmpty()) {
             showAlert("Ошибка", "Пожалуйста, заполните все поля.", Alert.AlertType.ERROR);
         } else {
-            if (validateUser(username, password)) {
+            if (UserService.validateUser(username, password)) {
                 showAlert("Успех", "Авторизация успешна!", Alert.AlertType.INFORMATION);
                 // Переход на следующую сцену, если нужно
             } else {
                 showAlert("Ошибка", "Неверный логин или пароль.", Alert.AlertType.ERROR);
             }
-        }
-    }
-
-    // Метод для проверки пользователя в базе данных
-    private boolean validateUser(String username, String password) {
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(query)) {
-
-            stmt.setString(1, username);
-            stmt.setString(2, password);
-
-            ResultSet resultSet = stmt.executeQuery();
-            return resultSet.next();  // Если пользователь найден, возвращаем true
-        } catch (SQLException e) {
-            System.err.println("Ошибка при запросе к базе данных: " + e.getMessage());
-            return false;
         }
     }
 

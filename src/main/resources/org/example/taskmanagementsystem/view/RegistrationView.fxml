@@ -33,12 +33,12 @@
         <PasswordField fx:id="passwordField" promptText="Введите пароль" styleClass="password-field" />
 
         <!-- Кнопка для регистрации -->
-        <Button text="Зарегистрироваться" fx:id="registerButton" styleClass="button"/>
+        <Button text="Зарегистрироваться" fx:id="registerButton" styleClass="button" onAction="#handleRegister"/>
 
         <!-- Ссылка на страницу входа -->
         <HBox spacing="10" alignment="CENTER">
             <Label text="Уже есть аккаунт?" styleClass="label" />
-            <Button text="Войти" styleClass="button"/>
+            <Button fx:id="openLogin" text="Войти" styleClass="button" onAction="#openLoginForm"/>
         </HBox>
     </VBox>
 </StackPane>

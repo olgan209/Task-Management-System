@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
-    private static final String url = "";
-    private static final String username = "";
-    private static final String password = " ";
+    private static final String url = "jdbc:postgresql://localhost:5432/Tms";
+    private static final String username = "postgres";
+    private static final String password = "1234";
 
     Connection conn;
     public Connection connect() throws SQLException {
@@ -28,13 +28,13 @@ public class UserService {
     }
 
     public void createUser(User user){
-        String sql = "INSERT INTO users(id, name, email) VALUES (?,?,?)";
+        String sql = "INSERT INTO User_table (name, email, password) VALUES (?,?,?)";
         try{
             Connection conn = this.connect();
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, user.getId());
-            ps.setString(2, user.getName());
-            ps.setString(3, user.getEmail());
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPassword());
             ps.executeUpdate();
             System.out.println("User created");
             conn.close();
@@ -53,7 +53,8 @@ public class UserService {
                 return new User(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("email")
+                        rs.getString("email"),
+                        rs.getString("password")
                 );
             }
         } catch(SQLException e){
@@ -61,6 +62,24 @@ public class UserService {
         }
         return null;
     }
+
+    // Метод для проверки пользователя в базе данных
+    public static boolean validateUser(String name, String password) {
+        String query = "SELECT * FROM User_table WHERE name = ? AND password = ?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, name);
+            stmt.setString(2, password);
+
+            ResultSet resultSet = stmt.executeQuery();
+            return resultSet.next();  // Если пользователь найден, возвращаем true
+        } catch (SQLException e) {
+            System.err.println("Ошибка при запросе к базе данных: " + e.getMessage());
+            return false;
+        }
+    }
+
     public ArrayList<User> getAllUser(){
         String sql = "SELECT * FROM users";
         ArrayList<User> users = new ArrayList<>();
@@ -68,7 +87,7 @@ public class UserService {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)){
             while(rs.next()){
-                users.add(new User(rs.getInt("id"),
+                users.add(new User(
                         rs.getString("name"),
                         rs.getString("email")));
             }

@@ -145,7 +145,6 @@ public class ProjectService {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 users.add(new User(
-                        rs.getInt("id"),
                         rs.getString("username"),
                         rs.getString("email")
                 ));
