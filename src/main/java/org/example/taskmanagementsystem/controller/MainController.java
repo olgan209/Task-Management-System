@@ -3,6 +3,7 @@ package org.example.taskmanagementsystem.controller;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -14,16 +15,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.taskmanagementsystem.model.Task;
 import org.example.taskmanagementsystem.services.ProjectService;
+import org.example.taskmanagementsystem.services.TaskService;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Загружаем основной FXML файл с TabPane
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/RegistrationView.fxml"));
 
         // Устанавливаем сцену и показываем окно
         primaryStage.setTitle("Task Management System");
@@ -39,6 +43,11 @@ public class MainController extends Application {
     private TableColumn<Project, String> nameColumn;
     @FXML
     private TableColumn<Project, String> descriptionColumn;
+    @FXML
+    private ListView<String> deadlineListView; // Свяжите с вашим FXML
+
+    private final TaskService taskService = new TaskService();
+
 
     private ProjectService projectService = new ProjectService();
 
@@ -77,6 +86,15 @@ public class MainController extends Application {
 
     // Инициализация данных
     public void initialize() {
+        // Получаем три ближайшие задачи
+        List<Task> closestTasks = taskService.getFiveClosestDeadlines();
+
+        // Отображаем задачи в ListView
+        for (Task task : closestTasks) {
+            String taskInfo = task.getName() + " — " + task.getDeadline();
+            deadlineListView.getItems().add(taskInfo);
+        }
+
         // Настройка столбцов
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

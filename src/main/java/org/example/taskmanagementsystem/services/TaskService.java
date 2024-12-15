@@ -6,6 +6,7 @@ import org.example.taskmanagementsystem.model.TaskStatus;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskService {
     private static final String url = "jdbc:postgresql://localhost:5432/Tms";
@@ -82,6 +83,38 @@ public class TaskService {
         }
         return tasks;
     }
+
+    public List<Task> getFiveClosestDeadlines() {
+        String sql = "SELECT * FROM Task ORDER BY deadline ASC LIMIT 5";
+        List<Task> tasks = new ArrayList<>();
+
+        try (Connection conn = this.connect();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                // Извлекаем статус из базы данных
+                String statusFromDb = rs.getString("status");
+                // Преобразуем статус в формат enum, заменяя пробелы на подчеркивания
+                TaskStatus status = TaskStatus.valueOf(statusFromDb.replace(" ", "_"));
+
+                tasks.add(new Task(
+                        rs.getInt("taskid"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        status,  // Используем преобразованный статус
+                        rs.getInt("projectId"),
+                        rs.getTimestamp("deadline").toLocalDateTime()
+                ));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error fetching tasks with closest deadlines: " + e.getMessage());
+        }
+
+        return tasks;
+    }
+
 
     public Task getTaskByUser(int userId) {
         String sql = "SELECT * FROM tasks WHERE userId = ?";
