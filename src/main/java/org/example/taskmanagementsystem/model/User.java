@@ -23,11 +23,10 @@ public class User {
         this.userTasks = new ArrayList<>();
     }
 
-    public User(int id, String name, String email, String password){
+    public User(int id, String name, String email){
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.userTasks = new ArrayList<Task>();
     }
 
