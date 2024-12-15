@@ -42,8 +42,8 @@
     <ComboBox fx:id="priorityComboBox" promptText="Выберите статус">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <TaskStatus fx:value="TODO" />
-                <TaskStatus fx:value="IN_PROGRESS" />
+                <TaskStatus fx:value="Todo" />
+                <TaskStatus fx:value="In_Progress" />
                 <TaskStatus fx:value="COMPLETED" />
             </FXCollections>
         </items>

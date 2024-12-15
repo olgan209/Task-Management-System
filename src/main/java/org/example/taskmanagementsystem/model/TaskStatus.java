@@ -1,18 +1,18 @@
 package org.example.taskmanagementsystem.model;
 
 public enum TaskStatus {
-    TODO,
-    IN_PROGRESS,
-    COMPLETED;
+    Todo,
+    In_Progress,
+    Completed;
 
     @Override
     public String toString() {
         switch (this) {
-            case TODO:
+            case Todo:
                 return "TODO";
-            case IN_PROGRESS:
-                return "IN_PROGRESS";
-            case COMPLETED:
+            case In_Progress:
+                return "IN PROGRESS";
+            case Completed:
                 return "COMPLETED";
             default:
                 return super.toString();
