@@ -1,4 +1,5 @@
 package org.example.taskmanagementsystem.controller;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -9,13 +10,14 @@ import javafx.scene.Parent;
 import java.io.IOException;
 
 public class MainController extends Application {
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Загружаем FXML файл
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/RegistrationView.fxml"));
+        // Загружаем основной FXML файл с TabPane
+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/TaskReviewView.fxml"));
 
         // Устанавливаем сцену и показываем окно
-        primaryStage.setTitle("Task Management System - User View");
+        primaryStage.setTitle("Task Management System");
         primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна
         primaryStage.show();
     }
@@ -37,6 +39,11 @@ public class MainController extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void openTaskForm() {
+        // Ваш код для обработки открытия формы добавления задачи
     }
 
     public static void main(String[] args) {
