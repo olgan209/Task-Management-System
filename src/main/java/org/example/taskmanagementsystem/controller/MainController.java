@@ -123,7 +123,7 @@ public class MainController extends Application {
 
     private void openProjectReviewView(Project project) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjectDetailsView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/ProjectReviewView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
 
@@ -135,11 +135,6 @@ public class MainController extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void openTaskForm() {
-        // Ваш код для обработки открытия формы добавления задачи
     }
 
     public static void main(String[] args) {
