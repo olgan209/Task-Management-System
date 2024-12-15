@@ -43,7 +43,7 @@ public class UserService {
         }
     }
     public User getUser(int id){
-        String sql = "SELECT * FROM User_table WHERE id = ?";
+        String sql = "SELECT * FROM User_table WHERE userId = ?";
         try{
             Connection conn = this.connect();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -51,7 +51,7 @@ public class UserService {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 return new User(
-                        rs.getInt("id"),
+                        rs.getInt("userId"),
                         rs.getString("name"),
                         rs.getString("email")
                 );

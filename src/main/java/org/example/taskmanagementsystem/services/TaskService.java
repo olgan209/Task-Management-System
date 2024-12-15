@@ -47,7 +47,7 @@ public class TaskService {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return new Task(
-                        rs.getInt("id"),
+                        rs.getInt("taskId"),
                         rs.getString("name"),
                         rs.getString("description"),
                         TaskStatus.valueOf(rs.getString("status")),
@@ -69,7 +69,7 @@ public class TaskService {
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 tasks.add(new Task(
-                        rs.getInt("id"),
+                        rs.getInt("taskId"),
                         rs.getString("name"),
                         rs.getString("description"),
                         TaskStatus.valueOf(rs.getString("status")),

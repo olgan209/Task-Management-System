@@ -73,14 +73,14 @@ public class ProjectService {
     }
 
     public Project getProjectById(int id){
-        String sql = "SELECT * FROM projects WHERE id = ?";
+        String sql = "SELECT * FROM projects WHERE projectId = ?";
         try{
             Connection conn = this.connect();
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                return new Project(rs.getInt("id"),
+                return new Project(rs.getInt("projectId"),
                                    rs.getString("name"),
                                    rs.getString("description")
                 );
@@ -137,7 +137,7 @@ public class ProjectService {
 
     public ArrayList<User> getProjectUsers(int projectId){
         ArrayList<User> users = new ArrayList<>();
-        String sql = "SELECT u.id, u.username, u.email FROM users AS u " +
+        String sql = "SELECT u.id, u.name, u.email FROM users AS u " +
                       "JOIN project_users AS pu ON u.id = pu.user_id " +
                         "WHERE pu.project_id = ?";
         try(Connection conn = this.connect();
@@ -146,7 +146,7 @@ public class ProjectService {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 users.add(new User(
-                        rs.getString("username"),
+                        rs.getString("name"),
                         rs.getString("email")
                 ));
             }
