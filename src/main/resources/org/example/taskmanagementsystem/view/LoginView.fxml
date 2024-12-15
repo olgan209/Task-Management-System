@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<HBox alignment="CENTER" spacing="20" stylesheets="@style/LoginStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" styleClass="hbox">
+<HBox alignment="CENTER" spacing="20" stylesheets="@style/LoginStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" styleClass="hbox"
+      fx:controller="org.example.taskmanagementsystem.controller.LoginController">
     <!-- Левая часть с картинкой -->
     <ImageView fx:id="imageView" fitWidth="20" fitHeight="20" styleClass="image-view" />
 
@@ -30,7 +31,7 @@
 
         <!-- Кнопка авторизации -->
         <HBox alignment="CENTER" spacing="10">
-            <Button fx:id="loginButton" text="Войти" styleClass="button" />
+            <Button fx:id="loginButton" text="Войти" styleClass="button" onAction="#handleLogin"/>
         </HBox>
     </VBox>
 </HBox>

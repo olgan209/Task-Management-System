@@ -16,7 +16,7 @@ public class ValidationUtils {
     // Проверка email
     public static boolean isValidEmail(String email) {
         if (isNullOrEmpty(email)) return false;
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        String emailRegex = "^[A-Za-z0-9] + @gmail.com";
         return Pattern.matches(emailRegex, email);
     }
 
