@@ -1,27 +1,57 @@
-/* Общий стиль для формы */
-.vbox {
-    -fx-padding: 20px;
-    -fx-spacing: 15px;
-    -fx-background-color: #F1F4F1; /* Очень светлый зеленоватый фон */
-    -fx-border-radius: 8px;
-    -fx-border-color: #3C4C3F; /* Темный зеленый */
-    -fx-border-width: 1px;
+/* Общий стиль для корневого контейнера */
+.hbox {
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+    -fx-background-color: #002B5B; /* Темно-синий фон */
 }
 
-/* Стиль для полей ввода текста (TextField и PasswordField) */
+/* Стиль для изображения */
+.image-view {
+    -fx-fit-height: 200px;
+    -fx-fit-width: 200px;
+    -fx-preserve-ratio: true;
+}
+
+/* Общий стиль для формы */
+.vbox {
+    -fx-padding: 40px; /* Увеличенные внутренние отступы */
+    -fx-spacing: 20px; /* Расстояние между элементами */
+    -fx-background-color: #A60321; /* Красный фон */
+    -fx-border-radius: 10px 0 0 10px; /* Закругление с левой стороны */
+    -fx-background-radius: 10px 0 0 10px;
+    -fx-alignment: center; /* Центровка содержимого */
+    -fx-pref-width: 300px;
+    -fx-pref-height: 500px;
+}
+
+/* Стиль для заголовка */
+.label.header {
+    -fx-text-fill: #FFFFFF; /* Белый текст */
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* Стиль для обычных меток */
+.label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 16px;
+}
+
+/* Стиль для текстового поля */
 .text-field, .password-field {
     -fx-pref-width: 300px;
     -fx-font-size: 14px;
     -fx-padding: 10px;
-    -fx-background-color: #D1E0D6; /* Пастельный зеленый */
-    -fx-border-color: #A3B8A2; /* Мягкий зеленовато-серый */
+    -fx-background-color: #FFFFFF; /* Белый фон */
+    -fx-text-fill: #000000; /* Черный текст */
+    -fx-border-color: #A3B8A2; /* Зеленовато-серый */
     -fx-border-width: 1px;
 }
 
 /* Стиль для кнопок */
 .button {
-    -fx-background-color: #A3D9B1; /* Пастельный зеленый */
-    -fx-text-fill: #3C4C3F; /* Темный зеленый текст */
+    -fx-background-color: #008000; /* Зеленый фон */
+    -fx-text-fill: #FFFFFF; /* Белый текст */
     -fx-font-size: 14px;
     -fx-padding: 10px 20px;
     -fx-border-radius: 5px;
@@ -30,18 +60,11 @@
 
 /* Цвет при наведении на кнопку */
 .button:hover {
-    -fx-background-color: #8EC08B; /* Немного более насыщенный зеленый для hover */
+    -fx-background-color: #005500; /* Темно-зеленый для hover */
 }
 
 /* Стиль для HBox */
 .hbox {
     -fx-spacing: 10px;
     -fx-alignment: center;
-}
-
-/* Стиль для меток */
-.label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #3C4C3F; /* Темный зеленый текст */
 }

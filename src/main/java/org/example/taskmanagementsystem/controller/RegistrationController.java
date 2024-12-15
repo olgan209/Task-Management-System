@@ -1,6 +1,5 @@
 package org.example.taskmanagementsystem.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,17 +7,17 @@ import javafx.scene.image.ImageView;
 public class RegistrationController {
 
     @FXML
-    private void registerUser(ActionEvent event) {
-        // Ваш код обработки
-    }
-
-    @FXML
-    private ImageView gifView;
+    private ImageView backgroundImageView;
 
     @FXML
     public void initialize() {
-        // Укажите путь к вашей гифке
-        Image image = new Image(getClass().getResource("/org/example/taskmanagementsystem/view/image/images.jfif").toExternalForm());
-    }
+        // Путь к изображению
+        String imagePath = "/org/example/taskmanagementsystem/view/image/bg.jpg";
 
+        // Загрузка изображения
+        Image image = new Image(getClass().getResourceAsStream(imagePath));
+
+        // Установка изображения в ImageView
+        backgroundImageView.setImage(image);
+    }
 }

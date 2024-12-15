@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56b5b0c-931a-49aa-b69c-f36babc3a270" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/image/tree-removebg-preview.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_12_2024_21_00__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_12_2024_21_00__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/image/bg.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/LoginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/LoginStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/LoginStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/RegistrationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/RegistrationView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/RegistrationStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/RegistrationStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +52,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.MainController.executor": "Run",
+    "Application.Run MyApp.executor": "Debug",
     "Application.TaskManagementApp.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -63,7 +64,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
@@ -74,6 +75,16 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Task-Management-System\src\main\resources\org\example\taskmanagementsystem\view\image" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run MyApp" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.example.taskmanagementsystem.controller.MainController" />
+      <module name="TaskManagementSystem" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\javafx-sdk-21.0.5\lib&quot; --add-modules javafx.controls,javafx.fxml " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -101,7 +112,9 @@
       <workItem from="1734002368025" duration="4295000" />
       <workItem from="1734156208327" duration="5154000" />
       <workItem from="1734205099313" duration="941000" />
-      <workItem from="1734206077627" duration="3730000" />
+      <workItem from="1734206077627" duration="4072000" />
+      <workItem from="1734255984014" duration="2203000" />
+      <workItem from="1734258237427" duration="1758000" />
     </task>
     <servers />
   </component>
