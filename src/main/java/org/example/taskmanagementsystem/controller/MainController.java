@@ -14,7 +14,7 @@ public class MainController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Загружаем основной FXML файл с TabPane
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/ProjectReviewView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/TaskReviewView.fxml"));
 
         // Устанавливаем сцену и показываем окно
         primaryStage.setTitle("Task Management System");

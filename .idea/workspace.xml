@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56b5b0c-931a-49aa-b69c-f36babc3a270" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReview.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/ProjectReviewStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/TaskReviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/TaskReviewView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/TaskReviewStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +116,7 @@
       <workItem from="1734205099313" duration="941000" />
       <workItem from="1734206077627" duration="4072000" />
       <workItem from="1734255984014" duration="2203000" />
-      <workItem from="1734258237427" duration="5621000" />
+      <workItem from="1734258237427" duration="7097000" />
     </task>
     <servers />
   </component>
