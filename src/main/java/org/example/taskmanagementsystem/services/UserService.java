@@ -62,6 +62,27 @@ public class UserService {
         return null;
     }
 
+    public static int getUserIdIfValid(String username, String password) {
+        int userId = -1;
+        String query = "SELECT userId FROM User_table WHERE name = ? AND password = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, username);
+            statement.setString(2, password);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                userId = resultSet.getInt("UserId");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userId;
+    }
+
     // Метод для проверки пользователя в базе данных
     public static boolean validateUser(String name, String password) {
         String query = "SELECT * FROM User_table WHERE name = ? AND password = ?";

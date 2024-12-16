@@ -1,0 +1,242 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_09_12_2024_13_54_[Changes]1/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_09_12_2024_13_54_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_09_12_2024_13_54_[Changes]1/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_09_12_2024_13_54_[Changes]1/shelved.patch	
++++ /dev/null	
+@@ -1,235 +0,0 @@
+-Index: src/main/java/org/example/taskmanagementsystem/controller/MainController.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package org.example.taskmanagementsystem.controller;\r\nimport javafx.application.Application;\r\nimport javafx.scene.Scene;\r\nimport javafx.stage.Stage;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Parent;\r\n\r\npublic class MainController extends Application {\r\n    @Override\r\n    public void start(Stage primaryStage) throws Exception {\r\n        // Загружаем FXML файл\r\n        Parent root = FXMLLoader.load(getClass().getResource(\"/org/example/taskmanagementsystem/view/TaskView.fxml\"));\r\n\r\n        // Устанавливаем сцену и показываем окно\r\n        primaryStage.setTitle(\"Task Management System - User View\");\r\n        primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна\r\n        primaryStage.show();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        launch(args); // Запуск JavaFX приложения\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/org/example/taskmanagementsystem/controller/MainController.java b/src/main/java/org/example/taskmanagementsystem/controller/MainController.java
+---- a/src/main/java/org/example/taskmanagementsystem/controller/MainController.java	
+-+++ b/src/main/java/org/example/taskmanagementsystem/controller/MainController.java	
+-@@ -1,15 +1,18 @@
+- package org.example.taskmanagementsystem.controller;
+- import javafx.application.Application;
+-+import javafx.fxml.FXML;
+- import javafx.scene.Scene;
+- import javafx.stage.Stage;
+- import javafx.fxml.FXMLLoader;
+- import javafx.scene.Parent;
+- 
+-+import java.io.IOException;
+-+
+- public class MainController extends Application {
+-     @Override
+-     public void start(Stage primaryStage) throws Exception {
+-         // Загружаем FXML файл
+--        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/TaskView.fxml"));
+-+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/MainView.fxml"));
+- 
+-         // Устанавливаем сцену и показываем окно
+-         primaryStage.setTitle("Task Management System - User View");
+-@@ -17,6 +20,26 @@
+-         primaryStage.show();
+-     }
+- 
+-+    // Метод для открытия формы добавления задачи
+-+    @FXML
+-+    public void openTaskForm() {
+-+        try {
+-+            // Загружаем FXML для страницы добавления задачи
+-+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/TaskView.fxml"));
+-+            Scene scene = new Scene(loader.load());
+-+
+-+            // Создаем новое окно
+-+            Stage taskStage = new Stage();
+-+            taskStage.setTitle("Добавить задачу");
+-+            taskStage.setScene(scene);
+-+
+-+            // Показываем новое окно
+-+            taskStage.show();
+-+        } catch (IOException e) {
+-+            e.printStackTrace();
+-+        }
+-+    }
+-+
+-     public static void main(String[] args) {
+-         launch(args); // Запуск JavaFX приложения
+-     }
+-Index: src/main/java/org/example/taskmanagementsystem/controller/TaskController.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package org.example.taskmanagementsystem.controller;\r\n\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.ComboBox;\r\nimport javafx.scene.control.DatePicker;\r\nimport javafx.scene.control.TextArea;\r\nimport javafx.scene.control.TextField;\r\nimport javafx.scene.control.Button;\r\nimport org.example.taskmanagementsystem.model.Task;\r\nimport org.example.taskmanagementsystem.model.TaskStatus;\r\nimport org.example.taskmanagementsystem.services.TaskService;\r\n\r\nimport java.time.LocalDateTime;\r\n\r\npublic class TaskController {\r\n\r\n    @FXML\r\n    private TextField taskNameField;\r\n    @FXML\r\n    private TextArea taskDescriptionField;\r\n    @FXML\r\n    private ComboBox<String> userComboBox;\r\n    @FXML\r\n    private ComboBox<String> priorityComboBox;\r\n    @FXML\r\n    private DatePicker dueDatePicker;\r\n    @FXML\r\n    private Button saveButton;\r\n    @FXML\r\n    private Button cancelButton;\r\n\r\n    private TaskService taskService;\r\n\r\n    public TaskController() {\r\n        taskService = new TaskService();\r\n    }\r\n\r\n    @FXML\r\n    public void initialize() {\r\n        // Настройка ComboBox с данными (можно изменить на реальные данные пользователей)\r\n        userComboBox.getItems().addAll(\"Пользователь 1\", \"Пользователь 2\", \"Пользователь 3\");\r\n        priorityComboBox.getItems().addAll(\"Высокий\", \"Средний\", \"Низкий\");\r\n\r\n        // Обработчики событий\r\n        saveButton.setOnAction(event -> saveTask());\r\n        cancelButton.setOnAction(event -> cancelTask());\r\n    }\r\n\r\n    private void saveTask() {\r\n        // Получение данных из UI\r\n        String name = taskNameField.getText();\r\n        String description = taskDescriptionField.getText();\r\n        String user = userComboBox.getValue();\r\n        String priority = priorityComboBox.getValue();\r\n        LocalDateTime deadline = dueDatePicker.getValue() != null ? dueDatePicker.getValue().atStartOfDay() : null;\r\n\r\n        // Создание объекта Task\r\n        Task task = new Task(0, name, description, TaskStatus.valueOf(priority.toUpperCase()), 1, deadline);\r\n\r\n        // Сохранение задачи через сервис\r\n        taskService.createTask(task);\r\n    }\r\n\r\n    private void cancelTask() {\r\n        // Очистка полей\r\n        taskNameField.clear();\r\n        taskDescriptionField.clear();\r\n        userComboBox.setValue(null);\r\n        priorityComboBox.setValue(null);\r\n        dueDatePicker.setValue(null);\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/org/example/taskmanagementsystem/controller/TaskController.java b/src/main/java/org/example/taskmanagementsystem/controller/TaskController.java
+---- a/src/main/java/org/example/taskmanagementsystem/controller/TaskController.java	
+-+++ b/src/main/java/org/example/taskmanagementsystem/controller/TaskController.java	
+-@@ -1,5 +1,6 @@
+- package org.example.taskmanagementsystem.controller;
+- 
+-+import javafx.collections.FXCollections;
+- import javafx.fxml.FXML;
+- import javafx.scene.control.ComboBox;
+- import javafx.scene.control.DatePicker;
+-@@ -11,6 +12,8 @@
+- import org.example.taskmanagementsystem.services.TaskService;
+- 
+- import java.time.LocalDateTime;
+-+import java.util.Arrays;
+-+import java.util.stream.Collectors;
+- 
+- public class TaskController {
+- 
+-@@ -39,7 +42,13 @@
+-     public void initialize() {
+-         // Настройка ComboBox с данными (можно изменить на реальные данные пользователей)
+-         userComboBox.getItems().addAll("Пользователь 1", "Пользователь 2", "Пользователь 3");
+--        priorityComboBox.getItems().addAll("Высокий", "Средний", "Низкий");
+-+        priorityComboBox.setItems(FXCollections.observableArrayList(
+-+                Arrays.stream(TaskStatus.values())
+-+                        .map(Enum::name)  // Извлекаем имена элементов перечисления
+-+                        .collect(Collectors.toList())
+-+        ));
+-+
+-+
+- 
+-         // Обработчики событий
+-         saveButton.setOnAction(event -> saveTask());
+-@@ -59,6 +68,8 @@
+- 
+-         // Сохранение задачи через сервис
+-         taskService.createTask(task);
+-+
+-+        closeCurrentWindow();
+-     }
+- 
+-     private void cancelTask() {
+-@@ -68,5 +79,12 @@
+-         userComboBox.setValue(null);
+-         priorityComboBox.setValue(null);
+-         dueDatePicker.setValue(null);
+-+
+-+        ((javafx.stage.Stage) cancelButton.getScene().getWindow()).close();
+-+    }
+-+
+-+    private void closeCurrentWindow() {
+-+        // Закрытие текущего окна
+-+        ((javafx.stage.Stage) saveButton.getScene().getWindow()).close();
+-     }
+- }
+-Index: src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.layout.VBox?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.control.TextArea?>\r\n<?import javafx.scene.control.ComboBox?>\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.DatePicker?>\r\n<?import javafx.scene.layout.HBox?>\r\n\r\n<?import javafx.collections.FXCollections?>\r\n<?import java.lang.String?>\r\n<VBox xmlns=\"http://javafx.com/javafx/21\" xmlns:fx=\"http://javafx.com/fxml\" spacing=\"15\" alignment=\"CENTER\"\r\n      style=\"-fx-padding: 20;\" stylesheets=\"@style/TaskStyle.css\"\r\n      fx:controller=\"org.example.taskmanagementsystem.controller.TaskController\">\r\n\r\n    <!-- Название задачи -->\r\n    <Label text=\"Название задачи:\" />\r\n    <TextField fx:id=\"taskNameField\" promptText=\"Введите название задачи\" />\r\n\r\n    <!-- Описание задачи -->\r\n    <Label text=\"Описание задачи:\" />\r\n    <TextArea fx:id=\"taskDescriptionField\" promptText=\"Введите описание задачи\" wrapText=\"true\" />\r\n\r\n    <!-- Назначенный пользователь -->\r\n    <Label text=\"Назначенный пользователь:\" />\r\n    <ComboBox fx:id=\"userComboBox\" promptText=\"Выберите пользователя\">\r\n        <!-- Пример значений для ComboBox -->\r\n        <items>\r\n            <FXCollections fx:factory=\"observableArrayList\">\r\n                <String fx:value=\"Пользователь 1\"/>\r\n                <String fx:value=\"Пользователь 2\"/>\r\n                <String fx:value=\"Пользователь 3\"/>\r\n            </FXCollections>\r\n        </items>\r\n    </ComboBox>\r\n\r\n    <!-- Приоритет -->\r\n    <Label text=\"Приоритет:\" />\r\n    <ComboBox fx:id=\"priorityComboBox\" promptText=\"Выберите приоритет\">\r\n        <items>\r\n            <FXCollections fx:factory=\"observableArrayList\">\r\n                <String fx:value=\"Высокий\"/>\r\n                <String fx:value=\"Средний\"/>\r\n                <String fx:value=\"Низкий\"/>\r\n            </FXCollections>\r\n        </items>\r\n    </ComboBox>\r\n\r\n    <!-- Срок выполнения -->\r\n    <Label text=\"Срок выполнения:\" />\r\n    <DatePicker fx:id=\"dueDatePicker\" />\r\n\r\n    <!-- Кнопки действия -->\r\n    <HBox spacing=\"10\" alignment=\"CENTER\">\r\n        <Button text=\"Сохранить\" fx:id=\"saveButton\" />\r\n        <Button text=\"Отмена\" fx:id=\"cancelButton\" />\r\n    </HBox>\r\n</VBox>\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml b/src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml
+---- a/src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml	
+-+++ b/src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml	
+-@@ -11,6 +11,7 @@
+- 
+- <?import javafx.collections.FXCollections?>
+- <?import java.lang.String?>
+-+<?import org.example.taskmanagementsystem.model.TaskStatus?>
+- <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" spacing="15" alignment="CENTER"
+-       style="-fx-padding: 20;" stylesheets="@style/TaskStyle.css"
+-       fx:controller="org.example.taskmanagementsystem.controller.TaskController">
+-@@ -37,17 +38,18 @@
+-     </ComboBox>
+- 
+-     <!-- Приоритет -->
+--    <Label text="Приоритет:" />
+--    <ComboBox fx:id="priorityComboBox" promptText="Выберите приоритет">
+-+    <Label text="Статус задачи:" />
+-+    <ComboBox fx:id="priorityComboBox" promptText="Выберите статус">
+-         <items>
+-             <FXCollections fx:factory="observableArrayList">
+--                <String fx:value="Высокий"/>
+--                <String fx:value="Средний"/>
+--                <String fx:value="Низкий"/>
+-+                <TaskStatus fx:value="TODO" />
+-+                <TaskStatus fx:value="IN_PROGRESS" />
+-+                <TaskStatus fx:value="COMPLETED" />
+-             </FXCollections>
+-         </items>
+-     </ComboBox>
+- 
+-+
+-     <!-- Срок выполнения -->
+-     <Label text="Срок выполнения:" />
+-     <DatePicker fx:id="dueDatePicker" />
+-Index: src/main/java/module-info.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>module org.example.taskmanagementsystem {\r\n    requires javafx.controls;\r\n    requires javafx.fxml;\r\n    requires java.sql;\r\n\r\n    opens org.example.taskmanagementsystem.controller to javafx.fxml; // Разрешаем доступ к пакету для JavaFX\r\n    exports org.example.taskmanagementsystem.controller; // Экспортируем пакет контроллеров\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+---- a/src/main/java/module-info.java	
+-+++ b/src/main/java/module-info.java	
+-@@ -5,4 +5,5 @@
+- 
+-     opens org.example.taskmanagementsystem.controller to javafx.fxml; // Разрешаем доступ к пакету для JavaFX
+-     exports org.example.taskmanagementsystem.controller; // Экспортируем пакет контроллеров
+-+    exports org.example.taskmanagementsystem.model;
+- }
+-Index: src/main/resources/org/example/taskmanagementsystem/view/MainView.fxml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.scene.layout.BorderPane?>\r\n<?import javafx.scene.control.ListView?>\r\n<?import javafx.scene.layout.VBox?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.TableView?>\r\n<?import javafx.scene.control.TableColumn?>\r\n<?import javafx.scene.layout.HBox?>\r\n<?import javafx.scene.control.Button?>\r\n\r\n<BorderPane xmlns=\"http://javafx.com/javafx/21\" xmlns:fx=\"http://javafx.com/fxml\" stylesheets=\"@style/MainStyle.css\">\r\n    <!-- Верхняя панель -->\r\n    <top>\r\n        <HBox spacing=\"10\" alignment=\"CENTER\">\r\n            <Button text=\"Добавить проект\" />\r\n            <Button text=\"Добавить задачу\" />\r\n            <Button text=\"Добавить пользователя\" />\r\n        </HBox>\r\n    </top>\r\n\r\n    <!-- Левая панель -->\r\n    <left>\r\n        <VBox spacing=\"10\">\r\n            <Label text=\"Проекты\" />\r\n            <ListView fx:id=\"projectListView\" />\r\n        </VBox>\r\n    </left>\r\n\r\n    <!-- Центральная панель -->\r\n    <center>\r\n        <VBox spacing=\"10\">\r\n            <Label text=\"Задачи\" />\r\n            <TableView fx:id=\"taskTableView\">\r\n                <columns>\r\n                    <TableColumn text=\"Название\" />\r\n                    <TableColumn text=\"Статус\" />\r\n                    <TableColumn text=\"Ответственный\" />\r\n                </columns>\r\n            </TableView>\r\n        </VBox>\r\n    </center>\r\n\r\n    <!-- Правая панель -->\r\n    <right>\r\n        <VBox spacing=\"10\">\r\n            <Label text=\"Пользователи\" />\r\n            <ListView fx:id=\"userListView\" />\r\n        </VBox>\r\n    </right>\r\n</BorderPane>\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/resources/org/example/taskmanagementsystem/view/MainView.fxml b/src/main/resources/org/example/taskmanagementsystem/view/MainView.fxml
+---- a/src/main/resources/org/example/taskmanagementsystem/view/MainView.fxml	
+-+++ b/src/main/resources/org/example/taskmanagementsystem/view/MainView.fxml	
+-@@ -9,12 +9,13 @@
+- <?import javafx.scene.layout.HBox?>
+- <?import javafx.scene.control.Button?>
+- 
+--<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" stylesheets="@style/MainStyle.css">
+-+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" stylesheets="@style/MainStyle.css"
+-+            fx:controller="org.example.taskmanagementsystem.controller.MainController">
+-     <!-- Верхняя панель -->
+-     <top>
+-         <HBox spacing="10" alignment="CENTER">
+-             <Button text="Добавить проект" />
+--            <Button text="Добавить задачу" />
+-+            <Button text="Добавить задачу" fx:id="openTaskForm" onAction="#openTaskForm"/>
+-             <Button text="Добавить пользователя" />
+-         </HBox>
+-     </top>
+-Index: src/main/java/org/example/taskmanagementsystem/model/TaskStatus.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package org.example.taskmanagementsystem.model;\r\n\r\npublic enum TaskStatus {\r\n    TODO,\r\n    IN_PROGRESS,\r\n    COMPLETED\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/org/example/taskmanagementsystem/model/TaskStatus.java b/src/main/java/org/example/taskmanagementsystem/model/TaskStatus.java
+---- a/src/main/java/org/example/taskmanagementsystem/model/TaskStatus.java	
+-+++ b/src/main/java/org/example/taskmanagementsystem/model/TaskStatus.java	
+-@@ -3,5 +3,19 @@
+- public enum TaskStatus {
+-     TODO,
+-     IN_PROGRESS,
+--    COMPLETED
+-+    COMPLETED;
+-+
+-+    @Override
+-+    public String toString() {
+-+        switch (this) {
+-+            case TODO:
+-+                return "TODO";
+-+            case IN_PROGRESS:
+-+                return "IN_PROGRESS";
+-+            case COMPLETED:
+-+                return "COMPLETED";
+-+            default:
+-+                return super.toString();
+-+        }
+-+    }
+- }

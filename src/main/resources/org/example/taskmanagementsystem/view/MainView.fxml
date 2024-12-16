@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@style/MainStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.MainController">
+<BorderPane stylesheets="@style/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.MainController">
    <left>
       <!-- Увеличена ширина VBox с проектами -->
-      <VBox prefHeight="363.0" prefWidth="400.0" spacing="10" BorderPane.alignment="CENTER" id="left-vbox">
-         <Label text="Проекты" id="projects-label"/>
-         <TableView fx:id="projectTableView" VBox.vgrow="ALWAYS" onMouseClicked="#handleRowClick">
+      <VBox id="left-vbox" prefHeight="363.0" prefWidth="400.0" spacing="10" BorderPane.alignment="CENTER">
+         <Label id="projects-label" text="Проекты" />
+         <TableView fx:id="projectTableView" onMouseClicked="#handleRowClick" VBox.vgrow="ALWAYS">
             <columns>
                <TableColumn fx:id="idColumn" text="ID" />
                <TableColumn fx:id="nameColumn" text="Название" />
                <TableColumn fx:id="descriptionColumn" text="Описание" />
             </columns>
          </TableView>
-         <HBox alignment="CENTER" spacing="10" id="button-container" style="-fx-padding: 5 0 0 0;">
+         <HBox id="button-container" alignment="CENTER" spacing="10" style="-fx-padding: 5 0 0 0;">
             <Button fx:id="openProjectForm" onAction="#openProjectForm" text="Добавить проект" />
          </HBox>
       </VBox>
    </left>
 
    <center>
-      <VBox prefHeight="363.0" prefWidth="369.0" BorderPane.alignment="CENTER" id="center-vbox">
+      <VBox id="center-vbox" prefHeight="363.0" prefWidth="369.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Пользователь" id="user-label"/>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <Label id="user-label" text="Пользователь" />
+            <HBox alignment="BOTTOM_LEFT" prefHeight="150.0" prefWidth="300.0" spacing="10.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="userImageView" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+                  <VBox alignment="CENTER_LEFT" spacing="5.0">
+                     <Label fx:id="userNameLabel" style="-fx-font-size: 14px;" text="userNameLabel" textFill="WHITE" />
+                     <Label fx:id="userLoginLabel" style="-fx-font-size: 12px;" text="userLoginLabel" textFill="WHITE" />
+                  </VBox>
                </children>
             </HBox>
 
+
             <!-- Добавление пустого пространства перед секцией с дедлайнами -->
-            <Region VBox.vgrow="ALWAYS"/>
+            <Region VBox.vgrow="ALWAYS" />
 
             <!-- Секция с дедлайнами перемещена ниже -->
             <VBox spacing="10.0">
-               <Label text="Дедлайны" id="deadlines-label">
+               <Label id="deadlines-label" text="Дедлайны">
                   <font>
                      <Font size="18.0" />
                   </font>
