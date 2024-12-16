@@ -27,7 +27,7 @@ public class TaskService {
     public void createTask(Task task) {
         String sql = "INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)";
         try (Connection conn = this.connect();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, task.getName());
             ps.setString(2, task.getDescription());
             ps.setString(3, task.getStatus().name());
@@ -51,7 +51,7 @@ public class TaskService {
                         rs.getInt("taskId"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        TaskStatus.valueOf(rs.getString("status")),
+                        TaskStatus.fromString(rs.getString("status")),
                         rs.getInt("projectId"),
                         rs.getTimestamp("deadline").toLocalDateTime()
                 );
@@ -61,6 +61,33 @@ public class TaskService {
         }
         return null;
     }
+
+    public List<Task> getTasksByProjectId(int projectId) {
+        String sql = "SELECT * FROM Task WHERE projectId = ? ORDER BY deadline ASC"; // Сортируем задачи по срокам
+        List<Task> tasks = new ArrayList<>();
+
+        try (Connection conn = this.connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, projectId);  // Устанавливаем параметр projectId в запросе
+            ResultSet rs = ps.executeQuery(); // Выполняем запрос
+
+            while (rs.next()) {
+                tasks.add(new Task(
+                        rs.getInt("taskId"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        TaskStatus.fromString(rs.getString("status")),  // Конвертируем строку статуса в enum
+                        rs.getInt("projectId"),
+                        rs.getTimestamp("deadline").toLocalDateTime() // Преобразуем Timestamp в LocalDateTime
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching tasks by projectId: " + e.getMessage());
+        }
+
+        return tasks;  // Возвращаем список задач
+    }
+
 
     public ArrayList<Task> getAllTasks() {
         String sql = "SELECT * FROM tasks";
@@ -73,7 +100,7 @@ public class TaskService {
                         rs.getInt("taskId"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        TaskStatus.valueOf(rs.getString("status")),
+                        TaskStatus.fromString(rs.getString("status")),
                         rs.getInt("projectId"),
                         rs.getTimestamp("deadline").toLocalDateTime()
                 ));
@@ -96,7 +123,7 @@ public class TaskService {
                 // Извлекаем статус из базы данных
                 String statusFromDb = rs.getString("status");
                 // Преобразуем статус в формат enum, заменяя пробелы на подчеркивания
-                TaskStatus status = TaskStatus.valueOf(statusFromDb.replace(" ", "_"));
+                TaskStatus status = TaskStatus.fromString(statusFromDb.replace(" ", "_"));
 
                 tasks.add(new Task(
                         rs.getInt("taskid"),
@@ -127,7 +154,7 @@ public class TaskService {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        TaskStatus.valueOf(rs.getString("status")),
+                        TaskStatus.fromString(rs.getString("status")),
                         rs.getInt("projectId"),
                         rs.getTimestamp("deadline").toLocalDateTime()
                 );
@@ -149,7 +176,7 @@ public class TaskService {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        TaskStatus.valueOf(rs.getString("status")),
+                        TaskStatus.fromString(rs.getString("status")),
                         rs.getInt("projectId"),
                         rs.getTimestamp("deadline").toLocalDateTime()
                 );

@@ -66,13 +66,13 @@ public class TaskController {
             return;
         }
 
-        // Создание объекта Task
-        Task task = new Task(name, description, TaskStatus.valueOf(priority.toUpperCase()), 1, deadline);
-
-        // Сохранение задачи через сервис
-        taskService.createTask(task);
-
-        closeCurrentWindow();
+//        // Создание объекта Task
+//        Task task = new Task(name, description, TaskStatus.valueOf(priority.toUpperCase()), 1, deadline);
+//
+//        // Сохранение задачи через сервис
+//        taskService.createTask(task);
+//
+//        closeCurrentWindow();
     }
 
     private void cancelTask() {

@@ -1,5 +1,7 @@
 package org.example.taskmanagementsystem.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,12 +9,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import org.example.taskmanagementsystem.model.Project;
 import org.example.taskmanagementsystem.model.Task;
-
+import org.example.taskmanagementsystem.model.Project;
 import java.io.IOException;
+import java.util.List;
 
 public class ProjectReviewController {
+
+    @FXML
+    private Label idLabel;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label descriptionLabel;
+
     @FXML
     private TableView<Task> taskTableView;
     @FXML
@@ -22,26 +32,24 @@ public class ProjectReviewController {
     @FXML
     private TableColumn<Task, String> taskDescriptionColumn;
 
-    @FXML
-    private Label idLabel;
+    private Project currentProject;
 
     @FXML
-    private Label nameLabel;
-
-    @FXML
-    private Label descriptionLabel;
-
-    public void setProject(Project project) {
-        idLabel.setText(project.getId() != null ? String.valueOf(project.getId()) : "ID не задан");
+    public void initialize(Project project, List<Task> tasks) {
+        currentProject = project;
+        idLabel.setText(String.valueOf(project.getId()));
         nameLabel.setText(project.getName());
         descriptionLabel.setText(project.getDescription());
 
-//        // Подгружаем задачи, связанные с проектом
-//        ObservableList<Task> tasks = FXCollections.observableArrayList(
-//                TaskService.getTasksByProjectId(project.getId())
-//        );
-//        taskTableView.setItems(tasks);
+        // Заполнение таблицы задач
+        taskTableView.getItems().setAll(tasks);
+
+        // Настройка колонок таблицы
+        taskIdColumn.setCellValueFactory(cellData -> cellData.getValue().getTaskIdProperty().asObject());
+        taskNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+        taskDescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
     }
+
 
     @FXML
     private void openTaskForm() {
@@ -55,6 +63,4 @@ public class ProjectReviewController {
             e.printStackTrace();
         }
     }
-
-
 }

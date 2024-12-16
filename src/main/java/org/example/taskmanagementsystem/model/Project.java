@@ -1,13 +1,17 @@
 package org.example.taskmanagementsystem.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class Project {
     private Integer id; // Используется Integer для возможности работы с null
     private String name;
     private String description;
+    private IntegerProperty taskId = new SimpleIntegerProperty(); // Инициализация
 
     // Конструктор без id
     public Project(String name, String description) {
-        this(null, name, description); // id устанавливается как null
+        this(null, name, description);
     }
 
     // Конструктор с id
@@ -18,11 +22,11 @@ public class Project {
     }
 
     // Геттеры и сеттеры
-    public Integer getId() { // Тип изменен на Integer для согласованности
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) { // Тип изменен на Integer
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,13 +46,25 @@ public class Project {
         this.description = description;
     }
 
-    // Переопределение метода toString для удобного вывода информации о проекте
+    public int getTaskId() {
+        return taskId.get();
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId.set(taskId);
+    }
+
+    public IntegerProperty taskIdProperty() { // Метод taskIdProperty для привязки данных
+        return taskId;
+    }
+
     @Override
     public String toString() {
         return "Project{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", taskId=" + taskId.get() +
                 '}';
     }
 }

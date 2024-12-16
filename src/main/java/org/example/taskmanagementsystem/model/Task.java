@@ -1,75 +1,95 @@
 package org.example.taskmanagementsystem.model;
 
+import javafx.beans.property.*;
+
 import java.time.LocalDateTime;
 
 public class Task {
-    private Integer id;
-    private String name;
-    private String description;
-    private TaskStatus status;
-    private int projectId;
-    private LocalDateTime deadline;
+    private IntegerProperty taskId;
+    private StringProperty name;
+    private StringProperty description;
+    private ObjectProperty<TaskStatus> status;
+    private IntegerProperty projectId;
+    private ObjectProperty<LocalDateTime> deadline;
 
-
-    public Task(String name, String description, TaskStatus status, int projectId, LocalDateTime deadline) {
-        this(null, name, description, status, projectId, deadline);
+    public Task(int taskId, String name, String description, TaskStatus status, int projectId, LocalDateTime deadline) {
+        this.taskId = new SimpleIntegerProperty(taskId);
+        this.name = new SimpleStringProperty(name);
+        this.description = new SimpleStringProperty(description);
+        this.status = new SimpleObjectProperty<>(status);
+        this.projectId = new SimpleIntegerProperty(projectId);
+        this.deadline = new SimpleObjectProperty<>(deadline);
     }
 
-    public Task(Integer id, String name, String description, TaskStatus status, int projectId, LocalDateTime deadline) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.status = status;
-        this.projectId = projectId;
-        this.deadline = deadline;
+    public int getTaskId() {
+        return taskId.get();
     }
 
-    public int getId() {
-        return id;
+    public void setTaskId(int taskId) {
+        this.taskId.set(taskId);
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public IntegerProperty getTaskIdProperty() { // Изменено имя метода
+        return taskId;
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
+    }
+
+    public StringProperty getNameProperty() {
+        return name;
     }
 
     public String getDescription() {
-        return description;
+        return description.get();
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description.set(description);
+    }
+
+    public StringProperty getDescriptionProperty() {
+        return description;
     }
 
     public TaskStatus getStatus() {
-        return status;
+        return status.get();
     }
 
     public void setStatus(TaskStatus status) {
-        this.status = status;
+        this.status.set(status);
+    }
+
+    public ObjectProperty<TaskStatus> getStatusProperty() {
+        return status;
     }
 
     public int getProjectId() {
-        return projectId;
+        return projectId.get();
     }
 
     public void setProjectId(int projectId) {
-        this.projectId = projectId;
+        this.projectId.set(projectId);
+    }
+
+    public IntegerProperty projectIdProperty() {
+        return projectId;
     }
 
     public LocalDateTime getDeadline() {
-        return deadline;
+        return deadline.get();
     }
 
     public void setDeadline(LocalDateTime deadline) {
-        this.deadline = deadline;
+        this.deadline.set(deadline);
+    }
+
+    public ObjectProperty<LocalDateTime> deadlineProperty() {
+        return deadline;
     }
 }
-
