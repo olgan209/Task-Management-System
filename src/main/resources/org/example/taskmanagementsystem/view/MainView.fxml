@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane stylesheets="@style/MainStyle.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.MainController">
+<BorderPane stylesheets="@style/MainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.MainController">
    <left>
       <!-- Увеличена ширина VBox с проектами -->
       <VBox id="left-vbox" prefHeight="363.0" prefWidth="400.0" spacing="10" BorderPane.alignment="CENTER">
