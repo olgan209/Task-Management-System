@@ -139,7 +139,7 @@ public class MainController extends Application {
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             String query = "SELECT name, email FROM User_table WHERE userId = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, currentUserId); // Пример: выбираем пользователя с ID = 1
+            stmt.setInt(1, currentUserId);
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {

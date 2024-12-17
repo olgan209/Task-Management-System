@@ -72,6 +72,7 @@ public class RegistrationController {
             userService.createUser(newUser); // Вызов метода для сохранения пользователя в БД
             //showStatus("Пользователь успешно зарегистрирован!", "success");
             clearFields();
+            openLoginForm();
         } catch (Exception e) {
             //showStatus("Ошибка регистрации: " + e.getMessage(), "error");
             e.printStackTrace();
