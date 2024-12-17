@@ -30,7 +30,7 @@ public class MainController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Загружаем основной FXML файл с TabPane
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/LoginView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/RegistrationView.fxml"));
 
         // Устанавливаем сцену и показываем окно
         primaryStage.setTitle("Task Management System");
@@ -69,19 +69,19 @@ public class MainController extends Application {
                     // Получаем задачи для выбранного проекта
                     List<Task> projectTasks = taskService.getTasksByProjectId(selectedProject.getId());
 
-                    // Загружаем новую вьюшку для обзора проекта
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/ProjectReviewView.fxml"));
-                    Parent root = loader.load();
+                    Parent root = loader.load();  // Сначала загружаем FXML
 
-                    // Передаем проект и задачи в контроллер
+// Получаем контроллер и передаем данные
                     ProjectReviewController controller = loader.getController();
-                    controller.initialize(selectedProject, projectTasks);
+                    controller.initialize(selectedProject, projectTasks);  // Передаем проект и задачи в контроллер
 
-                    // Создаем новое окно
+// Открытие нового окна
                     Stage stage = new Stage();
                     stage.setTitle("Обзор проекта");
                     stage.setScene(new Scene(root));
                     stage.show();
+
                 } catch (IOException e) {
                     e.printStackTrace(); // Логируем ошибку
                 }

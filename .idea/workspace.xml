@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56b5b0c-931a-49aa-b69c-f36babc3a270" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_12_2024_13_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_12_2024_13_54__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_12_2024_21_00__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_12_2024_21_00__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_12_2024_17_31__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_12_2024_17_31__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_12_2024_14_04__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_12_2024_14_04__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_12_2024_14_04__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_12_2024_14_04__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/LoginView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/LoginView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReviewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/TaskReviewView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/TaskReviewView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/TaskView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/MainStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/MainStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/ProjectReviewStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/style/ProjectReviewStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +122,7 @@
       <workItem from="1734255984014" duration="2203000" />
       <workItem from="1734258237427" duration="7620000" />
       <workItem from="1734279566167" duration="2096000" />
+      <workItem from="1734409462710" duration="4927000" />
     </task>
     <servers />
   </component>

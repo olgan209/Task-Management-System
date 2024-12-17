@@ -1,7 +1,5 @@
 package org.example.taskmanagementsystem.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,8 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import org.example.taskmanagementsystem.model.Task;
 import org.example.taskmanagementsystem.model.Project;
+import org.example.taskmanagementsystem.model.Task;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -22,6 +21,9 @@ public class ProjectReviewController {
     private Label nameLabel;
     @FXML
     private Label descriptionLabel;
+
+//    @FXML
+//    private Label projectNameLabel; // Новый Label для отображения названия проекта
 
     @FXML
     private TableView<Task> taskTableView;
@@ -36,12 +38,16 @@ public class ProjectReviewController {
 
     @FXML
     public void initialize(Project project, List<Task> tasks) {
+        // Печатаем для проверки
+        System.out.println("Проект: " + project.getName());
         currentProject = project;
+
+        // Устанавливаем данные проекта в метки
         idLabel.setText(String.valueOf(project.getId()));
         nameLabel.setText(project.getName());
         descriptionLabel.setText(project.getDescription());
 
-        // Заполнение таблицы задач
+        // Заполняем таблицу задач
         taskTableView.getItems().setAll(tasks);
 
         // Настройка колонок таблицы
@@ -49,6 +55,8 @@ public class ProjectReviewController {
         taskNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         taskDescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
     }
+
+
 
 
     @FXML
