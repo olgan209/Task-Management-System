@@ -3,20 +3,22 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
+<BorderPane stylesheets="@style/ProjectReviewStyle.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.taskmanagementsystem.controller.ProjectReviewController">
 
-<BorderPane stylesheets="@style/ProjectReviewStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.ProjectReviewController">
+    <!-- Левая панель с таблицей задач -->
     <left>
         <VBox prefHeight="363.0" prefWidth="263.0" spacing="10" BorderPane.alignment="CENTER" id="left-vbox">
-            <Label text="Задачи" id="tasks-label"/>
+            <Label text="Задачи" id="tasks-label" />
             <TableView fx:id="taskTableView" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="taskIdColumn" text="ID" />
@@ -29,23 +31,30 @@
             </HBox>
         </VBox>
     </left>
+
+    <!-- Центральная панель с информацией о проекте -->
     <center>
-        <VBox prefHeight="363.0" prefWidth="369.0" BorderPane.alignment="CENTER" id="center-vbox">
-            <children>
-                <Label text="ID проекта:">
-                    <Label fx:id="idLabel" />
-                </Label>
-                <Label text="Название проекта:">
-                    <Label fx:id="nameLabel" />
-                </Label>
-                <Label text="Описание проекта:">
-                    <Label fx:id="descriptionLabel" />
-                </Label>
-            </children>
+        <AnchorPane id="center-vbox" prefWidth="500" prefHeight="300">
+            <!-- Название проекта в верхней части центральной панели -->
+            <Label fx:id="nameLabel" id="project-name-label" text="Название проекта" styleClass="project-name-label" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" />
+
+            <!-- Параметры проекта ниже названия -->
+            <VBox spacing="5" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="10">
+                <HBox spacing="5">
+                    <Label text="ID проекта:" />
+                    <Label fx:id="idLabel" text="-" />
+                </HBox>
+                <HBox spacing="5">
+                    <Label text="Описание проекта:" />
+                    <Label fx:id="descriptionLabel" text="-" />
+                </HBox>
+            </VBox>
+
+            <!-- Отступы внизу -->
             <padding>
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
             </padding>
-        </VBox>
+        </AnchorPane>
     </center>
 
 </BorderPane>

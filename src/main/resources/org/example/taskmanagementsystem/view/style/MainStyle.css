@@ -11,6 +11,13 @@
     -fx-border-width: 1;
 }
 
+/* Стиль для метки названия проекта */
+#project-name-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6D8B7D; /* Мягкий зеленовато-серый цвет */
+}
+
 /* Стиль для метки "Проекты" */
 #projects-label {
     -fx-font-size: 18px;

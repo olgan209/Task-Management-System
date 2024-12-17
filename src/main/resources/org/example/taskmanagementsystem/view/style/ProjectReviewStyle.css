@@ -19,8 +19,8 @@
     -fx-padding: 0 0 10 0;
 }
 
-/* Стиль для списка проектов (ListView) */
-#task-listview {
+/* Стиль для списка задач (TableView) */
+#taskTableView {
     -fx-background-color: #444444;
     -fx-border-color: #555555;
     -fx-border-radius: 3;
@@ -44,10 +44,25 @@
     -fx-background-color: #8EC08B;
 }
 
+/* Стиль для метки "Пользователь" */
+#project-name-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6D8B7D; /* Мягкий зеленовато-серый цвет */
+}
+
 /* Стиль для центральной части (VBox) */
 #center-vbox {
     -fx-alignment: center;
     -fx-background-color: #333333;
+}
+
+/* Стиль для меток ID, Названия и Описания проекта */
+#idLabel, #nameLabel, #descriptionLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* Белый текст, чтобы он был виден на темном фоне */
+    -fx-font-weight: normal;
+    -fx-padding: 5px;
 }
 
 /* Стиль для метки "Пользователь" */
