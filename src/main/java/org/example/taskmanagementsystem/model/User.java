@@ -30,6 +30,14 @@ public class User {
         this.userTasks = new ArrayList<Task>();
     }
 
+    public User(int userId, String name, String email, String password) {
+        this.id = userId;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+
     public int getId() {
         return id;
     }

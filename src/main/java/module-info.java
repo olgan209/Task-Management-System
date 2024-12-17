@@ -6,4 +6,6 @@ module org.example.taskmanagementsystem {
     opens org.example.taskmanagementsystem.controller to javafx.fxml; // Разрешаем доступ к пакету для JavaFX
     exports org.example.taskmanagementsystem.controller; // Экспортируем пакет контроллеров
     exports org.example.taskmanagementsystem.model;
+    exports org.example.taskmanagementsystem.services;
+    opens org.example.taskmanagementsystem.services;
 }

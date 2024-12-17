@@ -13,6 +13,16 @@ public class UserService {
     private static final String username = "postgres";
     private static final String password = "1234";
 
+    private Connection connection;
+
+    // Конструктор с параметром
+    public UserService(Connection connection) {
+        this.connection = connection;
+    }
+
+    public UserService() {
+    }
+
     Connection conn;
     public Connection connect() throws SQLException {
         try{
@@ -82,6 +92,7 @@ public class UserService {
         }
         return userId;
     }
+
 
     // Метод для проверки пользователя в базе данных
     public static boolean validateUser(String name, String password) {
