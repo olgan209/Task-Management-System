@@ -42,15 +42,9 @@ public class RegistrationController {
 
     @FXML
     public void initialize() {
-        // Путь к изображению
         String imagePath = "/org/example/taskmanagementsystem/view/image/bg.jpg";
-
-        // Загрузка изображения
         Image image = new Image(getClass().getResourceAsStream(imagePath));
-
-        // Установка изображения в ImageView
         backgroundImageView.setImage(image);
-
         registerButton.setOnAction(event -> handleRegister());
         openLogin.setOnAction(event -> openLoginForm());
     }
@@ -69,7 +63,7 @@ public class RegistrationController {
         User newUser = new User(name, email, password);
 
         try {
-            userService.createUser(newUser); // Вызов метода для сохранения пользователя в БД
+            userService.createUser(newUser);
             //showStatus("Пользователь успешно зарегистрирован!", "success");
             clearFields();
             openLoginForm();
@@ -107,7 +101,6 @@ public class RegistrationController {
         registrationStatusLabel.getStyleClass().add(styleClass);
     }
     private void closeCurrentWindow() {
-        // Закрытие текущего окна
         ((javafx.stage.Stage) registerButton.getScene().getWindow()).close();
     }
 }

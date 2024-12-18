@@ -11,7 +11,6 @@ public class DatabaseConnection {
     private static final String PASSWORD = "1234";
     private static Connection connection;
 
-    // Метод для получения соединения
     public static Connection getConnection() {
         if (connection == null) {
             try {
@@ -24,7 +23,6 @@ public class DatabaseConnection {
         return connection;
     }
 
-    // Метод для закрытия соединения
     public static void closeConnection() {
         if (connection != null) {
             try {

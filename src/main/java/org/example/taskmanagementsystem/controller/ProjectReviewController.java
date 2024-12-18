@@ -21,10 +21,6 @@ public class ProjectReviewController {
     private Label nameLabel;
     @FXML
     private Label descriptionLabel;
-
-//    @FXML
-//    private Label projectNameLabel; // Новый Label для отображения названия проекта
-
     @FXML
     private TableView<Task> taskTableView;
     @FXML
@@ -38,26 +34,16 @@ public class ProjectReviewController {
 
     @FXML
     public void initialize(Project project, List<Task> tasks) {
-        // Печатаем для проверки
         System.out.println("Проект: " + project.getName());
         currentProject = project;
-
-        // Устанавливаем данные проекта в метки
         idLabel.setText(String.valueOf(project.getId()));
         nameLabel.setText(project.getName());
         descriptionLabel.setText(project.getDescription());
-
-        // Заполняем таблицу задач
         taskTableView.getItems().setAll(tasks);
-
-        // Настройка колонок таблицы
         taskIdColumn.setCellValueFactory(cellData -> cellData.getValue().getTaskIdProperty().asObject());
         taskNameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         taskDescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().getDescriptionProperty());
     }
-
-
-
 
     @FXML
     private void openTaskForm() {

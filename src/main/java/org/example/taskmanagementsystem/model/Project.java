@@ -4,24 +4,20 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Project {
-    private Integer id; // Используется Integer для возможности работы с null
+    private Integer id;
     private String name;
     private String description;
-    private IntegerProperty taskId = new SimpleIntegerProperty(); // Инициализация
+    private IntegerProperty taskId = new SimpleIntegerProperty();
 
-    // Конструктор без id
     public Project(String name, String description) {
         this(null, name, description);
     }
 
-    // Конструктор с id
     public Project(Integer id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
-
-    // Геттеры и сеттеры
     public Integer getId() {
         return id;
     }

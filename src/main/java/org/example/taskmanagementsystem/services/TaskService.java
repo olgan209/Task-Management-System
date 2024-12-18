@@ -63,29 +63,28 @@ public class TaskService {
     }
 
     public List<Task> getTasksByProjectId(int projectId) {
-        String sql = "SELECT * FROM Task WHERE projectId = ? ORDER BY deadline ASC"; // Сортируем задачи по срокам
+        String sql = "SELECT * FROM Task WHERE projectId = ? ORDER BY deadline ASC";
         List<Task> tasks = new ArrayList<>();
 
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, projectId);  // Устанавливаем параметр projectId в запросе
-            ResultSet rs = ps.executeQuery(); // Выполняем запрос
+            ps.setInt(1, projectId);
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 tasks.add(new Task(
                         rs.getInt("taskId"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        TaskStatus.fromString(rs.getString("status")),  // Конвертируем строку статуса в enum
+                        TaskStatus.fromString(rs.getString("status")),
                         rs.getInt("projectId"),
-                        rs.getTimestamp("deadline").toLocalDateTime() // Преобразуем Timestamp в LocalDateTime
+                        rs.getTimestamp("deadline").toLocalDateTime()
                 ));
             }
         } catch (SQLException e) {
             System.out.println("Error fetching tasks by projectId: " + e.getMessage());
         }
-
-        return tasks;  // Возвращаем список задач
+        return tasks;
     }
 
 
@@ -120,16 +119,14 @@ public class TaskService {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                // Извлекаем статус из базы данных
                 String statusFromDb = rs.getString("status");
-                // Преобразуем статус в формат enum, заменяя пробелы на подчеркивания
                 TaskStatus status = TaskStatus.fromString(statusFromDb.replace(" ", "_"));
 
                 tasks.add(new Task(
                         rs.getInt("taskid"),
                         rs.getString("name"),
                         rs.getString("description"),
-                        status,  // Используем преобразованный статус
+                        status,
                         rs.getInt("projectId"),
                         rs.getTimestamp("deadline").toLocalDateTime()
                 ));
