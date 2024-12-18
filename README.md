@@ -112,8 +112,19 @@ The **Task Management System** is designed to help users efficiently manage thei
 Link for google drive with the file : https://drive.google.com/drive/folders/1hkCivXFjPm7oOmqbbKJObka5NJy2cBQg?usp=sharing
 Link for the website to open file : https://app.diagrams.net/?src=about
 
-## How to Contribute
+1. Getting Started
+1.1 Download the Code
+Clone the repository to your local machine using Git:
+- bash
+- git clone https://github.com/your-repository-url.git
+Navigate to the project directory:
+- bash
+- cd your-project-directory
+1.2 Prerequisites
+Make sure the following software is installed on your machine:
 
-1. Clone the repository:
-   ```bash
-   git clone <repository_url>
+- Java 11+ (Required for JavaFX)
+PostgreSQL (for database management)
+Maven (if you are not using an IDE that handles dependencies automatically, like IntelliJ IDEA)
+JavaFX SDK (ensure the JavaFX libraries are properly set up if using Java 11 or later)
+2. Database Setup
