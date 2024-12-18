@@ -112,8 +112,8 @@ The **Task Management System** is designed to help users efficiently manage thei
 Link for google drive with the file : https://drive.google.com/drive/folders/1hkCivXFjPm7oOmqbbKJObka5NJy2cBQg?usp=sharing
 Link for the website to open file : https://app.diagrams.net/?src=about
 
-1. Getting Started
-1.1 Download the Code
+## 1. Getting Started
+# 1.1 Download the Code
 Clone the repository to your local machine using Git:
 - bash
 - git clone https://github.com/your-repository-url.git
