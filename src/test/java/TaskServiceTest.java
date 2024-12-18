@@ -22,13 +22,11 @@ public class TaskServiceTest {
 
     @BeforeEach
     public void setUp() throws SQLException {
-        // Инициализация моков
         MockitoAnnotations.openMocks(this);
 
         mockConnection = mock(Connection.class);
         mockStatement = mock(PreparedStatement.class);
 
-        // Настройка мока подключения и запросов
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
         when(mockStatement.executeQuery()).thenReturn(mockResultSet);
 
@@ -38,19 +36,16 @@ public class TaskServiceTest {
 
     @Test
     public void testCreateTask() throws SQLException {
-        // Подготовка данных
         Task task = new Task(50,
                 "Test Task",
                 "Description of the test task",
-                TaskStatus.PENDING,  // Enum for task status
+                TaskStatus.PENDING,
                 1,
                 java.time.LocalDateTime.of(2024, 12, 31, 12, 0)
         );
 
-        // Вызов тестируемого метода
         taskService.createTask(task);
 
-        // Проверка вызова методов
         verify(mockConnection).prepareStatement("INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)");
         verify(mockStatement).setString(1, "Test Task");
         verify(mockStatement).setString(2, "Description of the test task");
@@ -62,7 +57,7 @@ public class TaskServiceTest {
 
     @Test
     public void testGetTaskById() throws SQLException {
-        // Подготовка тестовых данных
+
         int taskId = 1;
         Task expectedTask = new Task(
                 taskId,
@@ -73,7 +68,7 @@ public class TaskServiceTest {
                 java.time.LocalDateTime.of(2024, 12, 31, 12, 0)
         );
 
-        // Настройка поведения ResultSet
+
         when(mockStatement.executeQuery()).thenReturn(mockResultSet);
         when(mockResultSet.next()).thenReturn(true); // Симулируем, что есть данные
         when(mockResultSet.getInt("taskId")).thenReturn(expectedTask.getTaskId());
@@ -83,10 +78,10 @@ public class TaskServiceTest {
         when(mockResultSet.getInt("projectId")).thenReturn(expectedTask.getProjectId());
         when(mockResultSet.getTimestamp("deadline")).thenReturn(Timestamp.valueOf(expectedTask.getDeadline()));
 
-        // Вызов тестируемого метода
+
         Task resultTask = taskService.getTaskById(taskId);
 
-        // Проверка результата
+
         assertNotNull(resultTask);
         assertEquals(expectedTask.getTaskId(), resultTask.getTaskId());
         assertEquals(expectedTask.getName(), resultTask.getName());
@@ -95,7 +90,7 @@ public class TaskServiceTest {
         assertEquals(expectedTask.getProjectId(), resultTask.getProjectId());
         assertEquals(expectedTask.getDeadline(), resultTask.getDeadline());
 
-        // Проверка вызовов моков
+
         verify(mockConnection).prepareStatement("SELECT * FROM tasks WHERE taskId = ?");
         verify(mockStatement).setInt(1, taskId);
         verify(mockStatement).executeQuery();
