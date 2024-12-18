@@ -135,4 +135,4 @@ Make sure the following software is installed on your machine:
 - \c Tms
 ## 2.2 Create tables
 Download and run the sql-script that create tables
-[Download SQL Script](src/sql-scripts/sql table creation.txt)
+- [Download SQL Script](src/sql-scripts/sql%table%creation.txt)
