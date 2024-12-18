@@ -155,29 +155,43 @@ public class UserService {
     }
 
 
-    public void updateUser(User user){
-        String sql = "UPDATE employee SET name = ?, position = ?, hireDate = ? WHERE id = ?";
-        try (PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setInt(1, user.getId());
-            ps.setString(2, user.getName());
-            ps.setString(3, user.getEmail());
-            ps.executeUpdate();
-            System.out.println("User updated");
+    public void updateUser(User user) {
+        String sql = "UPDATE User_table SET name = ?, email = ?, password = ? WHERE userId = ?";
+        try (Connection conn = this.connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPassword());
+            ps.setInt(4, user.getId());
+            int rowsUpdated = ps.executeUpdate();
 
-        } catch(SQLException e){
-            System.out.println(e.toString());
+            if (rowsUpdated > 0) {
+                System.out.println("Данные пользователя обновлены.");
+            } else {
+                System.out.println("Пользователь не найден.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка при обновлении данных: " + e.getMessage());
+            throw new RuntimeException("Не удалось обновить данные", e);
         }
     }
 
-    public void deleteUser(int id){
-        String sql = "DELETE FROM users WHERE id = ?";
-        try(Connection conn = this.connect();
-            PreparedStatement ps = conn.prepareStatement(sql)){
+
+    public void deleteUser(int id) {
+        String sql = "DELETE FROM User_table WHERE userId = ?";
+        try (Connection conn = this.connect();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ps.executeUpdate();
-            System.out.println("User deleted");
-        } catch(SQLException e){
-            System.out.println(e.toString());
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Пользователь с ID " + id + " успешно удален.");
+            } else {
+                System.out.println("Пользователь с ID " + id + " не найден.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Ошибка при удалении пользователя: " + e.getMessage());
+            throw new RuntimeException("Не удалось удалить пользователя", e);
         }
     }
+
 }

@@ -17,6 +17,7 @@ import org.example.taskmanagementsystem.model.Task;
 import org.example.taskmanagementsystem.model.User;
 import org.example.taskmanagementsystem.services.ProjectService;
 import org.example.taskmanagementsystem.services.TaskService;
+import org.example.taskmanagementsystem.services.UserService;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -29,7 +30,7 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/LoginView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/RegistrationView.fxml"));
         primaryStage.setTitle("Task Management System");
         primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна
         primaryStage.show();
@@ -51,6 +52,8 @@ public class MainController extends Application {
     private Label userNameLabel;
     @FXML
     private Label userLoginLabel;
+
+    private final UserService userService = new UserService();
 
     public void setProjectService(ProjectService projectService) {
         this.projectService = projectService;
@@ -176,6 +179,54 @@ public class MainController extends Application {
         }
     }
 
+    @FXML
+    public void deleteAccount() {
+        int currentUserId = Session.getInstance().getUserId(); // Получаем ID текущего пользователя из сессии
+        UserService userService = new UserService();
+
+        // Подтверждение удаления аккаунта
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Вы уверены, что хотите удалить свой аккаунт?", ButtonType.YES, ButtonType.NO);
+        confirmationAlert.setTitle("Удаление аккаунта");
+        confirmationAlert.setHeaderText(null);
+
+        confirmationAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                userService.deleteUser(currentUserId); // Удаляем пользователя из базы данных
+                System.out.println("Пользователь удален.");
+
+                // Закрываем текущее окно
+                Stage stage = (Stage) projectTableView.getScene().getWindow();
+                stage.close();
+            }
+        });
+    }
+
+    @FXML
+    public void editAccount() {
+        try {
+            // Получаем ID текущего пользователя из сессии
+            int currentUserId = Session.getInstance().getUserId();
+
+            // Получаем данные текущего пользователя с помощью UserService
+            User currentUser = userService.getUser(currentUserId);
+
+            // Загружаем FXML для формы редактирования
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/EditUserView.fxml"));
+            Parent root = loader.load();
+
+            // Передаем текущего пользователя в контроллер EditUserController
+            EditUserController controller = loader.getController();
+            controller.setCurrentUser(currentUser);  // Передаем объект пользователя
+
+            // Открываем окно редактирования
+            Stage stage = new Stage();
+            stage.setTitle("Редактирование аккаунта");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         launch(args);
