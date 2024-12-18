@@ -1,0 +1,46 @@
+-- Таблица Project
+CREATE TABLE Project (
+    projectId SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(225) NOT NULL,
+    description TEXT
+);
+
+-- Таблица Task
+CREATE TABLE Task (
+    taskId SERIAL PRIMARY KEY NOT NULL,
+    projectId INT,
+    name VARCHAR(225) NOT NULL,
+    description TEXT,
+    status VARCHAR(50) NOT NULL,
+    deadline TIMESTAMP,
+    FOREIGN KEY (projectId) REFERENCES Project(projectId)
+);
+
+-- Таблица User
+CREATE TABLE User_table (
+    userId SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(225) UNIQUE NOT NULL,
+    password VARCHAR(30),
+    taskId INT,
+    FOREIGN KEY (taskId) REFERENCES Task(taskId)
+);
+
+-- Таблица ProjectUsers
+CREATE TABLE ProjectUsers (
+    projectId INT NOT NULL,
+    userId INT NOT NULL,
+    PRIMARY KEY (projectId, userId),
+    FOREIGN KEY (projectId) REFERENCES Project(projectId),
+    FOREIGN KEY (userId) REFERENCES User_table(userId)
+);
+
+-- Таблица UserTasks
+CREATE TABLE UserTasks (
+    userId INT NOT NULL,
+    taskId INT NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    PRIMARY KEY (userId, taskId),
+    FOREIGN KEY (userId) REFERENCES User_table(userId),
+    FOREIGN KEY (taskId) REFERENCES Task(taskId)
+);
