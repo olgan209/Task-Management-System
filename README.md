@@ -112,8 +112,43 @@ The **Task Management System** is designed to help users efficiently manage thei
 Link for google drive with the file : https://drive.google.com/drive/folders/1hkCivXFjPm7oOmqbbKJObka5NJy2cBQg?usp=sharing
 Link for the website to open file : https://app.diagrams.net/?src=about
 
-## How to Contribute
+# 1. Getting Started
+## 1.1 Download the Code
+Clone the repository to your local machine using Git:
+- bash
+- git clone https://github.com/your-repository-url.git
+### Navigate to the project directory:
+- bash
+- cd your-project-directory
+## 1.2 Prerequisites
+Make sure the following software is installed on your machine:
 
-1. Clone the repository:
-   ```bash
-   git clone <repository_url>
+- Java 11+ (Required for JavaFX)
+- PostgreSQL (for database management)
+- Maven (if you are not using an IDE that handles dependencies automatically, like IntelliJ IDEA)
+- JavaFX SDK (ensure the JavaFX libraries are properly set up if using Java 11 or later)
+# 2. Database Setup
+## 2.1 Create the Database
+1. Open PostgreSQL
+- CREATE DATABASE Tms;
+2. Switch to the new database:
+- \c Tms
+## 2.2 Create tables
+Copy and run the sql-script that create tables in postgres, database query tool
+- [SQL Script](src/sql-scripts/sql%20table%20creation.txt)
+## 2.3 Populate the tables
+Copy and run the sql-script that insert data in tables in postgres, database query tool
+- [SQL Script](src/sql-scripts/sql%20data%20insertion.txt)
+# 3. Deploying the JavaFX Application
+## 3.1 Set Up JavaFX in Your IDE
+If you're using IntelliJ IDEA, ensure JavaFX is configured:
+- Go to File -> Project Structure -> Libraries.
+- Add the JavaFX SDK as a library.
+## 3.2 Build and Run the Application
+Using Maven: Open a terminal in the project directory and run the following commands:
+
+- mvn clean install
+- mvn javafx:run
+
+Using an IDE: If you're using IntelliJ IDEA or Eclipse:
+- Right-click on the Main class (or the class with the main method) and select Run.

@@ -1,0 +1,74 @@
+INSERT INTO Project (name, description) VALUES
+('Website Redesign', 'Redesign of corporate website'),
+('Mobile App Development', 'Developing an iOS app for e-commerce'),
+('Database Migration', 'Migration of databases to cloud infrastructure'),
+('HR System', 'Development of a new HR management system'),
+('Marketing Campaign', 'Digital marketing campaign for Q4'),
+('Security Upgrade', 'Implementing security updates'),
+('CRM Integration', 'Integration of a CRM system'),
+('Cloud Transition', 'Transition to AWS cloud services'),
+('Data Analytics Platform', 'Build a data analytics platform'),
+('ERP Implementation', 'Implementation of ERP system'),
+('AI Chatbot', 'Developing an AI-powered customer servicebot'),
+('E-commerce Platform', 'New e-commerce website launch'),
+('QA Automation', 'Implementation of QA automation tools'),
+('Inventory System', 'New inventory tracking software'),
+('Customer Portal', 'Developing a self-service customer portal');
+
+INSERT INTO Task (projectId, name, description, status, deadline) VALUES
+(1, 'Wireframe Creation', 'Create wireframes for the website', 'In Progress', '2024-01-15'),
+(1, 'Design Mockups', 'Design the website UI mockups', 'Pending', '2024-01-20'),
+(2, 'Setup Dev Environment', 'Setup environment for app development', 'Completed', '2024-01-10'),
+(3, 'Database Backup', 'Backup existing databases', 'Completed', '2024-01-05'),
+(4, 'Data Validation', 'Validate data integrity after migration', 'In Progress', '2024-01-18'),
+(5, 'Requirements Gathering', 'Gather system requirements', 'Pending', '2024-02-01'),
+(6, 'SEO Analysis', 'Perform SEO audit and analysis', 'In Progress', '2024-01-22'),
+(7, 'Content Creation', 'Develop marketing content', 'Pending', '2024-01-30'),
+(7, 'Patch Installation', 'Install security patches', 'Completed', '2024-01-12'),
+(7, 'API Integration', 'Integrate CRM APIs', 'Pending','2024-01-25'),
+(8, 'Server Setup', 'Configure cloud servers', 'In Progress', '2024-01-27'),
+(8, 'Report Design', 'Design data analytics reports', 'Pending', '2024-02-05'),
+(9, 'Vendor Meetings', 'Meet with ERP vendors', 'Completed', '2024-01-15'),
+(9, 'AI Model Training', 'Train chatbot AI model', 'In Progress', '2024-01-29'),
+(10, 'Feature Testing', 'Test e-commerce features', 'Pending', '2024-02-10');
+
+
+INSERT INTO User_table (name, email, password, taskId) VALUES
+('Alice Smith', 'alice.smith@example.com', 'pass1234', 1),
+('Bob Johnson', 'bob.johnson@example.com', 'bob2024', 2),
+('Carol Davis', 'carol.davis@example.com', 'carol123', 3),
+('David Brown', 'david.brown@example.com', 'david456', 4),
+('Eve Martinez', 'eve.martinez@example.com', 'eve2024', 5),
+('Frank Wilson', 'frank.wilson@example.com', 'frank789', 6),
+('Grace Lee', 'grace.lee@example.com', 'grace000', 7),
+('Hank Miller', 'hank.miller@example.com', 'hank111', 8),
+('Ivy Anderson', 'ivy.anderson@example.com', 'ivy2222', 9),
+('Jack Taylor', 'jack.taylor@example.com', 'jack333', 10),
+('Kathy Thomas', 'kathy.thomas@example.com', 'kathy444', 11),
+('Leo White', 'leo.white@example.com', 'leo5555', 12),
+('Mona Harris', 'mona.harris@example.com', 'mona666', 13),
+('Nina Clark', 'nina.clark@example.com', 'nina777', 14),
+('Oscar Lewis', 'oscar.lewis@example.com', 'oscar888', 15);
+
+
+INSERT INTO ProjectUsers (projectId, userId) VALUES
+(1, 1), (1, 2), (2, 3), (2, 4), (3, 5),
+(3, 6), (4, 7), (4, 8), (5, 9), (5, 10),
+(6, 11), (6, 12), (7, 13), (7, 14), (8, 15);
+
+INSERT INTO UserTasks (userId, taskId, status) VALUES
+(1, 1, 'In Progress'),
+(2, 2, 'Pending'),
+(3, 3, 'Completed'),
+(4, 4, 'Completed'),
+(5, 5, 'In Progress'),
+(6, 6, 'Pending'),
+(7, 7, 'In Progress'),
+(8, 8, 'Pending'),
+(9, 9, 'Completed'),
+(10, 10, 'Pending'),
+(11, 11, 'In Progress'),
+(12, 12, 'Pending'),
+(13, 13, 'Completed'),
+(14, 14, 'In Progress'),
+(15, 15, 'Pending');
