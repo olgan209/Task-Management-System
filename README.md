@@ -134,5 +134,5 @@ Make sure the following software is installed on your machine:
 2. Switch to the new database:
 - \c Tms
 ## 2.2 Create tables
-Download and run the sql-script that create tables
-- [Download SQL Script](src/sql-scripts/sql%20table%20creation.txt)
+Copy and run the sql-script that create tables in postgres, database query tool
+- [SQL Script](src/sql-scripts/sql%20table%20creation.txt)
