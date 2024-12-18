@@ -1,18 +1,15 @@
-/* Общий стиль для корневого контейнера */
 .hbox {
     -fx-alignment: center;
     -fx-spacing: 20px;
     -fx-background-color: #002B5B;
 }
 
-/* Стиль для изображения */
 .image-view {
     -fx-fit-height: infinity;
     -fx-fit-width: 300px;
     -fx-preserve-ratio: true;
 }
 
-/* Общий стиль для формы */
 .vbox {
     -fx-padding: 40px; /* Увеличиваем внутренние отступы */
     -fx-spacing: 20px; /* Увеличиваем расстояние между элементами */
@@ -24,31 +21,26 @@
     -fx-pref-height: 500px; /* Высота остается прежней */
 }
 
-/* Стиль для заголовка */
 .label.header {
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
-/* Стиль для обычных меток */
 .label {
     -fx-text-fill: #FFFFFF;
 }
 
-/* Стиль для текстового поля */
 .text-field {
     -fx-background-color: #FFFFFF;
     -fx-text-fill: #000000;
 }
 
-/* Стиль для поля пароля */
 .password-field {
     -fx-background-color: #FFFFFF;
     -fx-text-fill: #000000;
 }
 
-/* Стиль для кнопки авторизации */
 .button {
     -fx-background-color: #008000;
     -fx-text-fill: #FFFFFF;

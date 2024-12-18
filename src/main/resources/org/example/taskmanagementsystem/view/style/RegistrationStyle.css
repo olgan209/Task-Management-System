@@ -1,69 +1,63 @@
-/* Общий стиль для корневого контейнера */
 .hbox {
     -fx-alignment: center;
     -fx-spacing: 20px;
-    -fx-background-color: #002B5B; /* Темно-синий фон */
+    -fx-background-color: #002B5B;
 }
 
-/* Стиль для изображения */
 .image-view {
     -fx-fit-height: 200px;
     -fx-fit-width: 200px;
     -fx-preserve-ratio: true;
 }
 
-/* Общий стиль для формы */
 .vbox {
-    -fx-padding: 40px; /* Увеличенные внутренние отступы */
-    -fx-spacing: 20px; /* Расстояние между элементами */
-    -fx-background-color: #A60321; /* Красный фон */
-    -fx-border-radius: 10px 0 0 10px; /* Закругление с левой стороны */
+    -fx-padding: 40px;
+    -fx-spacing: 20px;
+    -fx-background-color: #A60321;
+    -fx-border-radius: 10px 0 0 10px;
     -fx-background-radius: 10px 0 0 10px;
-    -fx-alignment: center; /* Центровка содержимого */
+    -fx-alignment: center;
     -fx-pref-width: 300px;
     -fx-pref-height: 500px;
 }
 
-/* Стиль для заголовка */
 .label.header {
-    -fx-text-fill: #FFFFFF; /* Белый текст */
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
 }
 
-/* Стиль для обычных меток */
+
 .label {
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 16px;
 }
 
-/* Стиль для текстового поля */
+
 .text-field, .password-field {
     -fx-pref-width: 300px;
     -fx-font-size: 14px;
     -fx-padding: 10px;
-    -fx-background-color: #FFFFFF; /* Белый фон */
-    -fx-text-fill: #000000; /* Черный текст */
-    -fx-border-color: #A3B8A2; /* Зеленовато-серый */
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-border-color: #A3B8A2;
     -fx-border-width: 1px;
 }
 
-/* Стиль для кнопок */
 .button {
-    -fx-background-color: #008000; /* Зеленый фон */
-    -fx-text-fill: #FFFFFF; /* Белый текст */
+    -fx-background-color: #008000;
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 14px;
     -fx-padding: 10px 20px;
     -fx-border-radius: 5px;
     -fx-cursor: hand;
 }
 
-/* Цвет при наведении на кнопку */
 .button:hover {
-    -fx-background-color: #005500; /* Темно-зеленый для hover */
+    -fx-background-color: #005500;
 }
 
-/* Стиль для HBox */
+
 .hbox {
     -fx-spacing: 10px;
     -fx-alignment: center;

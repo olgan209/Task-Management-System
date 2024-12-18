@@ -37,7 +37,6 @@ public class ProjectReviewController {
     public void initialize(Project project, List<Task> tasks) {
         System.out.println("Проект: " + project.getName());
         currentProject = project;
-        idLabel.setText(String.valueOf(project.getId()));
         nameLabel.setText(project.getName());
         descriptionLabel.setText(project.getDescription());
         taskTableView.getItems().setAll(tasks);
@@ -54,11 +53,9 @@ public class ProjectReviewController {
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Добавить задачу");
 
-            // Передача данных в TaskController
             TaskController taskController = loader.getController();
             taskController.setProjectId(currentProject.getId());
 
-            // Добавление слушателя закрытия окна
             stage.setOnHidden(event -> refreshTaskTable());
 
             stage.show();

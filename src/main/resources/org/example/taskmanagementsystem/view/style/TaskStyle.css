@@ -1,12 +1,10 @@
-/* TaskStyle.css */
 
-/* Общий стиль для формы */
 .vbox {
     -fx-padding: 20px;
     -fx-spacing: 15px;
-    -fx-background-color: #F7F9F4; /* Очень светлый пастельный фон */
+    -fx-background-color: #F7F9F4;
     -fx-border-radius: 8px;
-    -fx-border-color: #C8D7C4; /* Пастельный зеленовато-серый */
+    -fx-border-color: #C8D7C4;
     -fx-border-width: 1px;
 }
 
@@ -14,8 +12,8 @@
     -fx-pref-width: 300px;
     -fx-font-size: 14px;
     -fx-padding: 10px;
-    -fx-background-color: #D1E0D6; /* Пастельный зеленый */
-    -fx-border-color: #A3B8A2; /* Мягкий зеленовато-серый */
+    -fx-background-color: #D1E0D6;
+    -fx-border-color: #A3B8A2;
     -fx-border-width: 1px;
 }
 
@@ -28,8 +26,8 @@
 }
 
 .button {
-    -fx-background-color: #A3D9B1; /* Пастельный зеленый */
-    -fx-text-fill: #3C4C3F; /* Темный зеленый текст */
+    -fx-background-color: #A3D9B1;
+    -fx-text-fill: #3C4C3F;
     -fx-font-size: 14px;
     -fx-padding: 10px 20px;
     -fx-border-radius: 5px;
@@ -37,7 +35,7 @@
 }
 
 .button:hover {
-    -fx-background-color: #8EC08B; /* Немного более насыщенный зеленый */
+    -fx-background-color: #8EC08B;
 }
 
 .hbox {
@@ -48,5 +46,5 @@
 .label {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #6D8B7D; /* Мягкий зеленовато-серый цвет */
+    -fx-text-fill: #6D8B7D;
 }

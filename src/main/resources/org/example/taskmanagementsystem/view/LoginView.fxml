@@ -10,26 +10,19 @@
 
 <HBox alignment="CENTER" spacing="20" stylesheets="@style/LoginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" styleClass="hbox"
       fx:controller="org.example.taskmanagementsystem.controller.LoginController">
-    <!-- Левая часть с картинкой -->
     <ImageView fx:id="imageView" fitWidth="500" fitHeight="500" styleClass="image-view" />
 
-    <!-- Пустой Region для создания отступа с левой стороны -->
     <Region HBox.hgrow="ALWAYS" />
 
-    <!-- Правая часть с формой -->
     <VBox styleClass="vbox">
-        <!-- Заголовок -->
         <Label styleClass="header" text="Авторизация" />
 
-        <!-- Поле для логина -->
         <Label text="Логин:" />
         <TextField fx:id="usernameField" promptText="Введите ваш логин" styleClass="text-field" />
 
-        <!-- Поле для пароля -->
         <Label text="Пароль:" />
         <PasswordField fx:id="passwordField" promptText="Введите ваш пароль" styleClass="password-field" />
 
-        <!-- Кнопка авторизации -->
         <HBox alignment="CENTER" spacing="10">
             <Button fx:id="loginButton" text="Войти" styleClass="button" onAction="#handleLogin"/>
         </HBox>

@@ -25,7 +25,7 @@ public class TaskService {
     }
 
     public void createTask(Task task) {
-        String sql = "INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Task(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)";
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, task.getName());
@@ -41,7 +41,7 @@ public class TaskService {
     }
 
     public Task getTaskById(int taskId) {
-        String sql = "SELECT * FROM tasks WHERE taskId = ?";
+        String sql = "SELECT * FROM Task WHERE taskId = ?";
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, taskId);
@@ -89,7 +89,7 @@ public class TaskService {
 
 
     public ArrayList<Task> getAllTasks() {
-        String sql = "SELECT * FROM tasks";
+        String sql = "SELECT * FROM Task";
         ArrayList<Task> tasks = new ArrayList<>();
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
@@ -141,7 +141,7 @@ public class TaskService {
 
 
     public Task getTaskByUser(int userId) {
-        String sql = "SELECT * FROM tasks WHERE userId = ?";
+        String sql = "SELECT * FROM Task WHERE userId = ?";
         try(Connection conn = this.connect();
         PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, userId);
@@ -163,7 +163,7 @@ public class TaskService {
     }
 
     public Task getTaskByStatus(String status) {
-        String sql = "SELECT * FROM tasks WHERE status = ?";
+        String sql = "SELECT * FROM Task WHERE status = ?";
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, status);
@@ -185,7 +185,7 @@ public class TaskService {
     }
 
     public void updateTask(int taskId, Task task) {
-        String sql = "UPDATE tasks SET name = ?, description = ?, status = ?, project_id = ?, deadline = ? WHERE id = ?";
+        String sql = "UPDATE Task SET name = ?, description = ?, status = ?, project_id = ?, deadline = ? WHERE id = ?";
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, task.getName());
@@ -206,7 +206,7 @@ public class TaskService {
     }
 
     public void updateTaskStatus(int taskId, String status) {
-        String sql = "UPDATE tasks SET status = ? WHERE id = ?";
+        String sql = "UPDATE Task SET status = ? WHERE id = ?";
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, status);
@@ -223,7 +223,7 @@ public class TaskService {
     }
 
     public void setTaskDeadline(int taskId, LocalDateTime deadline){
-        String sql = "UPDATE tasks SET deadline = ? WHERE id = ?";
+        String sql = "UPDATE Task SET deadline = ? WHERE id = ?";
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setTimestamp(1, Timestamp.valueOf(deadline));
@@ -239,7 +239,7 @@ public class TaskService {
         }
     }
     public void deleteTask(int taskId) {
-        String sql = "DELETE FROM tasks WHERE id = ?";
+        String sql = "DELETE FROM Task WHERE id = ?";
         try (Connection conn = this.connect();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, taskId);

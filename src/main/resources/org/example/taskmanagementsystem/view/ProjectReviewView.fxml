@@ -15,7 +15,6 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.taskmanagementsystem.controller.ProjectReviewController">
 
-    <!-- Левая панель с таблицей задач -->
     <left>
         <VBox prefHeight="363.0" prefWidth="263.0" spacing="10" BorderPane.alignment="CENTER" id="left-vbox">
             <Label text="Задачи" id="tasks-label" />
@@ -32,17 +31,13 @@
         </VBox>
     </left>
 
-    <!-- Центральная панель с информацией о проекте -->
     <center>
         <AnchorPane id="center-vbox" prefWidth="500" prefHeight="300">
             <!-- Название проекта в верхней части центральной панели -->
             <Label fx:id="nameLabel" id="project-name-label" text="Название проекта" styleClass="project-name-label" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" />
 
-            <!-- Параметры проекта ниже названия -->
             <VBox spacing="5" AnchorPane.topAnchor="50" AnchorPane.leftAnchor="10">
                 <HBox spacing="5">
-                    <Label text="ID проекта:" />
-                    <Label fx:id="idLabel" text="-" />
                 </HBox>
                 <HBox spacing="5">
                     <Label text="Описание проекта:" />
@@ -50,7 +45,6 @@
                 </HBox>
             </VBox>
 
-            <!-- Отступы внизу -->
             <padding>
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
             </padding>

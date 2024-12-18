@@ -10,18 +10,14 @@
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" spacing="15"
       alignment="CENTER" styleClass="vbox" stylesheets="@style/ProjectDetailsStyle.css"
       fx:controller="org.example.taskmanagementsystem.controller.ProjectController">
-    <!-- Заголовок -->
     <Label text="Детали проекта" styleClass="label" />
 
-    <!-- Название проекта -->
     <Label text="Название проекта:" styleClass="label" />
     <TextField fx:id="projectNameField" promptText="Введите название проекта" styleClass="text-field" />
 
-    <!-- Описание проекта -->
     <Label text="Описание проекта:" styleClass="label" />
     <TextArea fx:id="projectDescriptionField" promptText="Введите описание проекта" wrapText="true" styleClass="text-area" />
 
-    <!-- Кнопки действий -->
     <HBox spacing="10" alignment="CENTER" styleClass="hbox">
         <Button text="Сохранить" fx:id="saveButton" styleClass="button" onAction="#saveProject"/>
         <Button text="Удалить" fx:id="deleteButton" styleClass="button" onAction="#deleteProject"/>

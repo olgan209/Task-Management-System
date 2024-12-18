@@ -42,16 +42,13 @@ public class LoginController {
         if (username.isEmpty() || password.isEmpty()) {
             showAlert("Ошибка", "Пожалуйста, заполните все поля.", Alert.AlertType.ERROR);
         } else {
-            // Валидация пользователя и получение userId
             int userId = UserService.getUserIdIfValid(username, password);
 
-            if (userId != -1) { // Если возвращается валидный userId
+            if (userId != -1) {
                 showAlert("Успех", "Авторизация успешна!", Alert.AlertType.INFORMATION);
 
-                // Устанавливаем текущего пользователя в сессию
                 Session.getInstance().setUserId(userId);
 
-                // Переходим на главное окно
                 openMainView();
                 closeCurrentWindow();
             } else {
@@ -62,18 +59,15 @@ public class LoginController {
     @FXML
     public void openMainView() {
         try {
-            // Загружаем FXML для страницы добавления задачи
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/MainView.fxml"));
             Scene scene = new Scene(loader.load());
 
-            // Создаем новое окно
             Stage mainStage = new Stage();
             mainStage.setTitle("Добавить проект");
             mainStage.setScene(scene);
             mainStage.setHeight(600);
             mainStage.setWidth(800);
 
-            // Показываем новое окно
             mainStage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -7,14 +7,11 @@
 <?import javafx.scene.control.Label?>
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" spacing="15" alignment="CENTER" styleClass="vbox" stylesheets="@style/UserManagementStyle.css">
-    <!-- Заголовок -->
     <Label text="Управление пользователями" styleClass="label" />
 
-    <!-- Список пользователей -->
     <Label text="Список пользователей:" styleClass="label" />
     <ListView fx:id="userListView" styleClass="list-view" />
 
-    <!-- Кнопки управления -->
     <HBox spacing="10" alignment="CENTER" styleClass="hbox">
         <Button text="Добавить" fx:id="addUserButton" styleClass="button" />
         <Button text="Удалить" fx:id="deleteUserButton" styleClass="button" />

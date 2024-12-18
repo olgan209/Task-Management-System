@@ -8,7 +8,6 @@
 
 <BorderPane stylesheets="@style/MainStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.taskmanagementsystem.controller.MainController">
    <left>
-      <!-- Увеличена ширина VBox с проектами -->
       <VBox id="left-vbox" prefHeight="363.0" prefWidth="400.0" spacing="10" BorderPane.alignment="CENTER">
          <Label id="projects-label" text="Проекты" />
          <TableView fx:id="projectTableView" onMouseClicked="#handleRowClick" VBox.vgrow="ALWAYS">
@@ -39,10 +38,8 @@
             </HBox>
 
 
-            <!-- Добавление пустого пространства перед секцией с дедлайнами -->
             <Region VBox.vgrow="ALWAYS" />
 
-            <!-- Секция с дедлайнами перемещена ниже -->
             <VBox spacing="10.0">
                <Label id="deadlines-label" text="Дедлайны">
                   <font>

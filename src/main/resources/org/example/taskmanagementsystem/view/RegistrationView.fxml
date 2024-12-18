@@ -14,28 +14,21 @@
 
     <ImageView fx:id="backgroundImageView" styleClass="image-view" />
 
-    <!-- Правая часть с регистрационной формой -->
     <VBox spacing="15" alignment="CENTER" styleClass="vbox">
 
-        <!-- Заголовок -->
         <Label text="Регистрация" styleClass="label" />
 
-        <!-- Имя пользователя -->
         <Label text="Имя пользователя:" styleClass="label" />
         <TextField fx:id="usernameField" promptText="Введите имя" styleClass="text-field" />
 
-        <!-- Электронная почта -->
         <Label text="Электронная почта:" styleClass="label" />
         <TextField fx:id="emailField" promptText="Введите почту" styleClass="text-field" />
 
-        <!-- Пароль -->
         <Label text="Пароль:" styleClass="label" />
         <PasswordField fx:id="passwordField" promptText="Введите пароль" styleClass="password-field" />
 
-        <!-- Кнопка для регистрации -->
         <Button text="Зарегистрироваться" fx:id="registerButton" styleClass="button" onAction="#handleRegister"/>
 
-        <!-- Ссылка на страницу входа -->
         <HBox spacing="10" alignment="CENTER">
             <Label text="Уже есть аккаунт?" styleClass="label" />
             <Button fx:id="openLogin" text="Войти" styleClass="button" onAction="#openLoginForm"/>

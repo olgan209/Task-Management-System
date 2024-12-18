@@ -13,7 +13,6 @@ public class ProjectService {
 
     private Connection connection;
 
-    // Конструктор с параметром
     public ProjectService(Connection connection) {
         this.connection = connection;
     }

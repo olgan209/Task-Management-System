@@ -45,14 +45,12 @@ public class TaskController {
     @FXML
     public void initialize() {
 
-        // Наполнение списка статусов
         priorityComboBox.setItems(FXCollections.observableArrayList(
                 Arrays.stream(TaskStatus.values())
                         .map(Enum::name)
                         .collect(Collectors.toList())
         ));
 
-        // Привязка кнопок
         saveButton.setOnAction(event -> saveTask());
         cancelButton.setOnAction(event -> cancelTask());
     }
@@ -64,13 +62,6 @@ public class TaskController {
         String priority = priorityComboBox.getValue();
         LocalDateTime deadline = dueDatePicker.getValue() != null ? dueDatePicker.getValue().atStartOfDay() : null;
 
-        // Проверка на валидность данных
-//        if (!ValidationUtils.validateTask(name, description, String.valueOf(deadline))) {
-//            showAlert("Ошибка", "Некорректные данные. Проверьте введенные значения.");
-//            return; // Остановить выполнение, если данные некорректны
-//        }
-
-        // Создание объекта Task
         Task task = new Task(
                 0, // Временное значение для taskId
                 name,
@@ -80,10 +71,8 @@ public class TaskController {
                 deadline
         );
 
-        // Сохранение задачи через сервис
         taskService.createTask(task);
 
-        // Закрытие окна
         closeCurrentWindow();
     }
 

@@ -15,7 +15,6 @@ public class UserService {
 
     private Connection connection;
 
-    // Конструктор с параметром
     public UserService(Connection connection) {
         this.connection = connection;
     }
@@ -94,7 +93,6 @@ public class UserService {
     }
 
 
-    // Метод для проверки пользователя в базе данных
     public static boolean validateUser(String name, String password) {
         String query = "SELECT * FROM User_table WHERE name = ? AND password = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -135,7 +133,6 @@ public class UserService {
             ps.setInt(1, userId); // Set the userId in the SQL query
             ResultSet rs = ps.executeQuery();
 
-            // Iterate over the results and create Task objects
             while (rs.next()) {
                 Task task = new Task(
                         rs.getInt("id"),  // Assuming the task has an 'id' column
@@ -151,7 +148,6 @@ public class UserService {
             System.out.println("Error fetching tasks: " + e.toString());
         }
 
-        // Assuming User class has a setTasks() method
         User user = getUser(userId);  // Fetch the user by their ID
         user.setTasks(tasks);  // Set the list of tasks for the user
 
