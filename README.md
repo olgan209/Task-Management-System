@@ -132,4 +132,4 @@ Make sure the following software is installed on your machine:
 1. Open PostgreSQL
 - CREATE DATABASE project_database;
 2. Switch to the new database:
-   \c project_database
+- \c project_database
