@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import org.example.taskmanagementsystem.model.Project;
 import org.example.taskmanagementsystem.model.Task;
+import org.example.taskmanagementsystem.services.TaskService;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,13 +49,27 @@ public class ProjectReviewController {
     @FXML
     private void openTaskForm() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/TaskFormView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/taskmanagementsystem/view/TaskView.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Добавить задачу");
+
+            // Передача данных в TaskController
+            TaskController taskController = loader.getController();
+            taskController.setProjectId(currentProject.getId());
+
+            // Добавление слушателя закрытия окна
+            stage.setOnHidden(event -> refreshTaskTable());
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public void refreshTaskTable() {
+        List<Task> tasks = new TaskService().getTasksByProjectId(currentProject.getId());
+        taskTableView.getItems().setAll(tasks);
+    }
+
 }

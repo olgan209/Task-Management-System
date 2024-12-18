@@ -3,6 +3,7 @@ package org.example.taskmanagementsystem.controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.taskmanagementsystem.model.Task;
 import org.example.taskmanagementsystem.model.TaskStatus;
 import org.example.taskmanagementsystem.services.TaskService;
 import org.example.taskmanagementsystem.services.ValidationUtils;
@@ -34,42 +35,63 @@ public class TaskController {
         taskService = new TaskService();
     }
 
+    private int projectId;
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+        System.out.println("ID текущего проекта: " + projectId);
+    }
+
     @FXML
     public void initialize() {
-        userComboBox.getItems().addAll("Пользователь 1", "Пользователь 2", "Пользователь 3");
+
+        // Наполнение списка статусов
         priorityComboBox.setItems(FXCollections.observableArrayList(
                 Arrays.stream(TaskStatus.values())
                         .map(Enum::name)
                         .collect(Collectors.toList())
         ));
+
+        // Привязка кнопок
         saveButton.setOnAction(event -> saveTask());
         cancelButton.setOnAction(event -> cancelTask());
     }
 
+
     private void saveTask() {
         String name = taskNameField.getText();
         String description = taskDescriptionField.getText();
-        String user = userComboBox.getValue();
         String priority = priorityComboBox.getValue();
         LocalDateTime deadline = dueDatePicker.getValue() != null ? dueDatePicker.getValue().atStartOfDay() : null;
 
-        if (!ValidationUtils.validateTask(name, description, String.valueOf(deadline))) {
-            showAlert("Ошибка", "Некорректные данные. Проверьте введенные значения.");
-        }
+        // Проверка на валидность данных
+//        if (!ValidationUtils.validateTask(name, description, String.valueOf(deadline))) {
+//            showAlert("Ошибка", "Некорректные данные. Проверьте введенные значения.");
+//            return; // Остановить выполнение, если данные некорректны
+//        }
 
-//        // Создание объекта Task
-//        Task task = new Task(name, description, TaskStatus.valueOf(priority.toUpperCase()), 1, deadline);
-//
-//        // Сохранение задачи через сервис
-//        taskService.createTask(task);
-//
-//        closeCurrentWindow();
+        // Создание объекта Task
+        Task task = new Task(
+                0, // Временное значение для taskId
+                name,
+                description,
+                TaskStatus.valueOf(priority.toUpperCase()), // Преобразование строки в TaskStatus
+                1, // Укажи projectId (например, текущий проект)
+                deadline
+        );
+
+        // Сохранение задачи через сервис
+        taskService.createTask(task);
+
+        // Закрытие окна
+        closeCurrentWindow();
     }
+
+
 
     private void cancelTask() {
         taskNameField.clear();
         taskDescriptionField.clear();
-        userComboBox.setValue(null);
         priorityComboBox.setValue(null);
         dueDatePicker.setValue(null);
 
