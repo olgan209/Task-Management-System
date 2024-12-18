@@ -130,6 +130,9 @@ Make sure the following software is installed on your machine:
 # 2. Database Setup
 ## 2.1 Create the Database
 1. Open PostgreSQL
-- CREATE DATABASE project_database;
+- CREATE DATABASE Tms;
 2. Switch to the new database:
-- \c project_database
+- \c Tms
+## 2.2 Create tables
+Download and run the sql-script that create tables
+[Download SQL Script](src/sql-scripts/sql table creation.txt)
