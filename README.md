@@ -139,3 +139,16 @@ Copy and run the sql-script that create tables in postgres, database query tool
 ## 2.3 Populate the tables
 Copy and run the sql-script that insert data in tables in postgres, database query tool
 - [SQL Script](src/sql-scripts/sql%20data%20insertion.txt)
+# 3. Deploying the JavaFX Application
+## 3.1 Set Up JavaFX in Your IDE
+If you're using IntelliJ IDEA, ensure JavaFX is configured:
+- Go to File -> Project Structure -> Libraries.
+- Add the JavaFX SDK as a library.
+## 3.2 Build and Run the Application
+Using Maven: Open a terminal in the project directory and run the following commands:
+
+- mvn clean install
+- mvn javafx:run
+
+Using an IDE: If you're using IntelliJ IDEA or Eclipse:
+- Right-click on the Main class (or the class with the main method) and select Run.
