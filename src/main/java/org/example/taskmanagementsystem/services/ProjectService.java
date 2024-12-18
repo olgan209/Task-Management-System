@@ -11,6 +11,16 @@ public class ProjectService {
     private static final String username = "postgres";
     private static final String password = "1234";
 
+    private Connection connection;
+
+    // Конструктор с параметром
+    public ProjectService(Connection connection) {
+        this.connection = connection;
+    }
+
+    public ProjectService() {
+    }
+
     Connection conn;
     public Connection connect() throws SQLException {
         try{
