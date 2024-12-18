@@ -35,20 +35,21 @@ INSERT INTO Task (projectId, name, description, status, deadline) VALUES
 
 INSERT INTO User_table (name, email, password, taskId) VALUES
 ('Alice Smith', 'alice.smith@example.com', 'pass1234', 1),
-('Bob Johnson', 'bob.johnson@example.com', 'bob2024', 2),
-('Carol Davis', 'carol.davis@example.com', 'carol123', 3),
-('David Brown', 'david.brown@example.com', 'david456', 4),
-('Eve Martinez', 'eve.martinez@example.com', 'eve2024', 5),
-('Frank Wilson', 'frank.wilson@example.com', 'frank789', 6),
-('Grace Lee', 'grace.lee@example.com', 'grace000', 7),
-('Hank Miller', 'hank.miller@example.com', 'hank111', 8),
-('Ivy Anderson', 'ivy.anderson@example.com', 'ivy2222', 9),
-('Jack Taylor', 'jack.taylor@example.com', 'jack333', 10),
-('Kathy Thomas', 'kathy.thomas@example.com', 'kathy444', 11),
-('Leo White', 'leo.white@example.com', 'leo5555', 12),
-('Mona Harris', 'mona.harris@example.com', 'mona666', 13),
-('Nina Clark', 'nina.clark@example.com', 'nina777', 14),
-('Oscar Lewis', 'oscar.lewis@example.com', 'oscar888', 15);
+('Bob Johnson', 'bob.johnson@example.com', 'bob2024', 3),
+('Carol Davis', 'carol.davis@example.com', 'carol123', 5),
+('David Brown', 'david.brown@example.com', 'david456', NULL),
+('Eve Martinez', 'eve.martinez@example.com', 'eve2024', 2),
+('Frank Wilson', 'frank.wilson@example.com', 'frank789', 7),
+('Grace Lee', 'grace.lee@example.com', 'grace000', 4),
+('Hank Miller', 'hank.miller@example.com', 'hank111', 6),
+('Ivy Anderson', 'ivy.anderson@example.com', 'ivy2222', 8),
+('Jack Taylor', 'jack.taylor@example.com', 'jack333', NULL),
+('Kathy Thomas', 'kathy.thomas@example.com', 'kathy444', 10),
+('Leo White', 'leo.white@example.com', 'leo5555', 9),
+('Mona Harris', 'mona.harris@example.com', 'mona666', 12),
+('Nina Clark', 'nina.clark@example.com', 'nina777', 11),
+('Oscar Lewis', 'oscar.lewis@example.com', 'oscar888', NULL);
+
 
 
 INSERT INTO ProjectUsers (projectId, userId) VALUES
@@ -58,17 +59,16 @@ INSERT INTO ProjectUsers (projectId, userId) VALUES
 
 INSERT INTO UserTasks (userId, taskId, status) VALUES
 (1, 1, 'In Progress'),
-(2, 2, 'Pending'),
-(3, 3, 'Completed'),
-(4, 4, 'Completed'),
-(5, 5, 'In Progress'),
-(6, 6, 'Pending'),
-(7, 7, 'In Progress'),
-(8, 8, 'Pending'),
-(9, 9, 'Completed'),
-(10, 10, 'Pending'),
-(11, 11, 'In Progress'),
-(12, 12, 'Pending'),
-(13, 13, 'Completed'),
-(14, 14, 'In Progress'),
-(15, 15, 'Pending');
+(1, 2, 'Pending'),
+(2, 3, 'Completed'),
+(3, 5, 'In Progress'),
+(3, 2, 'Pending'),
+(6, 7, 'Pending'),
+(11, 6, 'Pending'),
+(8, 8, 'Completed'),
+(9, 3, 'Pending'),
+(11, 11, 'Completed'),
+(11, 4, 'Pending'),
+(13, 10, 'Pending'),
+(14, 11, 'Pending'),
+(15, 12, 'Pending');

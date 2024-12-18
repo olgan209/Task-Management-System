@@ -1,0 +1,292 @@
+Index: src/main/java/org/example/taskmanagementsystem/controller/MainController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.taskmanagementsystem.controller;\r\n\r\nimport javafx.application.Application;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.input.MouseEvent;\r\nimport javafx.stage.Stage;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Parent;\r\nimport org.example.taskmanagementsystem.model.Project;\r\nimport javafx.collections.FXCollections;\r\nimport javafx.collections.ObservableList;\r\nimport javafx.scene.control.cell.PropertyValueFactory;\r\nimport org.example.taskmanagementsystem.model.Session;\r\nimport org.example.taskmanagementsystem.model.Task;\r\nimport org.example.taskmanagementsystem.model.User;\r\nimport org.example.taskmanagementsystem.services.ProjectService;\r\nimport org.example.taskmanagementsystem.services.TaskService;\r\n\r\nimport java.io.IOException;\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.util.List;\r\n\r\npublic class MainController extends Application {\r\n\r\n    @Override\r\n    public void start(Stage primaryStage) throws Exception {\r\n        Parent root = FXMLLoader.load(getClass().getResource(\"/org/example/taskmanagementsystem/view/LoginView.fxml\"));\r\n        primaryStage.setTitle(\"Task Management System\");\r\n        primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна\r\n        primaryStage.show();\r\n    }\r\n\r\n    @FXML\r\n    private TableView<Project> projectTableView;\r\n    @FXML\r\n    private TableColumn<Project, Integer> idColumn;\r\n    @FXML\r\n    private TableColumn<Project, String> nameColumn;\r\n    @FXML\r\n    private TableColumn<Project, String> descriptionColumn;\r\n    @FXML\r\n    private ListView<String> deadlineListView; // Свяжите с вашим FXML\r\n    private final TaskService taskService = new TaskService();\r\n    private ProjectService projectService = new ProjectService();\r\n    @FXML\r\n    private Label userNameLabel;\r\n    @FXML\r\n    private Label userLoginLabel;\r\n\r\n    public void setProjectService(ProjectService projectService) {\r\n        this.projectService = projectService;\r\n    }\r\n\r\n    @FXML\r\n    public void handleRowClick(MouseEvent event) {\r\n        if (event.getClickCount() == 2) {\r\n            Project selectedProject = projectTableView.getSelectionModel().getSelectedItem();\r\n\r\n            if (selectedProject != null) {\r\n                try {\r\n\r\n                    List<Task> projectTasks = taskService.getTasksByProjectId(selectedProject.getId());\r\n\r\n                    FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/org/example/taskmanagementsystem/view/ProjectReviewView.fxml\"));\r\n                    Parent root = loader.load();\r\n\r\n                    ProjectReviewController controller = loader.getController();\r\n                    controller.initialize(selectedProject, projectTasks);\r\n\r\n                    Stage stage = new Stage();\r\n                    stage.setTitle(\"Обзор проекта\");\r\n                    stage.setScene(new Scene(root));\r\n                    stage.show();\r\n\r\n                } catch (IOException e) {\r\n                    e.printStackTrace();\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    public void initialize() {\r\n        List<Task> closestTasks = taskService.getFiveClosestDeadlines();\r\n        for (Task task : closestTasks) {\r\n            String taskInfo = task.getName() + \" — \" + task.getDeadline();\r\n            deadlineListView.getItems().add(taskInfo);\r\n        }\r\n\r\n        idColumn.setCellValueFactory(new PropertyValueFactory<>(\"id\")); // Связываем с полем \"id\" в Project\r\n        nameColumn.setCellValueFactory(new PropertyValueFactory<>(\"name\"));\r\n        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>(\"description\"));\r\n\r\n        List<Project> projectList = projectService.getAllProjects();\r\n        ObservableList<Project> projects = FXCollections.observableArrayList(projectList);\r\n        projectTableView.setItems(projects);\r\n\r\n        projectTableView.setRowFactory(tv -> {\r\n            TableRow<Project> row = new TableRow<>();\r\n            row.setOnMouseClicked(event -> {\r\n                if (event.getClickCount() == 2 && !row.isEmpty()) {\r\n                    Project project = row.getItem();\r\n                    openProjectReviewView(project);\r\n                }\r\n            });\r\n            return row;\r\n        });\r\n\r\n        User user = fetchUserFromDatabase();\r\n        if (user != null) {\r\n            userNameLabel.setText(user.getName());\r\n            userLoginLabel.setText(user.getEmail());\r\n        }\r\n    }\r\n\r\n    private User fetchUserFromDatabase() {\r\n        User user = null;\r\n        String url = \"jdbc:postgresql://localhost:5432/Tms\";\r\n        String username = \"postgres\";\r\n        String password = \"1234\";\r\n        int currentUserId = Session.getInstance().getUserId();\r\n\r\n        try (Connection conn = DriverManager.getConnection(url, username, password)) {\r\n            String query = \"SELECT name, email FROM User_table WHERE userId = ?\";\r\n            PreparedStatement stmt = conn.prepareStatement(query);\r\n            stmt.setInt(1, currentUserId);\r\n\r\n            ResultSet rs = stmt.executeQuery();\r\n            if (rs.next()) {\r\n                String name = rs.getString(\"name\");\r\n                String login = rs.getString(\"email\");\r\n                user = new User(name, login);\r\n            }\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n        return user;\r\n    }\r\n\r\n    @FXML\r\n    public void openProjectForm() {\r\n        try {\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/org/example/taskmanagementsystem/view/ProjectView.fxml\"));\r\n            Scene scene = new Scene(loader.load());\r\n\r\n            Stage taskStage = new Stage();\r\n            taskStage.setTitle(\"Добавить проект\");\r\n            taskStage.setScene(scene);\r\n\r\n            taskStage.show();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    private void openProjectReviewView(Project project) {\r\n        try {\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/org/example/taskmanagementsystem/view/ProjectReviewView.fxml\"));\r\n            Parent root = loader.load();\r\n\r\n            List<Task> projectTasks = taskService.getTasksByProjectId(project.getId());\r\n\r\n            ProjectReviewController controller = loader.getController();\r\n            controller.initialize(project, projectTasks);\r\n\r\n            Stage stage = new Stage();\r\n            stage.setTitle(\"Обзор проекта\");\r\n            stage.setScene(new Scene(root));\r\n            stage.show();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n\r\n    public static void main(String[] args) {\r\n        launch(args);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/taskmanagementsystem/controller/MainController.java b/src/main/java/org/example/taskmanagementsystem/controller/MainController.java
+--- a/src/main/java/org/example/taskmanagementsystem/controller/MainController.java	(revision 7c3fad669bec125c9eb8b0b2171fb34eba819d81)
++++ b/src/main/java/org/example/taskmanagementsystem/controller/MainController.java	(date 1734511454820)
+@@ -29,7 +29,7 @@
+ 
+     @Override
+     public void start(Stage primaryStage) throws Exception {
+-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/LoginView.fxml"));
++        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/RegistrationView.fxml"));
+         primaryStage.setTitle("Task Management System");
+         primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна
+         primaryStage.show();
+Index: src/test/java/TaskServiceTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.example.taskmanagementsystem.model.Task;\r\nimport org.example.taskmanagementsystem.model.TaskStatus;\r\nimport org.example.taskmanagementsystem.services.TaskService;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.mockito.Mock;\r\nimport org.mockito.MockitoAnnotations;\r\n\r\nimport java.sql.*;\r\n\r\nimport static org.junit.jupiter.api.Assertions.assertEquals;\r\nimport static org.junit.jupiter.api.Assertions.assertNotNull;\r\nimport static org.mockito.Mockito.*;\r\n\r\npublic class TaskServiceTest {\r\n\r\n    private Connection mockConnection;\r\n    private PreparedStatement mockStatement;\r\n    private TaskService taskService;\r\n    @Mock\r\n    private ResultSet mockResultSet;\r\n\r\n    @BeforeEach\r\n    public void setUp() throws SQLException {\r\n        MockitoAnnotations.openMocks(this);\r\n\r\n        mockConnection = mock(Connection.class);\r\n        mockStatement = mock(PreparedStatement.class);\r\n\r\n        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);\r\n        when(mockStatement.executeQuery()).thenReturn(mockResultSet);\r\n\r\n        taskService = spy(new TaskService());\r\n        doReturn(mockConnection).when(taskService).connect();\r\n    }\r\n\r\n    @Test\r\n    public void testCreateTask() throws SQLException {\r\n        Task task = new Task(50,\r\n                \"Test Task\",\r\n                \"Description of the test task\",\r\n                TaskStatus.PENDING,\r\n                1,\r\n                java.time.LocalDateTime.of(2024, 12, 31, 12, 0)\r\n        );\r\n\r\n        taskService.createTask(task);\r\n\r\n        verify(mockConnection).prepareStatement(\"INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)\");\r\n        verify(mockStatement).setString(1, \"Test Task\");\r\n        verify(mockStatement).setString(2, \"Description of the test task\");\r\n        verify(mockStatement).setString(3, \"PENDING\");\r\n        verify(mockStatement).setInt(4, 1);\r\n        verify(mockStatement).setTimestamp(5, Timestamp.valueOf(\"2024-12-31 12:00:00\"));\r\n        verify(mockStatement).executeUpdate();\r\n    }\r\n\r\n    @Test\r\n    public void testGetTaskById() throws SQLException {\r\n\r\n        int taskId = 1;\r\n        Task expectedTask = new Task(\r\n                taskId,\r\n                \"Test Task\",\r\n                \"Test Description\",\r\n                TaskStatus.PENDING,\r\n                1,\r\n                java.time.LocalDateTime.of(2024, 12, 31, 12, 0)\r\n        );\r\n\r\n\r\n        when(mockStatement.executeQuery()).thenReturn(mockResultSet);\r\n        when(mockResultSet.next()).thenReturn(true); // Симулируем, что есть данные\r\n        when(mockResultSet.getInt(\"taskId\")).thenReturn(expectedTask.getTaskId());\r\n        when(mockResultSet.getString(\"name\")).thenReturn(expectedTask.getName());\r\n        when(mockResultSet.getString(\"description\")).thenReturn(expectedTask.getDescription());\r\n        when(mockResultSet.getString(\"status\")).thenReturn(expectedTask.getStatus().toString());\r\n        when(mockResultSet.getInt(\"projectId\")).thenReturn(expectedTask.getProjectId());\r\n        when(mockResultSet.getTimestamp(\"deadline\")).thenReturn(Timestamp.valueOf(expectedTask.getDeadline()));\r\n\r\n\r\n        Task resultTask = taskService.getTaskById(taskId);\r\n\r\n\r\n        assertNotNull(resultTask);\r\n        assertEquals(expectedTask.getTaskId(), resultTask.getTaskId());\r\n        assertEquals(expectedTask.getName(), resultTask.getName());\r\n        assertEquals(expectedTask.getDescription(), resultTask.getDescription());\r\n        assertEquals(expectedTask.getStatus(), resultTask.getStatus());\r\n        assertEquals(expectedTask.getProjectId(), resultTask.getProjectId());\r\n        assertEquals(expectedTask.getDeadline(), resultTask.getDeadline());\r\n\r\n\r\n        verify(mockConnection).prepareStatement(\"SELECT * FROM tasks WHERE taskId = ?\");\r\n        verify(mockStatement).setInt(1, taskId);\r\n        verify(mockStatement).executeQuery();\r\n        verify(mockResultSet).next();\r\n        verify(mockResultSet).getInt(\"taskId\");\r\n        verify(mockResultSet).getString(\"name\");\r\n        verify(mockResultSet).getString(\"description\");\r\n        verify(mockResultSet).getString(\"status\");\r\n        verify(mockResultSet).getInt(\"projectId\");\r\n        verify(mockResultSet).getTimestamp(\"deadline\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/TaskServiceTest.java b/src/test/java/TaskServiceTest.java
+--- a/src/test/java/TaskServiceTest.java	(revision 7c3fad669bec125c9eb8b0b2171fb34eba819d81)
++++ b/src/test/java/TaskServiceTest.java	(date 1734510477172)
+@@ -46,7 +46,7 @@
+ 
+         taskService.createTask(task);
+ 
+-        verify(mockConnection).prepareStatement("INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)");
++        verify(mockConnection).prepareStatement("INSERT INTO task(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)");
+         verify(mockStatement).setString(1, "Test Task");
+         verify(mockStatement).setString(2, "Description of the test task");
+         verify(mockStatement).setString(3, "PENDING");
+@@ -91,7 +91,7 @@
+         assertEquals(expectedTask.getDeadline(), resultTask.getDeadline());
+ 
+ 
+-        verify(mockConnection).prepareStatement("SELECT * FROM tasks WHERE taskId = ?");
++        verify(mockConnection).prepareStatement("SELECT * FROM task WHERE taskId = ?");
+         verify(mockStatement).setInt(1, taskId);
+         verify(mockStatement).executeQuery();
+         verify(mockResultSet).next();
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_18_12_2024_14_24__Changes_.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_18_12_2024_14_24__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_18_12_2024_14_24__Changes_.xml
+new file mode 100644
+--- /dev/null	(date 1734510446140)
++++ b/.idea/shelf/Uncommitted_changes_before_Update_at_18_12_2024_14_24__Changes_.xml	(date 1734510446140)
+@@ -0,0 +1,4 @@
++<changelist name="Uncommitted_changes_before_Update_at_18_12_2024_14_24_[Changes]" date="1734510298742" recycled="false" toDelete="true">
++  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_12_2024_14_24_[Changes]/shelved.patch" />
++  <option name="DESCRIPTION" value="Uncommitted changes before Update at 18.12.2024 14:24 [Changes]" />
++</changelist>
+\ No newline at end of file
+Index: src/sql-scripts/sql data insertion.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/sql-scripts/sql data insertion.txt b/src/sql-scripts/sql data insertion.txt
+new file mode 100644
+--- /dev/null	(date 1734516642570)
++++ b/src/sql-scripts/sql data insertion.txt	(date 1734516642570)
+@@ -0,0 +1,74 @@
++INSERT INTO Project (name, description) VALUES
++('Website Redesign', 'Redesign of corporate website'),
++('Mobile App Development', 'Developing an iOS app for e-commerce'),
++('Database Migration', 'Migration of databases to cloud infrastructure'),
++('HR System', 'Development of a new HR management system'),
++('Marketing Campaign', 'Digital marketing campaign for Q4'),
++('Security Upgrade', 'Implementing security updates'),
++('CRM Integration', 'Integration of a CRM system'),
++('Cloud Transition', 'Transition to AWS cloud services'),
++('Data Analytics Platform', 'Build a data analytics platform'),
++('ERP Implementation', 'Implementation of ERP system'),
++('AI Chatbot', 'Developing an AI-powered customer servicebot'),
++('E-commerce Platform', 'New e-commerce website launch'),
++('QA Automation', 'Implementation of QA automation tools'),
++('Inventory System', 'New inventory tracking software'),
++('Customer Portal', 'Developing a self-service customer portal');
++
++INSERT INTO Task (projectId, name, description, status, deadline) VALUES
++(1, 'Wireframe Creation', 'Create wireframes for the website', 'In Progress', '2024-01-15'),
++(1, 'Design Mockups', 'Design the website UI mockups', 'Pending', '2024-01-20'),
++(2, 'Setup Dev Environment', 'Setup environment for app development', 'Completed', '2024-01-10'),
++(3, 'Database Backup', 'Backup existing databases', 'Completed', '2024-01-05'),
++(4, 'Data Validation', 'Validate data integrity after migration', 'In Progress', '2024-01-18'),
++(5, 'Requirements Gathering', 'Gather system requirements', 'Pending', '2024-02-01'),
++(6, 'SEO Analysis', 'Perform SEO audit and analysis', 'In Progress', '2024-01-22'),
++(7, 'Content Creation', 'Develop marketing content', 'Pending', '2024-01-30'),
++(7, 'Patch Installation', 'Install security patches', 'Completed', '2024-01-12'),
++(7, 'API Integration', 'Integrate CRM APIs', 'Pending','2024-01-25'),
++(8, 'Server Setup', 'Configure cloud servers', 'In Progress', '2024-01-27'),
++(8, 'Report Design', 'Design data analytics reports', 'Pending', '2024-02-05'),
++(9, 'Vendor Meetings', 'Meet with ERP vendors', 'Completed', '2024-01-15'),
++(9, 'AI Model Training', 'Train chatbot AI model', 'In Progress', '2024-01-29'),
++(10, 'Feature Testing', 'Test e-commerce features', 'Pending', '2024-02-10');
++
++
++INSERT INTO User_table (name, email, password, taskId) VALUES
++('Alice Smith', 'alice.smith@example.com', 'pass1234', 1),
++('Bob Johnson', 'bob.johnson@example.com', 'bob2024', 2),
++('Carol Davis', 'carol.davis@example.com', 'carol123', 3),
++('David Brown', 'david.brown@example.com', 'david456', 4),
++('Eve Martinez', 'eve.martinez@example.com', 'eve2024', 5),
++('Frank Wilson', 'frank.wilson@example.com', 'frank789', 6),
++('Grace Lee', 'grace.lee@example.com', 'grace000', 7),
++('Hank Miller', 'hank.miller@example.com', 'hank111', 8),
++('Ivy Anderson', 'ivy.anderson@example.com', 'ivy2222', 9),
++('Jack Taylor', 'jack.taylor@example.com', 'jack333', 10),
++('Kathy Thomas', 'kathy.thomas@example.com', 'kathy444', 11),
++('Leo White', 'leo.white@example.com', 'leo5555', 12),
++('Mona Harris', 'mona.harris@example.com', 'mona666', 13),
++('Nina Clark', 'nina.clark@example.com', 'nina777', 14),
++('Oscar Lewis', 'oscar.lewis@example.com', 'oscar888', 15);
++
++
++INSERT INTO ProjectUsers (projectId, userId) VALUES
++(1, 1), (1, 2), (2, 3), (2, 4), (3, 5),
++(3, 6), (4, 7), (4, 8), (5, 9), (5, 10),
++(6, 11), (6, 12), (7, 13), (7, 14), (8, 15);
++
++INSERT INTO UserTasks (userId, taskId, status) VALUES
++(1, 1, 'In Progress'),
++(2, 2, 'Pending'),
++(3, 3, 'Completed'),
++(4, 4, 'Completed'),
++(5, 5, 'In Progress'),
++(6, 6, 'Pending'),
++(7, 7, 'In Progress'),
++(8, 8, 'Pending'),
++(9, 9, 'Completed'),
++(10, 10, 'Pending'),
++(11, 11, 'In Progress'),
++(12, 12, 'Pending'),
++(13, 13, 'Completed'),
++(14, 14, 'In Progress'),
++(15, 15, 'Pending');
+\ No newline at end of file
+Index: src/sql-scripts/sql table creation.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/sql-scripts/sql table creation.txt b/src/sql-scripts/sql table creation.txt
+new file mode 100644
+--- /dev/null	(date 1734292136513)
++++ b/src/sql-scripts/sql table creation.txt	(date 1734292136513)
+@@ -0,0 +1,46 @@
++-- Таблица Project
++CREATE TABLE Project (
++    projectId SERIAL PRIMARY KEY NOT NULL,
++    name VARCHAR(225) NOT NULL,
++    description TEXT
++);
++
++-- Таблица Task
++CREATE TABLE Task (
++    taskId SERIAL PRIMARY KEY NOT NULL,
++    projectId INT,
++    name VARCHAR(225) NOT NULL,
++    description TEXT,
++    status VARCHAR(50) NOT NULL,
++    deadline TIMESTAMP,
++    FOREIGN KEY (projectId) REFERENCES Project(projectId)
++);
++
++-- Таблица User
++CREATE TABLE User_table (
++    userId SERIAL PRIMARY KEY NOT NULL,
++    name VARCHAR(100) NOT NULL,
++    email VARCHAR(225) UNIQUE NOT NULL,
++    password VARCHAR(30),
++    taskId INT,
++    FOREIGN KEY (taskId) REFERENCES Task(taskId)
++);
++
++-- Таблица ProjectUsers
++CREATE TABLE ProjectUsers (
++    projectId INT NOT NULL,
++    userId INT NOT NULL,
++    PRIMARY KEY (projectId, userId),
++    FOREIGN KEY (projectId) REFERENCES Project(projectId),
++    FOREIGN KEY (userId) REFERENCES User_table(userId)
++);
++
++-- Таблица UserTasks
++CREATE TABLE UserTasks (
++    userId INT NOT NULL,
++    taskId INT NOT NULL,
++    status VARCHAR(50) NOT NULL,
++    PRIMARY KEY (userId, taskId),
++    FOREIGN KEY (userId) REFERENCES User_table(userId),
++    FOREIGN KEY (taskId) REFERENCES Task(taskId)
++);
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a56b5b0c-931a-49aa-b69c-f36babc3a270\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReviewController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReviewController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"CSS File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"QODANA_PROBLEMS_VIEW_TAB\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2pWGe0YxNL4Ugl7KcUg8C9U10kN\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.MainController.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.Run MyApp.executor&quot;: &quot;Run&quot;,\r\n    &quot;Application.TaskManagementApp.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;D:/InternLabsPractise/InternLabs QA 2.0 Automation&quot;,\r\n    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Task-Management-System\\src\\main\\resources\\org\\example\\taskmanagementsystem\\view\\image\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Run MyApp\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.taskmanagementsystem.controller.MainController\" />\r\n      <module name=\"TaskManagementSystem\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path &quot;C:\\javafx-sdk-21.0.5\\lib&quot; --add-modules javafx.controls,javafx.fxml \" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150\" />\r\n        <option value=\"bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a56b5b0c-931a-49aa-b69c-f36babc3a270\" name=\"Changes\" comment=\"\" />\r\n      <created>1732874511707</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1732874511707</updated>\r\n      <workItem from=\"1732874512842\" duration=\"2000\" />\r\n      <workItem from=\"1733127555429\" duration=\"29984000\" />\r\n      <workItem from=\"1733728005658\" duration=\"2026000\" />\r\n      <workItem from=\"1733832028471\" duration=\"805000\" />\r\n      <workItem from=\"1733983861506\" duration=\"3716000\" />\r\n      <workItem from=\"1733991132588\" duration=\"99000\" />\r\n      <workItem from=\"1733991285381\" duration=\"3995000\" />\r\n      <workItem from=\"1734002368025\" duration=\"4295000\" />\r\n      <workItem from=\"1734156208327\" duration=\"5154000\" />\r\n      <workItem from=\"1734205099313\" duration=\"941000\" />\r\n      <workItem from=\"1734206077627\" duration=\"4072000\" />\r\n      <workItem from=\"1734255984014\" duration=\"2203000\" />\r\n      <workItem from=\"1734258237427\" duration=\"7620000\" />\r\n      <workItem from=\"1734279566167\" duration=\"2096000\" />\r\n      <workItem from=\"1734409462710\" duration=\"4927000\" />\r\n      <workItem from=\"1734457484116\" duration=\"306000\" />\r\n      <workItem from=\"1734494970829\" duration=\"2200000\" />\r\n      <workItem from=\"1734498163971\" duration=\"4640000\" />\r\n      <workItem from=\"1734506556827\" duration=\"952000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7c3fad669bec125c9eb8b0b2171fb34eba819d81)
++++ b/.idea/workspace.xml	(date 1734512009303)
+@@ -5,8 +5,10 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a56b5b0c-931a-49aa-b69c-f36babc3a270" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/ProjectReviewController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/taskmanagementsystem/view/ProjectReviewView.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_12_2024_11_48__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_12_2024_11_48__Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskmanagementsystem/controller/MainController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/TaskServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TaskServiceTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,13 +26,6 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="MavenImportPreferences">
+-    <option name="generalSettings">
+-      <MavenGeneralSettings>
+-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+-      </MavenGeneralSettings>
+-    </option>
+   </component>
+   <component name="ProblemsViewState">
+     <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+@@ -46,28 +41,30 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.MainController.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.Run MyApp.executor&quot;: &quot;Run&quot;,
+-    &quot;Application.TaskManagementApp.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;D:/InternLabsPractise/InternLabs QA 2.0 Automation&quot;,
+-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.MainController.executor": "Run",
++    "Application.Run MyApp.executor": "Run",
++    "Application.TaskManagementApp.executor": "Run",
++    "JUnit.TaskServiceTest.executor": "Run",
++    "JUnit.UserServiceTest.executor": "Run",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "git-widget-placeholder": "master",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "D:/InternLabsPractise/InternLabs QA 2.0 Automation",
++    "list.type.of.created.stylesheet": "CSS",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Global Libraries",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.2",
++    "settings.editor.selected.configurable": "preferences.lookFeel",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Task-Management-System\src\main\resources\org\example\taskmanagementsystem\view\image" />

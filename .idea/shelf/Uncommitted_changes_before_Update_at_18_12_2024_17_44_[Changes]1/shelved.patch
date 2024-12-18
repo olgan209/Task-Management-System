@@ -1,0 +1,126 @@
+Index: src/sql-scripts/sql data insertion.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>INSERT INTO Project (name, description) VALUES\r\n('Website Redesign', 'Redesign of corporate website'),\r\n('Mobile App Development', 'Developing an iOS app for e-commerce'),\r\n('Database Migration', 'Migration of databases to cloud infrastructure'),\r\n('HR System', 'Development of a new HR management system'),\r\n('Marketing Campaign', 'Digital marketing campaign for Q4'),\r\n('Security Upgrade', 'Implementing security updates'),\r\n('CRM Integration', 'Integration of a CRM system'),\r\n('Cloud Transition', 'Transition to AWS cloud services'),\r\n('Data Analytics Platform', 'Build a data analytics platform'),\r\n('ERP Implementation', 'Implementation of ERP system'),\r\n('AI Chatbot', 'Developing an AI-powered customer servicebot'),\r\n('E-commerce Platform', 'New e-commerce website launch'),\r\n('QA Automation', 'Implementation of QA automation tools'),\r\n('Inventory System', 'New inventory tracking software'),\r\n('Customer Portal', 'Developing a self-service customer portal');\r\n\r\nINSERT INTO Task (projectId, name, description, status, deadline) VALUES\r\n(1, 'Wireframe Creation', 'Create wireframes for the website', 'In Progress', '2024-01-15'),\r\n(1, 'Design Mockups', 'Design the website UI mockups', 'Pending', '2024-01-20'),\r\n(2, 'Setup Dev Environment', 'Setup environment for app development', 'Completed', '2024-01-10'),\r\n(3, 'Database Backup', 'Backup existing databases', 'Completed', '2024-01-05'),\r\n(4, 'Data Validation', 'Validate data integrity after migration', 'In Progress', '2024-01-18'),\r\n(5, 'Requirements Gathering', 'Gather system requirements', 'Pending', '2024-02-01'),\r\n(6, 'SEO Analysis', 'Perform SEO audit and analysis', 'In Progress', '2024-01-22'),\r\n(7, 'Content Creation', 'Develop marketing content', 'Pending', '2024-01-30'),\r\n(7, 'Patch Installation', 'Install security patches', 'Completed', '2024-01-12'),\r\n(7, 'API Integration', 'Integrate CRM APIs', 'Pending','2024-01-25'),\r\n(8, 'Server Setup', 'Configure cloud servers', 'In Progress', '2024-01-27'),\r\n(8, 'Report Design', 'Design data analytics reports', 'Pending', '2024-02-05'),\r\n(9, 'Vendor Meetings', 'Meet with ERP vendors', 'Completed', '2024-01-15'),\r\n(9, 'AI Model Training', 'Train chatbot AI model', 'In Progress', '2024-01-29'),\r\n(10, 'Feature Testing', 'Test e-commerce features', 'Pending', '2024-02-10');\r\n\r\n\r\nINSERT INTO User_table (name, email, password, taskId) VALUES\r\n('Alice Smith', 'alice.smith@example.com', 'pass1234', 1),\r\n('Bob Johnson', 'bob.johnson@example.com', 'bob2024', 2),\r\n('Carol Davis', 'carol.davis@example.com', 'carol123', 3),\r\n('David Brown', 'david.brown@example.com', 'david456', 4),\r\n('Eve Martinez', 'eve.martinez@example.com', 'eve2024', 5),\r\n('Frank Wilson', 'frank.wilson@example.com', 'frank789', 6),\r\n('Grace Lee', 'grace.lee@example.com', 'grace000', 7),\r\n('Hank Miller', 'hank.miller@example.com', 'hank111', 8),\r\n('Ivy Anderson', 'ivy.anderson@example.com', 'ivy2222', 9),\r\n('Jack Taylor', 'jack.taylor@example.com', 'jack333', 10),\r\n('Kathy Thomas', 'kathy.thomas@example.com', 'kathy444', 11),\r\n('Leo White', 'leo.white@example.com', 'leo5555', 12),\r\n('Mona Harris', 'mona.harris@example.com', 'mona666', 13),\r\n('Nina Clark', 'nina.clark@example.com', 'nina777', 14),\r\n('Oscar Lewis', 'oscar.lewis@example.com', 'oscar888', 15);\r\n\r\n\r\nINSERT INTO ProjectUsers (projectId, userId) VALUES\r\n(1, 1), (1, 2), (2, 3), (2, 4), (3, 5),\r\n(3, 6), (4, 7), (4, 8), (5, 9), (5, 10),\r\n(6, 11), (6, 12), (7, 13), (7, 14), (8, 15);\r\n\r\nINSERT INTO UserTasks (userId, taskId, status) VALUES\r\n(1, 1, 'In Progress'),\r\n(2, 2, 'Pending'),\r\n(3, 3, 'Completed'),\r\n(4, 4, 'Completed'),\r\n(5, 5, 'In Progress'),\r\n(6, 6, 'Pending'),\r\n(7, 7, 'In Progress'),\r\n(8, 8, 'Pending'),\r\n(9, 9, 'Completed'),\r\n(10, 10, 'Pending'),\r\n(11, 11, 'In Progress'),\r\n(12, 12, 'Pending'),\r\n(13, 13, 'Completed'),\r\n(14, 14, 'In Progress'),\r\n(15, 15, 'Pending');
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/sql-scripts/sql data insertion.txt b/src/sql-scripts/sql data insertion.txt
+--- a/src/sql-scripts/sql data insertion.txt	
++++ b/src/sql-scripts/sql data insertion.txt	
+@@ -35,20 +35,21 @@
+ 
+ INSERT INTO User_table (name, email, password, taskId) VALUES
+ ('Alice Smith', 'alice.smith@example.com', 'pass1234', 1),
+-('Bob Johnson', 'bob.johnson@example.com', 'bob2024', 2),
+-('Carol Davis', 'carol.davis@example.com', 'carol123', 3),
+-('David Brown', 'david.brown@example.com', 'david456', 4),
+-('Eve Martinez', 'eve.martinez@example.com', 'eve2024', 5),
+-('Frank Wilson', 'frank.wilson@example.com', 'frank789', 6),
+-('Grace Lee', 'grace.lee@example.com', 'grace000', 7),
+-('Hank Miller', 'hank.miller@example.com', 'hank111', 8),
+-('Ivy Anderson', 'ivy.anderson@example.com', 'ivy2222', 9),
+-('Jack Taylor', 'jack.taylor@example.com', 'jack333', 10),
+-('Kathy Thomas', 'kathy.thomas@example.com', 'kathy444', 11),
+-('Leo White', 'leo.white@example.com', 'leo5555', 12),
+-('Mona Harris', 'mona.harris@example.com', 'mona666', 13),
+-('Nina Clark', 'nina.clark@example.com', 'nina777', 14),
+-('Oscar Lewis', 'oscar.lewis@example.com', 'oscar888', 15);
++('Bob Johnson', 'bob.johnson@example.com', 'bob2024', 3),
++('Carol Davis', 'carol.davis@example.com', 'carol123', 5),
++('David Brown', 'david.brown@example.com', 'david456', NULL),
++('Eve Martinez', 'eve.martinez@example.com', 'eve2024', 2),
++('Frank Wilson', 'frank.wilson@example.com', 'frank789', 7),
++('Grace Lee', 'grace.lee@example.com', 'grace000', 4),
++('Hank Miller', 'hank.miller@example.com', 'hank111', 6),
++('Ivy Anderson', 'ivy.anderson@example.com', 'ivy2222', 8),
++('Jack Taylor', 'jack.taylor@example.com', 'jack333', NULL),
++('Kathy Thomas', 'kathy.thomas@example.com', 'kathy444', 10),
++('Leo White', 'leo.white@example.com', 'leo5555', 9),
++('Mona Harris', 'mona.harris@example.com', 'mona666', 12),
++('Nina Clark', 'nina.clark@example.com', 'nina777', 11),
++('Oscar Lewis', 'oscar.lewis@example.com', 'oscar888', NULL);
++
+ 
+ 
+ INSERT INTO ProjectUsers (projectId, userId) VALUES
+@@ -58,17 +59,16 @@
+ 
+ INSERT INTO UserTasks (userId, taskId, status) VALUES
+ (1, 1, 'In Progress'),
+-(2, 2, 'Pending'),
+-(3, 3, 'Completed'),
+-(4, 4, 'Completed'),
+-(5, 5, 'In Progress'),
+-(6, 6, 'Pending'),
+-(7, 7, 'In Progress'),
+-(8, 8, 'Pending'),
+-(9, 9, 'Completed'),
+-(10, 10, 'Pending'),
+-(11, 11, 'In Progress'),
+-(12, 12, 'Pending'),
+-(13, 13, 'Completed'),
+-(14, 14, 'In Progress'),
+-(15, 15, 'Pending');
+\ No newline at end of file
++(1, 2, 'Pending'),
++(2, 3, 'Completed'),
++(3, 5, 'In Progress'),
++(3, 2, 'Pending'),
++(6, 7, 'Pending'),
++(11, 6, 'Pending'),
++(8, 8, 'Completed'),
++(9, 3, 'Pending'),
++(11, 11, 'Completed'),
++(11, 4, 'Pending'),
++(13, 10, 'Pending'),
++(14, 11, 'Pending'),
++(15, 12, 'Pending');
+\ No newline at end of file
+Index: src/main/java/org/example/taskmanagementsystem/controller/MainController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.taskmanagementsystem.controller;\r\n\r\nimport javafx.application.Application;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.input.MouseEvent;\r\nimport javafx.stage.Stage;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Parent;\r\nimport org.example.taskmanagementsystem.model.Project;\r\nimport javafx.collections.FXCollections;\r\nimport javafx.collections.ObservableList;\r\nimport javafx.scene.control.cell.PropertyValueFactory;\r\nimport org.example.taskmanagementsystem.model.Session;\r\nimport org.example.taskmanagementsystem.model.Task;\r\nimport org.example.taskmanagementsystem.model.User;\r\nimport org.example.taskmanagementsystem.services.ProjectService;\r\nimport org.example.taskmanagementsystem.services.TaskService;\r\n\r\nimport java.io.IOException;\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.util.List;\r\n\r\npublic class MainController extends Application {\r\n\r\n    @Override\r\n    public void start(Stage primaryStage) throws Exception {\r\n        Parent root = FXMLLoader.load(getClass().getResource(\"/org/example/taskmanagementsystem/view/LoginView.fxml\"));\r\n        primaryStage.setTitle(\"Task Management System\");\r\n        primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна\r\n        primaryStage.show();\r\n    }\r\n\r\n    @FXML\r\n    private TableView<Project> projectTableView;\r\n    @FXML\r\n    private TableColumn<Project, Integer> idColumn;\r\n    @FXML\r\n    private TableColumn<Project, String> nameColumn;\r\n    @FXML\r\n    private TableColumn<Project, String> descriptionColumn;\r\n    @FXML\r\n    private ListView<String> deadlineListView; // Свяжите с вашим FXML\r\n    private final TaskService taskService = new TaskService();\r\n    private ProjectService projectService = new ProjectService();\r\n    @FXML\r\n    private Label userNameLabel;\r\n    @FXML\r\n    private Label userLoginLabel;\r\n\r\n    public void setProjectService(ProjectService projectService) {\r\n        this.projectService = projectService;\r\n    }\r\n\r\n    @FXML\r\n    public void handleRowClick(MouseEvent event) {\r\n        if (event.getClickCount() == 2) {\r\n            Project selectedProject = projectTableView.getSelectionModel().getSelectedItem();\r\n\r\n            if (selectedProject != null) {\r\n                try {\r\n\r\n                    List<Task> projectTasks = taskService.getTasksByProjectId(selectedProject.getId());\r\n\r\n                    FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/org/example/taskmanagementsystem/view/ProjectReviewView.fxml\"));\r\n                    Parent root = loader.load();\r\n\r\n                    ProjectReviewController controller = loader.getController();\r\n                    controller.initialize(selectedProject, projectTasks);\r\n\r\n                    Stage stage = new Stage();\r\n                    stage.setTitle(\"Обзор проекта\");\r\n                    stage.setScene(new Scene(root));\r\n                    stage.show();\r\n\r\n                } catch (IOException e) {\r\n                    e.printStackTrace();\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    public void initialize() {\r\n        List<Task> closestTasks = taskService.getFiveClosestDeadlines();\r\n        for (Task task : closestTasks) {\r\n            String taskInfo = task.getName() + \" — \" + task.getDeadline();\r\n            deadlineListView.getItems().add(taskInfo);\r\n        }\r\n\r\n        idColumn.setCellValueFactory(new PropertyValueFactory<>(\"id\")); // Связываем с полем \"id\" в Project\r\n        nameColumn.setCellValueFactory(new PropertyValueFactory<>(\"name\"));\r\n        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>(\"description\"));\r\n\r\n        List<Project> projectList = projectService.getAllProjects();\r\n        ObservableList<Project> projects = FXCollections.observableArrayList(projectList);\r\n        projectTableView.setItems(projects);\r\n\r\n        projectTableView.setRowFactory(tv -> {\r\n            TableRow<Project> row = new TableRow<>();\r\n            row.setOnMouseClicked(event -> {\r\n                if (event.getClickCount() == 2 && !row.isEmpty()) {\r\n                    Project project = row.getItem();\r\n                    openProjectReviewView(project);\r\n                }\r\n            });\r\n            return row;\r\n        });\r\n\r\n        User user = fetchUserFromDatabase();\r\n        if (user != null) {\r\n            userNameLabel.setText(user.getName());\r\n            userLoginLabel.setText(user.getEmail());\r\n        }\r\n    }\r\n\r\n    private User fetchUserFromDatabase() {\r\n        User user = null;\r\n        String url = \"jdbc:postgresql://localhost:5432/Tms\";\r\n        String username = \"postgres\";\r\n        String password = \"1234\";\r\n        int currentUserId = Session.getInstance().getUserId();\r\n\r\n        try (Connection conn = DriverManager.getConnection(url, username, password)) {\r\n            String query = \"SELECT name, email FROM User_table WHERE userId = ?\";\r\n            PreparedStatement stmt = conn.prepareStatement(query);\r\n            stmt.setInt(1, currentUserId);\r\n\r\n            ResultSet rs = stmt.executeQuery();\r\n            if (rs.next()) {\r\n                String name = rs.getString(\"name\");\r\n                String login = rs.getString(\"email\");\r\n                user = new User(name, login);\r\n            }\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n        return user;\r\n    }\r\n\r\n    @FXML\r\n    public void openProjectForm() {\r\n        try {\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/org/example/taskmanagementsystem/view/ProjectView.fxml\"));\r\n            Scene scene = new Scene(loader.load());\r\n\r\n            Stage taskStage = new Stage();\r\n            taskStage.setTitle(\"Добавить проект\");\r\n            taskStage.setScene(scene);\r\n\r\n            taskStage.show();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    private void openProjectReviewView(Project project) {\r\n        try {\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/org/example/taskmanagementsystem/view/ProjectReviewView.fxml\"));\r\n            Parent root = loader.load();\r\n\r\n            List<Task> projectTasks = taskService.getTasksByProjectId(project.getId());\r\n\r\n            ProjectReviewController controller = loader.getController();\r\n            controller.initialize(project, projectTasks);\r\n\r\n            Stage stage = new Stage();\r\n            stage.setTitle(\"Обзор проекта\");\r\n            stage.setScene(new Scene(root));\r\n            stage.show();\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n\r\n    public static void main(String[] args) {\r\n        launch(args);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/taskmanagementsystem/controller/MainController.java b/src/main/java/org/example/taskmanagementsystem/controller/MainController.java
+--- a/src/main/java/org/example/taskmanagementsystem/controller/MainController.java	
++++ b/src/main/java/org/example/taskmanagementsystem/controller/MainController.java	
+@@ -29,7 +29,7 @@
+ 
+     @Override
+     public void start(Stage primaryStage) throws Exception {
+-        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/LoginView.fxml"));
++        Parent root = FXMLLoader.load(getClass().getResource("/org/example/taskmanagementsystem/view/RegistrationView.fxml"));
+         primaryStage.setTitle("Task Management System");
+         primaryStage.setScene(new Scene(root, 800, 600)); // Устанавливаем размер окна
+         primaryStage.show();
+Index: src/test/java/TaskServiceTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import org.example.taskmanagementsystem.model.Task;\r\nimport org.example.taskmanagementsystem.model.TaskStatus;\r\nimport org.example.taskmanagementsystem.services.TaskService;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.mockito.Mock;\r\nimport org.mockito.MockitoAnnotations;\r\n\r\nimport java.sql.*;\r\n\r\nimport static org.junit.jupiter.api.Assertions.assertEquals;\r\nimport static org.junit.jupiter.api.Assertions.assertNotNull;\r\nimport static org.mockito.Mockito.*;\r\n\r\npublic class TaskServiceTest {\r\n\r\n    private Connection mockConnection;\r\n    private PreparedStatement mockStatement;\r\n    private TaskService taskService;\r\n    @Mock\r\n    private ResultSet mockResultSet;\r\n\r\n    @BeforeEach\r\n    public void setUp() throws SQLException {\r\n        MockitoAnnotations.openMocks(this);\r\n\r\n        mockConnection = mock(Connection.class);\r\n        mockStatement = mock(PreparedStatement.class);\r\n\r\n        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);\r\n        when(mockStatement.executeQuery()).thenReturn(mockResultSet);\r\n\r\n        taskService = spy(new TaskService());\r\n        doReturn(mockConnection).when(taskService).connect();\r\n    }\r\n\r\n    @Test\r\n    public void testCreateTask() throws SQLException {\r\n        Task task = new Task(50,\r\n                \"Test Task\",\r\n                \"Description of the test task\",\r\n                TaskStatus.PENDING,\r\n                1,\r\n                java.time.LocalDateTime.of(2024, 12, 31, 12, 0)\r\n        );\r\n\r\n        taskService.createTask(task);\r\n\r\n        verify(mockConnection).prepareStatement(\"INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)\");\r\n        verify(mockStatement).setString(1, \"Test Task\");\r\n        verify(mockStatement).setString(2, \"Description of the test task\");\r\n        verify(mockStatement).setString(3, \"PENDING\");\r\n        verify(mockStatement).setInt(4, 1);\r\n        verify(mockStatement).setTimestamp(5, Timestamp.valueOf(\"2024-12-31 12:00:00\"));\r\n        verify(mockStatement).executeUpdate();\r\n    }\r\n\r\n    @Test\r\n    public void testGetTaskById() throws SQLException {\r\n\r\n        int taskId = 1;\r\n        Task expectedTask = new Task(\r\n                taskId,\r\n                \"Test Task\",\r\n                \"Test Description\",\r\n                TaskStatus.PENDING,\r\n                1,\r\n                java.time.LocalDateTime.of(2024, 12, 31, 12, 0)\r\n        );\r\n\r\n\r\n        when(mockStatement.executeQuery()).thenReturn(mockResultSet);\r\n        when(mockResultSet.next()).thenReturn(true); // Симулируем, что есть данные\r\n        when(mockResultSet.getInt(\"taskId\")).thenReturn(expectedTask.getTaskId());\r\n        when(mockResultSet.getString(\"name\")).thenReturn(expectedTask.getName());\r\n        when(mockResultSet.getString(\"description\")).thenReturn(expectedTask.getDescription());\r\n        when(mockResultSet.getString(\"status\")).thenReturn(expectedTask.getStatus().toString());\r\n        when(mockResultSet.getInt(\"projectId\")).thenReturn(expectedTask.getProjectId());\r\n        when(mockResultSet.getTimestamp(\"deadline\")).thenReturn(Timestamp.valueOf(expectedTask.getDeadline()));\r\n\r\n\r\n        Task resultTask = taskService.getTaskById(taskId);\r\n\r\n\r\n        assertNotNull(resultTask);\r\n        assertEquals(expectedTask.getTaskId(), resultTask.getTaskId());\r\n        assertEquals(expectedTask.getName(), resultTask.getName());\r\n        assertEquals(expectedTask.getDescription(), resultTask.getDescription());\r\n        assertEquals(expectedTask.getStatus(), resultTask.getStatus());\r\n        assertEquals(expectedTask.getProjectId(), resultTask.getProjectId());\r\n        assertEquals(expectedTask.getDeadline(), resultTask.getDeadline());\r\n\r\n\r\n        verify(mockConnection).prepareStatement(\"SELECT * FROM tasks WHERE taskId = ?\");\r\n        verify(mockStatement).setInt(1, taskId);\r\n        verify(mockStatement).executeQuery();\r\n        verify(mockResultSet).next();\r\n        verify(mockResultSet).getInt(\"taskId\");\r\n        verify(mockResultSet).getString(\"name\");\r\n        verify(mockResultSet).getString(\"description\");\r\n        verify(mockResultSet).getString(\"status\");\r\n        verify(mockResultSet).getInt(\"projectId\");\r\n        verify(mockResultSet).getTimestamp(\"deadline\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/TaskServiceTest.java b/src/test/java/TaskServiceTest.java
+--- a/src/test/java/TaskServiceTest.java	
++++ b/src/test/java/TaskServiceTest.java	
+@@ -46,7 +46,7 @@
+ 
+         taskService.createTask(task);
+ 
+-        verify(mockConnection).prepareStatement("INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)");
++        verify(mockConnection).prepareStatement("INSERT INTO task(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)");
+         verify(mockStatement).setString(1, "Test Task");
+         verify(mockStatement).setString(2, "Description of the test task");
+         verify(mockStatement).setString(3, "PENDING");
+@@ -91,7 +91,7 @@
+         assertEquals(expectedTask.getDeadline(), resultTask.getDeadline());
+ 
+ 
+-        verify(mockConnection).prepareStatement("SELECT * FROM tasks WHERE taskId = ?");
++        verify(mockConnection).prepareStatement("SELECT * FROM task WHERE taskId = ?");
+         verify(mockStatement).setInt(1, taskId);
+         verify(mockStatement).executeQuery();
+         verify(mockResultSet).next();

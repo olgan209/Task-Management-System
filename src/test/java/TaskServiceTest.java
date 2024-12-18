@@ -46,7 +46,7 @@ public class TaskServiceTest {
 
         taskService.createTask(task);
 
-        verify(mockConnection).prepareStatement("INSERT INTO tasks(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)");
+        verify(mockConnection).prepareStatement("INSERT INTO task(name, description, status, projectId, deadline) VALUES(?,?,?,?,?)");
         verify(mockStatement).setString(1, "Test Task");
         verify(mockStatement).setString(2, "Description of the test task");
         verify(mockStatement).setString(3, "PENDING");
@@ -91,7 +91,7 @@ public class TaskServiceTest {
         assertEquals(expectedTask.getDeadline(), resultTask.getDeadline());
 
 
-        verify(mockConnection).prepareStatement("SELECT * FROM tasks WHERE taskId = ?");
+        verify(mockConnection).prepareStatement("SELECT * FROM task WHERE taskId = ?");
         verify(mockStatement).setInt(1, taskId);
         verify(mockStatement).executeQuery();
         verify(mockResultSet).next();
