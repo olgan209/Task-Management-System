@@ -12,6 +12,16 @@ public class ProjectService {
     private static final String username = "postgres";
     private static final String password = "1234";
 
+    private Connection connection;
+
+    // Конструктор с параметром
+    public ProjectService(Connection connection) {
+        this.connection = connection;
+    }
+
+    public ProjectService() {
+    }
+
     Connection conn;
     public Connection connect() throws SQLException {
         try{
@@ -25,25 +35,6 @@ public class ProjectService {
         }
         return null;
     }
-
-//    public List<Project> getAllProjects() {
-//        List<Project> projects = new ArrayList<>();
-//        try (Connection connection = DriverManager.getConnection(url, username, password);
-//             Statement statement = connection.createStatement();
-//             ResultSet resultSet = statement.executeQuery("SELECT * FROM projects")) {
-//
-//            while (resultSet.next()) {
-//                int id = resultSet.getInt("id");
-//                String name = resultSet.getString("name");
-//                String description = resultSet.getString("description");
-//
-//                projects.add(new Project(id, name, description));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return projects;
-//    }
 
     public void createProject(Project project){
         String sql = "INSERT INTO project(name, description) VALUES(?,?)";
