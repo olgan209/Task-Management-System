@@ -5,7 +5,6 @@ import org.example.taskmanagementsystem.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProjectService {
     private static final String url = "jdbc:postgresql://localhost:5432/Tms";
@@ -87,7 +86,6 @@ public class ProjectService {
         try (Connection conn = this.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            // Обход результатов запроса и добавление в список
             while (rs.next()) {
                 projects.add(new Project(
                         rs.getInt("projectId"),
@@ -96,10 +94,8 @@ public class ProjectService {
                 ));
             }
         } catch (SQLException e) {
-            // Логируем ошибку, если возникла
             System.out.println("Error while fetching projects: " + e.getMessage());
         }
-        // Возвращаем список проектов (может быть пустым, но не null)
         return projects;
     }
 

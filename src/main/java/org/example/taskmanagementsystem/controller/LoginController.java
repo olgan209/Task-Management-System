@@ -28,16 +28,12 @@ public class LoginController {
 
     @FXML
     private ImageView imageView;
-
-    // Метод для инициализации контроллера
     public void initialize() {
         String imagePath = "/org/example/taskmanagementsystem/view/image/tree-removebg-preview.png";  // Укажите правильный путь к изображению в ресурсах
         Image image = new Image(getClass().getResourceAsStream(imagePath)); // Загружаем изображение из ресурсов
         imageView.setImage(image); // Устанавливаем изображение в ImageView
         loginButton.setOnAction(event -> handleLogin());
     }
-
-    // Метод для обработки логина
     @FXML
     private void handleLogin() {
         String username = usernameField.getText();
@@ -63,7 +59,6 @@ public class LoginController {
             }
         }
     }
-
     @FXML
     public void openMainView() {
         try {
@@ -84,8 +79,6 @@ public class LoginController {
             e.printStackTrace();
         }
     }
-
-    // Метод для отображения всплывающих сообщений
     private void showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -93,7 +86,6 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
     private void closeCurrentWindow() {
         // Закрытие текущего окна
         ((javafx.stage.Stage) loginButton.getScene().getWindow()).close();
