@@ -127,4 +127,9 @@ Make sure the following software is installed on your machine:
 - PostgreSQL (for database management)
 - Maven (if you are not using an IDE that handles dependencies automatically, like IntelliJ IDEA)
 - JavaFX SDK (ensure the JavaFX libraries are properly set up if using Java 11 or later)
-### 2. Database Setup
+# 2. Database Setup
+## 2.1 Create the Database
+1. Open PostgreSQL
+- CREATE DATABASE project_database;
+2. Switch to the new database:
+   \c project_database
