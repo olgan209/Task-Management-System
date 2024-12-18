@@ -115,11 +115,11 @@ Link for the website to open file : https://app.diagrams.net/?src=about
 # 1. Getting Started
 ## 1.1 Download the Code
 Clone the repository to your local machine using Git:
-- bash
--- git clone https://github.com/your-repository-url.git
+bash
+- git clone https://github.com/your-repository-url.git
 Navigate to the project directory:
-- bash
--- cd your-project-directory
+bash
+- cd your-project-directory
 ## 1.2 Prerequisites
 Make sure the following software is installed on your machine:
 
