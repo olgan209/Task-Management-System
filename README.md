@@ -136,3 +136,6 @@ Make sure the following software is installed on your machine:
 ## 2.2 Create tables
 Copy and run the sql-script that create tables in postgres, database query tool
 - [SQL Script](src/sql-scripts/sql%20table%20creation.txt)
+## 2.3 Populate the tables
+Copy and run the sql-script that insert data in tables in postgres, database query tool
+- [SQL Script](src/sql-scripts/sql%20data%20insertion.txt)
