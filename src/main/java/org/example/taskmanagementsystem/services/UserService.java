@@ -13,6 +13,16 @@ public class UserService {
     private static final String username = "postgres";
     private static final String password = "1234";
 
+    private Connection connection;
+
+    // Конструктор с параметром
+    public UserService(Connection connection) {
+        this.connection = connection;
+    }
+
+    public UserService() {
+    }
+
     Connection conn;
     public Connection connect() throws SQLException {
         try{
@@ -61,6 +71,7 @@ public class UserService {
         }
         return null;
     }
+
     public static int getUserIdIfValid(String username, String password) {
         int userId = -1;
         String query = "SELECT userId FROM User_table WHERE name = ? AND password = ?";
@@ -81,6 +92,9 @@ public class UserService {
         }
         return userId;
     }
+
+
+    // Метод для проверки пользователя в базе данных
     public static boolean validateUser(String name, String password) {
         String query = "SELECT * FROM User_table WHERE name = ? AND password = ?";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -90,12 +104,13 @@ public class UserService {
             stmt.setString(2, password);
 
             ResultSet resultSet = stmt.executeQuery();
-            return resultSet.next();
+            return resultSet.next();  // Если пользователь найден, возвращаем true
         } catch (SQLException e) {
             System.err.println("Ошибка при запросе к базе данных: " + e.getMessage());
             return false;
         }
     }
+
     public ArrayList<User> getAllUser(){
         String sql = "SELECT * FROM User_table";
         ArrayList<User> users = new ArrayList<>();
@@ -113,13 +128,14 @@ public class UserService {
         return users;
     }
     public User getUserTasks(int userId) {
-        String sql = "SELECT * FROM tasks WHERE user_id = ?";
+        String sql = "SELECT * FROM tasks WHERE user_id = ?";  // Adjust this query if necessary based on your database schema
         List<Task> tasks = new ArrayList<>();
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, userId);
+            ps.setInt(1, userId); // Set the userId in the SQL query
             ResultSet rs = ps.executeQuery();
 
+            // Iterate over the results and create Task objects
             while (rs.next()) {
                 Task task = new Task(
                         rs.getInt("id"),  // Assuming the task has an 'id' column
@@ -134,11 +150,15 @@ public class UserService {
         } catch (SQLException e) {
             System.out.println("Error fetching tasks: " + e.toString());
         }
-        User user = getUser(userId);
-        user.setTasks(tasks);
+
+        // Assuming User class has a setTasks() method
+        User user = getUser(userId);  // Fetch the user by their ID
+        user.setTasks(tasks);  // Set the list of tasks for the user
 
         return user;
     }
+
+
     public void updateUser(User user){
         String sql = "UPDATE employee SET name = ?, position = ?, hireDate = ? WHERE id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)){
@@ -152,6 +172,7 @@ public class UserService {
             System.out.println(e.toString());
         }
     }
+
     public void deleteUser(int id){
         String sql = "DELETE FROM users WHERE id = ?";
         try(Connection conn = this.connect();

@@ -14,6 +14,7 @@ import org.example.taskmanagementsystem.model.User;
 import org.example.taskmanagementsystem.services.UserService;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 public class RegistrationController {
 
