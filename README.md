@@ -25,8 +25,8 @@ The **Task Management System** is designed to help users efficiently manage thei
 6. **Validation Utilities**
    - Data integrity ensured through validation mechanisms.
 
-7. **Poka**
-   -NE PRIDUMALA.
+7. **Error Handling and Logging**
+   - Robust error management and system logging for smooth operation.
 
 8. **Documentation**
    - Includes a detailed `ReadMe.md` file for easy setup and usage.
@@ -79,6 +79,15 @@ The **Task Management System** is designed to help users efficiently manage thei
 
 ## Application screenshots
 
+![photo_2024-12-18_12-13-27](https://github.com/user-attachments/assets/2a00e21c-e75d-4029-b2ad-195da725eb25)
+![photo_2024-12-18_12-13-31](https://github.com/user-attachments/assets/380d7fbe-8615-4ac8-a610-8144b9ba7084)
+![photo_2024-12-18_12-13-34](https://github.com/user-attachments/assets/27aaafb2-492f-4279-ab27-4a2154e35d83)
+![photo_2024-12-18_12-13-49](https://github.com/user-attachments/assets/358006b9-79ee-4cf4-8884-a8aeff20f54b)
+![photo_2024-12-18_12-13-51](https://github.com/user-attachments/assets/de841241-1466-4832-9a11-9d3d7677d888)
+![photo_2024-12-18_12-13-52](https://github.com/user-attachments/assets/a60b7722-9649-44d1-8a62-688b0ad15660)
+![photo_2024-12-18_12-13-54](https://github.com/user-attachments/assets/59c3996e-c57b-4f80-a2b2-09d6914c1a9b)
+
+
 
 ## Project Timeline
 
@@ -98,6 +107,10 @@ The **Task Management System** is designed to help users efficiently manage thei
   - Prepare the project presentation.
 
 ---
+
+## UML Class diagram
+Link for google drive with the file : https://drive.google.com/drive/folders/1hkCivXFjPm7oOmqbbKJObka5NJy2cBQg?usp=sharing
+Link for the website to open file : https://app.diagrams.net/?src=about
 
 ## How to Contribute
 
